@@ -2,22 +2,26 @@
 
 import time
 import datetime
-from Adafruit.SevenSegment import SevenSegment
+from ClockDisplay import ClockDisplay
 
 # Connect to the LED display
-segment = SevenSegment(address=0x70)
+display = ClockDisplay(address=0x70)
+
+# Set the brightness (0 to 15, 15 is the brightest)
+display.setBrightness(5)
+
+# Set the colon in the middle
+display.setColon(True)
 
 # Keep updating, never stop
 while(True):
   now = datetime.datetime.now()
 
-  # Set hours
-  segment.writeDigit(0, int(now.hour / 10))     # Tens
-  segment.writeDigit(1, now.hour % 10)          # Ones
+  is_evening = now.hour > 12
+  display.setHours(now.hour if not is_evening else now.hour - 12)
+  display.setEvening(is_evening)
 
-  # Set minutes
-  segment.writeDigit(3, int(now.minute / 10))   # Tens
-  segment.writeDigit(4, now.minute % 10)        # Ones
+  display.setMinutes(now.minute)
 
   # Wait one second
   time.sleep(1)
