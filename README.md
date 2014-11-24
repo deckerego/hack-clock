@@ -1,5 +1,5 @@
-hack-clock
-==========
+The Hackable Clock
+==================
 
 A hackable alarm clock, made for experimentation to learn GPIO and programming.
 
@@ -9,6 +9,12 @@ Lessons and tutorials are coming soon.
 
 Installation
 ------------
+
+The hack-clock application is intended to be distributed as source, not in binary or packaged form, since
+it is intended to be a teaching tool. Unfortunately this means we need to take a few extra steps to
+install, but the entire process should take only a few minutes.
+
+To install the hack-clock distribution:
 
 1. Make sure your Raspberry Pi is up to date with the latest packages & firmware.
 2. Enable I2C using raspi-config. It's listed under the advanced options.
@@ -20,6 +26,9 @@ Installation
 8. Copy the startup script `hack-clock` into the directory `/etc/init.d`
 9. Ensure the clock starts at boot using the command `sudo update-rc.d hack-clock defaults`
 10. Start the app using `sudo service hack-clock start`
+
+Bear in mind you may want to consider forking the source instead of cloning the parent repository -
+that way you can make alterations and save your changes independently!
 
 License
 =======
