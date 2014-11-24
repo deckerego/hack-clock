@@ -7,6 +7,19 @@ Project page detailing out the hardware build is available at http://hackaday.io
 
 Lessons and tutorials are coming soon.
 
+Installation
+------------
+
+1. Make sure your Raspberry Pi is up to date with the latest packages & firmware.
+2. Enable I2C using raspi-config. It's listed under the advanced options.
+3. sudo apt-get install python-distribute python-dev
+4. sudo easy_install pip
+5. Clone this repository or download the .ZIP, which will include the clock controller and some admin configs/scripts
+6. Install hack-clock's dependencies using pip install -r requirements.txt
+7. Start the app using `sudo python ./run_clock.py`
+
+I'm working on simplifying the installation process and getting rid of the sudo requirement.
+
 License
 =======
 
