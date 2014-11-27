@@ -19,7 +19,7 @@ To install the hack-clock distribution:
 1. Make sure your Raspberry Pi is up to date with the latest packages & firmware.
 2. Enable I2C using raspi-config. It's listed under the advanced options.
 3. Install WiringPi as described within http://wiringpi.com/download-and-install/
-4. To let the pi user sense button presses, use the WiringPi GPIO Utility to permit non-root access to the pins. As an example: `sudo gpio export 17 out`
+4. To let the pi user sense button presses, use the WiringPi GPIO Utility to permit non-root access to the pins. As an example: `gpio export 0 in; gpio mode 0 up`
 5. Ensure the pi user is added to the i2c group in /etc/group - there should be a line at the bottom of the file that looks like `i2c:x:110:pi`
 6. Add the necessary Python tools using `sudo apt-get install python-distribute python-dev python-smbus i2c-tools`
 7. Install the Pip dependency manager using `sudo easy_install pip`
@@ -46,7 +46,7 @@ License
 
 License is Apache Public License 2.0 (APL 2) unless otherwise noted.
 
-The Adafruit libraries located in the /Adafruit directory are licensed separately, see Adafruit/README.md for details. 
+The Adafruit libraries located in the /Adafruit directory are licensed separately, see Adafruit/README.md for details.
 The original code is available at https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code
 
 CodeMirror is licensed separately as detailed in views/codemirror/LICENSE. The CodeMirror codebase is
