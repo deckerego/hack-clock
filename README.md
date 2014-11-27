@@ -44,5 +44,11 @@ To start the clock as soon as your Raspberry Pi boots up:
 License
 =======
 
-License is Apache Public License 2.0 (APL 2) unless otherwise noted. The Adafruit
-libraries are licensed separately, see Adafruit/README.md for details.
+License is Apache Public License 2.0 (APL 2) unless otherwise noted.
+
+The Adafruit libraries located in the /Adafruit directory are licensed separately, see Adafruit/README.md for details. 
+The original code is available at https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code
+
+CodeMirror is licensed separately as detailed in views/codemirror/LICENSE. The CodeMirror codebase is
+not directly committed into this repository (although it appears that way) - it is a subtree of
+the repository available at https://github.com/codemirror/codemirror
