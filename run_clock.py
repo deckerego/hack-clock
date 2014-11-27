@@ -21,8 +21,8 @@ station_name = configuration.get('weather_station')
 weather_station = Weather(station_name)
 
 # What to do when a button is pressed
-def switchWeatherStations(pinNumber):
-  print "Button %d" % pinNumber
+def switchWeatherStations():
+  print "Switch to weather!"
 
 # A button to press!
 button = Button(17)
