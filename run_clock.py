@@ -13,16 +13,24 @@ display = ClockDisplay()
 # Set the brightness (0 to 15, 15 is the brightest)
 display.setBrightness(1)
 
-# Set the colon in the middle
-display.setColon(True)
-
 # The weather station
 station_name = configuration.get('weather_station')
 weather_station = Weather(station_name)
 
 # What to do when a button is pressed
 def switchWeatherStations():
-  print "Switch to weather!"
+    # Clear the display
+    display.showTime = False
+    display.setColon(False)
+    display.setHours(0)
+
+    # Show the current temperature
+    current_temp = weather_station.getCurrentTemp()
+    display.setMinutes(current_temp)
+
+    # Wait three seconds
+    time.sleep(3)
+    display.showTime = True
 
 # A button to press!
 button = Button(17)
@@ -30,20 +38,19 @@ button.whenPressed(switchWeatherStations)
 
 # Keep updating, never stop
 while(True):
-  now = datetime.datetime.now()
+    if display.showTime:
+        now = datetime.datetime.now()
 
-  is_evening = now.hour > 12
-  display.setHours(now.hour if not is_evening else now.hour - 12)
-  display.setEvening(is_evening)
+        # Set the hours
+        is_evening = now.hour > 12
+        display.setHours(now.hour if not is_evening else now.hour - 12)
 
-  display.setMinutes(now.minute)
+        # Set the indicator lights
+        display.setColon(True)
+        display.setEvening(is_evening)
 
-  # Wait one second
-  time.sleep(1)
+        # Set the minutes
+        display.setMinutes(now.minute)
 
-  current_temp = weather_station.getCurrentTemp()
-  display.setHours(0)
-  display.setMinutes(current_temp)
-
-  # Wait one second
-  time.sleep(1)
+        # Wait one second
+        time.sleep(1)

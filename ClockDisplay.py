@@ -10,6 +10,7 @@ class ClockDisplay(SevenSegment):
 
   def __init__(self, address=0x70):
     SevenSegment.__init__(self, address)
+    self.showTime = True
 
   def setBrightness(self, level):
     self.disp.setBrightness(level)
