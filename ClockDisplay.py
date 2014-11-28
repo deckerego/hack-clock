@@ -1,4 +1,5 @@
 from Adafruit.SevenSegment import SevenSegment
+from Adafruit.LEDBackpack import LEDBackpack
 from bitstring import BitArray
 
 class ClockDisplay(SevenSegment):
@@ -9,26 +10,34 @@ class ClockDisplay(SevenSegment):
   __RIGHT_TOP                = 11
 
   def __init__(self, address=0x70):
-    SevenSegment.__init__(self, address)
+    self.display = LEDBackpack(address=address)
     self.showTime = True
 
   def setBrightness(self, level):
-    self.disp.setBrightness(level)
+    self.display.setBrightness(level)
 
   def setColon(self, state=True):
-    row = BitArray('uint:16=%d' % self.disp.getBufferRow(2))
+    row = BitArray('uint:16=%d' % self.display.getBufferRow(2))
     row[self.__MID_COLON] = state
-    self.disp.setBufferRow(2, int(row.hex, 16))
+    self.display.setBufferRow(2, int(row.hex, 16))
 
   def setEvening(self, state=True):
-    row = BitArray('uint:16=%d' % self.disp.getBufferRow(2))
+    row = BitArray('uint:16=%d' % self.display.getBufferRow(2))
     row[self.__LEFT_TOP] = state
-    self.disp.setBufferRow(2, int(row.hex, 16))
+    self.display.setBufferRow(2, int(row.hex, 16))
 
   def setMinutes(self, minutes):
     self.writeDigit(3, int(minutes / 10))   # Tens
     self.writeDigit(4, minutes % 10)        # Ones
 
   def setHours(self, hours):
-    self.writeDigit(0, int(hours / 10))   # Tens
+    hourTens = int(hours / 10) if hours >= 10 else None
+    self.writeDigit(0, hourTens)          # Tens
     self.writeDigit(1, hours % 10)        # Ones
+
+  def writeDigit(self, charNumber, value, dot=False):
+    if (charNumber > 7): return
+    if (value > 9): return
+
+    hexValue = SevenSegment.digits[value] if value != None else 0x00
+    self.display.setBufferRow(charNumber, hexValue)
