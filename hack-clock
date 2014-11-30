@@ -15,8 +15,10 @@ APP_DIR=/home/pi/hack-clock
 APP_BIN=run_clock.py
 DAEMON=/usr/bin/python
 DAEMON_ARGS="$APP_DIR/$APP_BIN"
+DAEMON_USER='pi'
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
+BUTTON_BCM_PIN=24
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
@@ -37,9 +39,12 @@ SCRIPTNAME=/etc/init.d/$NAME
 #
 do_start()
 {
-  start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
+  sudo -u $DAEMON_USER gpio export $BUTTON_BCM_PIN in
+  sudo -u $DAEMON_USER gpio mode $BUTTON_BCM_PIN up
+
+  start-stop-daemon --start --quiet --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
     || return 1
-  start-stop-daemon --background --start --quiet --pidfile $PIDFILE --exec $DAEMON -- \
+  start-stop-daemon --background --start --quiet --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON -- \
     $DAEMON_ARGS \
     || return 2
 }
@@ -49,6 +54,8 @@ do_start()
 #
 do_stop()
 {
+  gpio unexport $BUTTON_BCM_PIN
+
   start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
   RETVAL="$?"
   [ "$RETVAL" = 2 ] && return 2

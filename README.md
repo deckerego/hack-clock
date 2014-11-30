@@ -17,14 +17,14 @@ install, but the entire process should take only a few minutes.
 To install the hack-clock distribution:
 
 1. Make sure your Raspberry Pi is up to date with the latest packages & firmware.
-2. Enable I2C using raspi-config. It's listed under the advanced options.
-3. Install WiringPi as described within http://wiringpi.com/download-and-install/
-4. To let the pi user sense button presses, use the WiringPi GPIO Utility to permit non-root access to the pins. As an example: `gpio export 0 in; gpio mode 0 up`
-5. Ensure the pi user is added to the i2c group in /etc/group - there should be a line at the bottom of the file that looks like `i2c:x:110:pi`
-6. Add the necessary Python tools using `sudo apt-get install python-distribute python-dev python-smbus i2c-tools`
+2. Enable I2C as described in Adafruit's tutorial at https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
+3. Ensure the pi user is added to the i2c group in /etc/group - there should be a line at the bottom of the file that looks like `i2c:x:110:pi`
+4. Install WiringPi as described within http://wiringpi.com/download-and-install/
+5. To let the pi user sense button presses, use the WiringPi GPIO Utility to permit non-root access to the pins. As an example: `gpio export 24 in; gpio mode 24 up`
+6. Add the necessary Python tools using `sudo apt-get install python-distribute python-dev python-smbus`
 7. Install the Pip dependency manager using `sudo easy_install pip`
-8. Clone or download this repository. Different lessons are stored within branches of the repository.
-9. Install hack-clock's dependencies using pip install -r requirements.txt
+8. Clone or download this repository using `git clone https://github.com/deckerego/hack-clock.git`
+9. Install hack-clock's dependencies using `sudo pip install -r requirements.txt`
 10. Copy the file `config.sample` to `config.py` and customize it for your environment (e.g. your local weather station)
 11. Start the app by executing `./run_clock.py` from within the hack-clock directory
 
@@ -39,7 +39,6 @@ To start the clock as soon as your Raspberry Pi boots up:
 1. Copy the startup script `hack-clock` into the directory `/etc/init.d`
 2. Ensure the clock starts at boot using the command `sudo update-rc.d hack-clock defaults`
 3. Start the clock with `sudo service hack-clock start`
-
 
 License
 =======

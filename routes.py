@@ -31,15 +31,15 @@ def send_css(filename):
 def send_js(filename):
   return static_file(filename, root='views/codemirror')
 
-@application.get('/run_clock.py')
+@application.get('/edit/run_clock.py')
 def editor():
-  code_file = open('test.py', 'r')
+  code_file = open('run_clock.py', 'r')
   return template('editor', code=code_file.read())
 
-@application.post('/run_clock.py')
+@application.post('/edit/run_clock.py')
 def save_file():
-  code_file = open('test.py', 'w')
+  code_file = open('run_clock.py', 'w')
   code_file.write(request.forms.get('code'))
 
-  code_file = open('test.py', 'r')
+  code_file = open('run_clock.py', 'r')
   return template('editor', code=code_file.read())

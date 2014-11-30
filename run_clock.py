@@ -33,7 +33,7 @@ def switchWeatherStations():
     display.showTime = True
 
 # A button to press!
-button = Button(17)
+button = Button(24)
 button.whenPressed(switchWeatherStations)
 
 # Keep updating, never stop
