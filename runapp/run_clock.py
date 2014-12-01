@@ -2,9 +2,9 @@
 
 import time
 import datetime
-from ClockDisplay import ClockDisplay
-from Weather import Weather
-from Input import Button
+from Libs.ClockDisplay import ClockDisplay
+from Libs.Weather import Weather
+from Libs.Input import Button
 from config import configuration
 
 # Connect to the LED display
