@@ -27,19 +27,26 @@ def send_js(filename):
 def send_css(filename):
 	return static_file(filename, root='views/css')
 
+@application.get('/')
+def editor():
+  return template('index')
+
 @application.route('/codemirror/<filename:path>')
 def send_js(filename):
   return static_file(filename, root='views/codemirror')
 
 @application.get('/edit/run_clock.py')
 def editor():
-  code_file = open('run_clock.py', 'r')
-  return template('editor', code=code_file.read())
+  code_file = open('../runapp/run_clock.py', 'r')
+  return template('editor', code=code_file.read(), status="Opened")
 
 @application.post('/edit/run_clock.py')
 def save_file():
-  code_file = open('run_clock.py', 'w')
-  code_file.write(request.forms.get('code'))
+	try:
+		code_file = open('../runapp/run_clock.py', 'w')
+		code_file.write(request.forms.get('code'))
 
-  code_file = open('run_clock.py', 'r')
-  return template('editor', code=code_file.read())
+		code_file = open('../runapp/run_clock.py', 'r')
+		return template('editor', code=code_file.read(), status="Saved")
+	except:
+		return template('editor', code=request.forms.get('code'), status="Failed")
