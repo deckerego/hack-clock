@@ -21,12 +21,13 @@ To install the hack-clock distribution:
 3. Ensure the pi user is added to the i2c group in /etc/group - there should be a line at the bottom of the file that looks like `i2c:x:110:pi`
 4. Install WiringPi as described within http://wiringpi.com/download-and-install/
 5. To let the pi user sense button presses, use the WiringPi GPIO Utility to permit non-root access to the pins. As an example: `gpio export 24 in; gpio mode 24 up`
-6. Add the necessary Python tools using `sudo apt-get install python-distribute python-dev python-smbus`
-7. Install the Pip dependency manager using `sudo easy_install pip`
-8. Clone or download this repository using `git clone https://github.com/deckerego/hack-clock.git`
-9. Install hack-clock's dependencies using `sudo pip install -r requirements.txt`
-10. Copy the file `config.sample` to `config.py` and customize it for your environment (e.g. your local weather station)
-11. Start the app by executing `./run_clock.py` from within the hack-clock directory
+6. There appears to be a bug in the wiringPi gpio utility that causes button states to be read incorrectly. To fix this, run the gpio_pullup.py script as root. For example: `sudo python ./gpio_pullup.py 24`
+7. Add the necessary Python tools using `sudo apt-get install python-distribute python-dev python-smbus`
+8. Install the Pip dependency manager using `sudo easy_install pip`
+9. Clone or download this repository using `git clone https://github.com/deckerego/hack-clock.git`
+10. Install hack-clock's dependencies using `sudo pip install -r requirements.txt`
+11. Copy the file `config.sample` to `config.py` and customize it for your environment (e.g. your local weather station)
+12. Start the app by executing `./run_clock.py` from within the hack-clock directory
 
 Bear in mind you may want to consider forking the source instead of cloning the parent repository -
 that way you can make alterations and save your changes independently!
@@ -39,6 +40,9 @@ To start the clock as soon as your Raspberry Pi boots up:
 1. Copy the startup script `hack-clock` into the directory `/etc/init.d`
 2. Ensure the clock starts at boot using the command `sudo update-rc.d hack-clock defaults`
 3. Start the clock with `sudo service hack-clock start`
+
+The start-up script also sets GPIO5 (Broadcom GPIO 24) with the correct input values and resistor states, so this is a helpful
+way to make sure your button pins are set correctly.
 
 License
 =======

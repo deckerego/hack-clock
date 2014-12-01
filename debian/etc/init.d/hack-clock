@@ -11,7 +11,7 @@
 
 DESC="I2C Alarm Clock Interface"
 NAME=hack-clock
-APP_DIR=/home/pi/hack-clock
+APP_DIR=/home/pi/hack-clock/runapp
 APP_BIN=run_clock.py
 DAEMON=/usr/bin/python
 DAEMON_ARGS="$APP_DIR/$APP_BIN"
@@ -41,6 +41,8 @@ do_start()
 {
   sudo -u $DAEMON_USER gpio export $BUTTON_BCM_PIN in
   sudo -u $DAEMON_USER gpio mode $BUTTON_BCM_PIN up
+  # FIXME The following script is a work-around until the pull up resistor is successfully set with wiringPi
+  $DAEMON "$APP_DIR/gpio_pullup.py" $BUTTON_BCM_PIN
 
   start-stop-daemon --start --quiet --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
     || return 1
