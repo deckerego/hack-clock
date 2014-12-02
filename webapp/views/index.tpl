@@ -9,5 +9,5 @@
 <body>
   <h1>Hack Clock</h1>
 
-  <a href="/edit/run_clock.py">Edit the Clock Driver</a>
+  <a href="/clock/edit">Edit the Clock Driver</a>
 </body>

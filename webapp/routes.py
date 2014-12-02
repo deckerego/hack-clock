@@ -11,9 +11,11 @@ logger = logging.getLogger('hack-clock')
 os.chdir(os.path.dirname(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
 
+from clock import Clock, ProcessStatus
 from bottle import Bottle, HTTPResponse, static_file, get, put, request, response, template
 
 application = Bottle()
+application.install(Clock())
 
 @application.route('/favicon.ico')
 def send_favicon():
@@ -29,24 +31,39 @@ def send_css(filename):
 
 @application.get('/')
 def editor():
-  return template('index')
+	return template('index')
 
 @application.route('/codemirror/<filename:path>')
 def send_js(filename):
-  return static_file(filename, root='views/codemirror')
+	return static_file(filename, root='views/codemirror')
 
-@application.get('/edit/run_clock.py')
-def editor():
-  code_file = open('../runapp/run_clock.py', 'r')
-  return template('editor', code=code_file.read(), status="Opened")
+@application.post('/clock/restart')
+def restart_event_loop(clock):
+	clock.restart()
+	return '{ "status": "restarted" }'
 
-@application.post('/edit/run_clock.py')
-def save_file():
+@application.get('/clock/status')
+def status_event_loop(clock):
+	return '{ "status": "%s" }' % clock.status()
+
+@application.get('/clock/failures')
+def status_stderr(clock):
+	return clock.failures()
+
+@application.get('/clock/edit')
+def edit_event_loop(clock):
+	code_file = open(clock.sourceFile, 'r')
+	return template('editor', code=code_file.read(), status="Opened")
+
+@application.post('/clock/edit')
+def save_event_loop(clock):
 	try:
-		code_file = open('../runapp/run_clock.py', 'w')
+		code_file = open(clock.sourceFile, 'w')
 		code_file.write(request.forms.get('code'))
 
-		code_file = open('../runapp/run_clock.py', 'r')
+		clock.restart()
+
+		code_file = open(clock.sourceFile, 'r')
 		return template('editor', code=code_file.read(), status="Saved")
 	except:
 		return template('editor', code=request.forms.get('code'), status="Failed")

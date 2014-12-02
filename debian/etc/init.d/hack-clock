@@ -12,9 +12,10 @@
 DESC="I2C Alarm Clock Interface"
 NAME=hack-clock
 APP_DIR=/home/pi/hack-clock/runapp
-APP_BIN=run_clock.py
+WEB_DIR=/home/pi/hack-clock/webapp
+APP_BIN=run_server.py
 DAEMON=/usr/bin/python
-DAEMON_ARGS="$APP_DIR/$APP_BIN"
+DAEMON_ARGS="$WEB_DIR/$APP_BIN"
 DAEMON_USER='pi'
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME

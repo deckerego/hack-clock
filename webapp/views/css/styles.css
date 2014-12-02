@@ -2,21 +2,30 @@
   color: gray;
 }
 
-#toolbar {
+.toolbar {
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 100%;
   background-color: gray;
 }
 
-#titlebar {
+.titlebar {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
+#errors {
+  width: 100%;
+  border: 5px solid #eee;
+  height: 200px;
+}
+
 .title {
-  margin-left: 20px;
+  margin-right: 20px;
+  text-align: right;
   color: white;
   font-size: large;
+  float: right;
 }
 
 .CodeMirror {
