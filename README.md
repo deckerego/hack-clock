@@ -14,7 +14,7 @@ The hack-clock application is intended to be distributed as source, not in binar
 it is intended to be a teaching tool. Unfortunately this means we need to take a few extra steps to
 install, but the entire process should take only a few minutes.
 
-To install the hack-clock distribution:
+I'm assuming that you are starting with the NOOBS Linux distribution. To install the hack-clock distribution on top of it:
 
 1. Make sure your Raspberry Pi is up to date with the latest packages & firmware.
 2. Enable I2C as described in Adafruit's tutorial at https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
@@ -27,7 +27,7 @@ To install the hack-clock distribution:
 9. Clone or download this repository using `git clone https://github.com/deckerego/hack-clock.git`
 10. Install hack-clock's dependencies using `sudo pip install -r requirements.txt`
 11. Copy the file `config.sample` to `config.py` and customize it for your environment (e.g. your local weather station)
-12. Start the app by executing `./run_clock.py` from within the hack-clock directory
+12. Start the app by executing `./run_server.py` from within the hack-clock/webapp directory
 
 Bear in mind you may want to consider forking the source instead of cloning the parent repository -
 that way you can make alterations and save your changes independently!

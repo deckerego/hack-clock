@@ -5,10 +5,14 @@ import datetime
 from Libs.ClockDisplay import ClockDisplay
 from Libs.Weather import Weather
 from Libs.Input import Button
+from Libs.Speaker import Speaker
 from config import configuration
 
 # Connect to the LED display
 display = ClockDisplay()
+
+# Connect to the speaker
+speaker = Speaker()
 
 # Set the brightness (0 to 15, 15 is the brightest)
 display.setBrightness(1)
@@ -27,6 +31,9 @@ def switchWeatherStations():
     # Show the current temperature
     current_temp = weather_station.getCurrentTemp()
     display.setMinutes(current_temp)
+
+    # Play a song... hey, why not?
+    speaker.play("audio/AmicusMeus.ogg")
 
     # Wait three seconds
     time.sleep(3)
