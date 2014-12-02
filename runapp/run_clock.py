@@ -32,8 +32,8 @@ def switchWeatherStations():
     current_temp = weather_station.getCurrentTemp()
     display.setMinutes(current_temp)
 
-    # Play a song... hey, why not?
-    speaker.play("audio/AmicusMeus.ogg")
+    # Play a song
+    speaker.play("../runapp/audio/AmicusMeus.ogg")
 
     # Wait three seconds
     time.sleep(3)

@@ -1,4 +1,5 @@
 import datetime
+from datetime import timedelta
 import urllib2
 import xml.etree.ElementTree as ET
 from decimal import Decimal
@@ -11,7 +12,7 @@ class Weather:
   __WINDSPEED_MPH = 'wind_mph'
   __WINDSPEED_KT = 'wind_kt'
   __RELATIVE_HUMIDITY = 'relative_humidity'
-  __REFRESH_DELTA = 60 * 60
+  __REFRESH_DELTA = timedelta(minutes=60)
 
   def __init__(self, weatherStation):
     self.last_fetch = datetime.datetime.min
@@ -21,7 +22,7 @@ class Weather:
     refresh_delta = datetime.datetime.now() - self.last_fetch
 
     # Don't refresh data after every call - wait DELTA seconds
-    if refresh_delta.seconds > self.__REFRESH_DELTA:
+    if refresh_delta > self.__REFRESH_DELTA:
       response = urllib2.urlopen(self.url)
       data = response.read()
       self.root = ET.fromstring(data)
