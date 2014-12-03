@@ -16,7 +16,6 @@
 <body>
   <form method="POST" action="/clock/edit">
 
-
     <div class="toolbar">
       <button type="button" class="btn btn-default" onClick="document.forms[0].submit();"><i class="fa fa-floppy-o fa-2x"></i></button>
       <button type="button" class="btn btn-default" onClick="restartClock();"><i class="fa fa-refresh fa-2x"></i></button>
@@ -44,6 +43,7 @@
         },
         lineNumbers: true,
         indentUnit: 4,
+        height: "dynamic",
         tabMode: "shift",
         matchBrackets: true
       });

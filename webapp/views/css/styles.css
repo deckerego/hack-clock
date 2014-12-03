@@ -17,7 +17,7 @@
 #errors {
   width: 100%;
   border: 5px solid #eee;
-  height: 200px;
+  height: 15vh;
 }
 
 .title {
@@ -30,7 +30,7 @@
 
 .CodeMirror {
   border: 5px solid #eee;
-  height: auto;
+  height: 65vh;
 }
 
 .CodeMirror-scroll {

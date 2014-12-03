@@ -2,7 +2,11 @@ function getErrors(textElement) {
   var request = new XMLHttpRequest();
   request.open("GET", "/clock/failures", true);
   request.onload = function(evt) {
-    textElement.innerHTML = request.responseText
+    if(request.responseText.trim() == '')
+      textElement.innerHTML = 'No Errors!'
+    else
+      textElement.innerHTML = request.responseText
+      textElement.scrollTop = textElement.scrollHeight;
   };
   request.send();
 }
