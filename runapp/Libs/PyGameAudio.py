@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import pygame
 
 class Speaker():
@@ -11,4 +9,5 @@ class Speaker():
         pygame.quit()
 
     def play(self, filePath):
+        filePath = "../runapp/audio/%s" % fileName
         pygame.mixer.Sound(filePath).play()

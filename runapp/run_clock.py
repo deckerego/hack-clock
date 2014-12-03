@@ -5,7 +5,7 @@ import datetime
 from Libs.ClockDisplay import ClockDisplay
 from Libs.Weather import Weather
 from Libs.Input import Button
-from Libs.Speaker import Speaker
+from Libs.GStreamer import Speaker
 from config import configuration
 
 # Connect to the LED display
@@ -33,7 +33,7 @@ def switchWeatherStations():
     display.setMinutes(current_temp)
 
     # Play a song
-    speaker.play("../runapp/audio/AmicusMeus.ogg")
+    speaker.play("AmicusMeus.ogg")
 
     # Wait three seconds
     time.sleep(3)
