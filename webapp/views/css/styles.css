@@ -1,36 +1,36 @@
-.filename {
-  color: gray;
-}
-
 .toolbar {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 100%;
   background-color: gray;
 }
 
 .titlebar {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-#errors {
-  width: 100%;
-  border: 5px solid #eee;
-  height: 15vh;
+  display: block;
 }
 
 .title {
-  margin-right: 20px;
   text-align: right;
   color: white;
   font-size: large;
   float: right;
 }
 
+#errors {
+  width: 100%;
+  border: 5px solid #eee;
+  height: 20vh;
+}
+
+.filestatus {
+  float: right;
+  padding-right: 10px;
+}
+
+.runstatus {
+  padding-left: 10px;
+}
+
 .CodeMirror {
   border: 5px solid #eee;
-  height: 65vh;
+  height: 70vh;
 }
 
 .CodeMirror-scroll {
