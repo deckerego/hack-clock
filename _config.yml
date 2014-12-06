@@ -1,0 +1,12 @@
+# Site settings
+title: Hack Clock
+email: john@deckerego.net
+description: > # this means to ignore newlines until "baseurl:"
+  A hackable alarm clock, made for experimentation to learn GPIO and programming.
+baseurl: "/hack-clock/" # the subpath of your site, e.g. /blog/
+url: "http://deckerego.github.io" # the base hostname & protocol for your site
+twitter_username: deckerego
+github_username:  deckerego
+
+# Build settings
+markdown: kramdown
