@@ -2,7 +2,7 @@ from Adafruit.SevenSegment import SevenSegment
 from Adafruit.LEDBackpack import LEDBackpack
 from bitstring import BitArray
 
-class ClockDisplay(SevenSegment):
+class Display(SevenSegment):
   # Indicator Bit Flags
   __MID_COLON                = 14
   __LEFT_TOP                 = 13
