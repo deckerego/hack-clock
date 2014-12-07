@@ -23,6 +23,16 @@ function getStatus(elementName) {
     var textElement = document.getElementById(elementName);
     var response = JSON.parse(request.responseText);
     textElement.innerHTML = "Application " + response.status;
+
+    if(response.status == "running") {
+      textElement.className = "label label-success"
+    } else if(response.status == "terminated") {
+      textElement.className = "label label-warning"
+    } else if(response.status == "not_started") {
+      textElement.className = "label label-warning"
+    } else {
+      textElement.className = "label label-default"
+    }
   };
 
   request.send();

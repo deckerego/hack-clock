@@ -1,36 +1,26 @@
-.toolbar {
-  background-color: gray;
-}
-
-.titlebar {
-  display: block;
-}
-
-.title {
-  text-align: right;
-  color: white;
-  font-size: large;
-  float: right;
-}
-
 #errors {
   width: 100%;
   border: 5px solid #eee;
-  height: 20vh;
+  height: 15vh;
 }
 
-.filestatus {
+#runstatus {
   float: right;
-  padding-right: 10px;
+  font-size: 18px;
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
 }
 
-.runstatus {
-  padding-left: 10px;
+#indexButtonGroup .btn {
+  padding: 24px 12px;
+  margin: 0 5px;
+  font-size: 36px;
 }
 
 .CodeMirror {
   border: 5px solid #eee;
-  height: 70vh;
+  height: 65vh;
 }
 
 .CodeMirror-scroll {
