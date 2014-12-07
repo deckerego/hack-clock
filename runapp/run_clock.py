@@ -26,9 +26,10 @@ speaker = Speaker()
 # Show the current weather
 def switchWeatherStations():
     # Clear the display
-    display.showTime = False
     display.setColon(False)
+    display.setEvening(False)
     display.setHours(0)
+    display.setMinutes(0)
 
     # Show the current temperature
     current_temp = weather_station.getCurrentTemp()
@@ -36,8 +37,7 @@ def switchWeatherStations():
 
     # Wait for about three seconds
     clock.waitAbout(3)
-    display.showTime = True
-
+    
 
 # Show the current time
 def showCurrentTime():

@@ -14,7 +14,7 @@
   <script src="/js/editor.js?v=1"></script>
 </head>
 <body>
-  <form method="POST" action="/clock/edit">
+  <form method="POST" action="/clock/code">
 
     <div class="toolbar">
       <button type="button" id="save" class="btn btn-default" onClick="document.forms[0].submit();"><i class="fa fa-floppy-o fa-2x"></i></button>

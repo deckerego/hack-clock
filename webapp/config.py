@@ -1,7 +1,6 @@
 import argparse
 
 config_values = {
-    'weather_station': 'KGPI',
     'audio_files': '../runapp/audio'
 }
 

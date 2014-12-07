@@ -1,5 +1,5 @@
 # Your own personal configuration file
-config.py
+runapp/config.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
