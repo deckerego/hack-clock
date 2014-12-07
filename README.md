@@ -55,3 +55,6 @@ The original code is available at https://github.com/adafruit/Adafruit-Raspberry
 CodeMirror is licensed separately as detailed in views/codemirror/LICENSE. The CodeMirror codebase is
 not directly committed into this repository (although it appears that way) - it is a subtree of
 the repository available at https://github.com/codemirror/codemirror
+
+Drawing of a 0.36" single digit seven-segment display has been released into the Public Domain by Inductiveload,
+available at http://commons.wikimedia.org/wiki/File:7-Segment_Display,_0.36in,_Single_(shaded).svg
