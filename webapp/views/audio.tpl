@@ -34,7 +34,12 @@
       </div>
 
       <h3>Upload a new file:</h3>
-      <input type="file" name="upload" onChange="document.forms[0].submit();"/>
+      <input id="uploadFile" type="file" name="upload" onChange="uploadProgress(this, 'uploadProgress');"/>
+      <div id="uploadProgress" class="progress hidden">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+          <span class="sr-only">Uploading....</span>
+        </div>
+      </div>
 
       <hr>
 
@@ -46,6 +51,12 @@
     </div>
   </form>
 
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script>
+    function uploadProgress(uploadElement, progressName) {
+      uploadElement.style.visibility = "hidden";
+      document.getElementById(progressName).className = "progress";
+      document.forms[0].submit();
+    }
+  </script>
 </body>
 </html>
