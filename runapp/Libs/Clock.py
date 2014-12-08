@@ -13,19 +13,19 @@ class Clock(threading.Thread):
         self.tickFunc = None
         self.additionalWait = 0
         self.timedEvents = []
-        self.timedEventsIdx = None
+        self.timedEventsIdx = -1
         self.start()
 
     def __del__(self):
         self.__running = False
 
     def __executeEvents(self):
-        if self.timedEventsIdx:
+        if self.timedEventsIdx > -1:
             now = datetime.datetime.now()
             currentHash = (now.hour * 60) + now.minute
             (timeHash, action) = self.timedEvents[self.timedEventsIdx]
 
-            if timeHash < currentHash:
+            if timeHash == currentHash:
                 self.timedEventsIdx = self.timedEventsIdx % len(self.timedEvents)
                 action()
 

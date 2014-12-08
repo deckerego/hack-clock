@@ -2,8 +2,7 @@ import pygst
 pygst.require('0.10')
 import gst
 import os
-
-import pygame
+from config import configuration
 
 class Speaker():
 
