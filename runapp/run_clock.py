@@ -22,6 +22,12 @@ display = Display()
 # Connect to the speaker
 speaker = Speaker()
 
+# Play some music
+def playMusic():
+    speaker.play("AmicusMeus.ogg")
+
+# Wake us up at 8:30 in the morning
+clock.atTime(8, 30, playMusic)
 
 # Show the current weather
 def switchWeatherStations():
@@ -37,7 +43,9 @@ def switchWeatherStations():
 
     # Wait for about three seconds
     clock.waitAbout(3)
-    
+
+# What to do when you press a button
+Button(24).whenPressed(switchWeatherStations)
 
 # Show the current time
 def showCurrentTime():
@@ -54,12 +62,8 @@ def showCurrentTime():
     # Set the minutes
     display.setMinutes(now.minute)
 
+# What to do when the internal clock ticks
+clock.onTick(showCurrentTime)
 
 # Set the brightness (0 to 15, 15 is the brightest)
 display.setBrightness(1)
-
-# What to do when you press a button
-Button(24).whenPressed(switchWeatherStations)
-
-# What to do when the internal clock ticks
-clock.onTick(showCurrentTime)
