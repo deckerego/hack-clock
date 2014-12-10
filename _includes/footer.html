@@ -28,6 +28,18 @@
           </li>
           {% endif %}
 
+          {% if site.hackaday_url %}
+          <li>
+            <a href="{{ site.hackaday_url }}">
+              <span class="icon  icon--hackaday">
+                <img src="/images/hackaday.png" alt="HackADay"/>
+              </span>
+
+              <span class="username">{{ site.hackaday_username }}</span>
+            </a>
+          </li>
+          {% endif %}
+          
           {% if site.twitter_username %}
           <li>
             <a href="https://twitter.com/{{ site.twitter_username }}">
@@ -60,6 +72,6 @@
 
     ga('create', 'UA-32628230-2', 'auto');
     ga('send', 'pageview');
-  
+
   </script>
 </footer>

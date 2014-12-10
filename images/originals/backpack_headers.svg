@@ -9,7 +9,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="134.97163"
+   width="285.97162"
    height="276.62805"
    id="svg2"
    version="1.1"
@@ -25,8 +25,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="-19.556728"
-     inkscape:cy="-62.041393"
+     inkscape:cx="131.44328"
+     inkscape:cy="-62.041398"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -55,13 +55,13 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-311.08704,-245.66747)">
+     transform="translate(-160.08704,-245.66747)">
     <rect
-       style="fill:#0000ff"
+       style="fill:#000080"
        id="rect2989"
-       width="134.97163"
+       width="285.97162"
        height="276.62805"
-       x="311.08704"
+       x="160.08704"
        y="245.66747" />
     <rect
        style="fill:#000000"
@@ -73,7 +73,7 @@
        ry="11.990788" />
     <path
        sodipodi:type="arc"
-       style="fill:#ffff00"
+       style="fill:#0000ff"
        id="path2999"
        sodipodi:cx="374.7666"
        sodipodi:cy="282.62595"
@@ -89,11 +89,11 @@
        sodipodi:cy="282.62595"
        sodipodi:cx="374.7666"
        id="path3034"
-       style="fill:#ffff00"
+       style="fill:#ff0000"
        sodipodi:type="arc" />
     <path
        sodipodi:type="arc"
-       style="fill:#ffff00"
+       style="fill:#cccccc"
        id="path3036"
        sodipodi:cx="374.7666"
        sodipodi:cy="282.62595"
@@ -109,11 +109,11 @@
        sodipodi:cy="282.62595"
        sodipodi:cx="374.7666"
        id="path3038"
-       style="fill:#ffff00"
+       style="fill:#ffffff"
        sodipodi:type="arc" />
     <path
        sodipodi:type="arc"
-       style="fill:#ffff00"
+       style="fill:#4d4d4d"
        id="path3040"
        sodipodi:cx="374.7666"
        sodipodi:cy="282.62595"
@@ -131,7 +131,7 @@
          sodipodi:role="line"
          id="tspan3133"
          x="324.25897"
-         y="322.02188"></tspan></text>
+         y="322.02188" /></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ececec;fill-opacity:1;stroke:none;font-family:Sans"
@@ -142,7 +142,7 @@
          sodipodi:role="line"
          id="tspan3137"
          x="333.35034"
-         y="330.10312"></tspan></text>
+         y="330.10312" /></text>
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
@@ -153,18 +153,18 @@
          sodipodi:role="line"
          id="tspan3909"
          x="329"
-         y="316.36218"></tspan></text>
+         y="316.36218" /></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        x="311"
-       y="318.36218"
+       y="357.36218"
        id="text3911"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3913"
          x="311"
-         y="318.36218"
+         y="357.36218"
          style="font-size:24px;fill:#ececec">SDA</tspan></text>
     <text
        xml:space="preserve"
@@ -177,16 +177,16 @@
          sodipodi:role="line"
          id="tspan3952"
          x="14"
-         y="91.628052"></tspan></text>
+         y="91.628052" /></text>
     <text
        sodipodi:linespacing="125%"
        id="text3954"
-       y="355.36218"
+       y="322.36218"
        x="311"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          style="font-size:24px;fill:#ececec"
-         y="355.36218"
+         y="322.36218"
          x="311"
          id="tspan3956"
          sodipodi:role="line">SCL</tspan></text>
@@ -226,5 +226,12 @@
          x="311"
          y="464.36218"
          style="font-size:24px;fill:#ececec">VIO</tspan></text>
+    <rect
+       style="fill:#666666"
+       id="rect4105"
+       width="82"
+       height="181"
+       x="160.08704"
+       y="297.29553" />
   </g>
 </svg>

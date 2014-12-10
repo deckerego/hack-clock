@@ -7,6 +7,8 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://hackclock.deckerego.net" # the base hostname & protocol for your site
 twitter_username: deckerego
 github_username:  deckerego
+hackaday_url: http://hackaday.io/hacker/5116-deckerego
+hackaday_username: deckerego
 
 # Build settings
 markdown: kramdown
