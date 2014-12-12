@@ -4,8 +4,46 @@ layout: default
 
 <div class="home">
 
-  <h1>Hack Your Alarm Clock</h1>
+  <h1>Initial Setup for Instructors</h1>
   <p>
+    Before students begin working on the Hack Clock, some prep does need to be done to get the working environment ready.
+  </p>
+
+  <p>
+    First off, you'll need all the right ingredients. The parts list is available at http://hackaday.io/project/3413-hack-ready-alarm-clock and
+    includes some links to buy the pieces online. Some parts may be salvaged from old projects or other consumer electronics you have lying around.
+  </p>
+
+  <p>
+    Once your parts arrive you'll need to prep your Raspberry Pi. The Hack Clock software was tested using the NOOBS
+    Debian OS distribution, however it is pretty likely that the software will work on other Linux Raspberry Pi
+    distributions. Make sure you have connected your Pi to your home network, since code editing will happen via
+    a web interface.
+  </p>
+
+  <p>
+    It can be helpful to color code the pins on the Raspberry Pi and the Adafruit 7-Segment display backpack. I've used poster paints
+    in simple, primary colors with matching jumper wires to help students match pins together and quickly trace back errors.
+    <br/>
+    <img id="rpi_paint" src="/images/rpi_paint.jpg" alt="Painting Raspberry Pi pins"/>
+    <img id="backpack_paint" src="/images/backpack_paint.jpg" alt="Painting LED backpack pins"/>
+  </p>
+
+  <p>
+    Once the Pi is prepped, install the Hack Clock software using the instructions listed at https://github.com/deckerego/hack-clock .
+    Usually it is best to have the web application automatically start when the Raspberry Pi boots up. If you'd like to start with the
+    bare-bones features in Lesson One, checkout the `lesson_one` branch.
+  </p>
+
+  <p>
+    After the code is installed and the Pi has started up, find out what your hosname is or your IP address is. Verify you can see
+    the Hack Clock's web page by visiting http://YourHostName:9003/, where "YourHostName" is actually the hostname or IP address
+    of the Raspberry Pi that you will be using. Bookmark or write down this URL - your students will need to refer to it often.
+  </p>
+
+  <p>
+    Hopefully that's it! If you have any issues, tickets can be opened at https://github.com/deckerego/hack-clock/issues which I'll
+    check on occasion. After the setup is complete you can have your students (or yourself) <a href="display.html">hook up the display</a>!
   </p>
 
 </div>
