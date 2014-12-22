@@ -18,4 +18,6 @@ class Speaker():
 
     def stop(self):
         self.pl.set_state(gst.STATE_READY)
-        
+
+    def isPlaying(self):
+        return gst.STATE_PLAYING in self.pl.get_state()
