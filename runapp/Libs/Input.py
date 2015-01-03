@@ -24,6 +24,7 @@ class Button(threading.Thread):
       if state != self.__previousState:
         self.onStateChange(state)
 
+      self.__previousState = state
       time.sleep(self.__RESOLUTION / 1000.0)
 
   def onStateChange(self, state):
@@ -33,3 +34,4 @@ class Button(threading.Thread):
   def whenPressed(self, myFunction):
     self.myFunction = myFunction
     self.start()
+
