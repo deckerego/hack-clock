@@ -7,9 +7,10 @@ from config import configuration
 class Speaker():
 
     def __init__(self):
-        self.pl = gst.element_factory_make("playbin", "player")
+        self.pl = None
 
     def play(self, fileName):
+        self.pl = gst.element_factory_make("playbin", "player")
         audio_dir = configuration.get('audio_files')
         filePath = "%s/%s" % (audio_dir, fileName)
         self.pl.set_state(gst.STATE_READY)
@@ -20,4 +21,5 @@ class Speaker():
         self.pl.set_state(gst.STATE_READY)
 
     def isPlaying(self):
-        return gst.STATE_PLAYING in self.pl.get_state()
+        return gst.STATE_PLAYING in self.pl.get_state() if self.pl else False
+
