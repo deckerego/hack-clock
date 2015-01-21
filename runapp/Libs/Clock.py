@@ -14,6 +14,9 @@ class Clock(threading.Thread):
         self.additionalWait = 0
         self.timedEvents = []
         self.timedEventsIdx = -1
+
+        self.atTime(0, 0, None) # The EOF event
+
         self.start()
 
     def __del__(self):
@@ -26,8 +29,8 @@ class Clock(threading.Thread):
             (timeHash, action) = self.timedEvents[self.timedEventsIdx]
 
             if timeHash == currentHash:
-                self.timedEventsIdx = self.timedEventsIdx % len(self.timedEvents)
-                action()
+                self.timedEventsIdx = (self.timedEventsIdx + 1) % len(self.timedEvents)
+                if action: action()
 
     def run(self):
         while self.__running:
