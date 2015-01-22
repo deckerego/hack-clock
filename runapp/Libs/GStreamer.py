@@ -11,6 +11,8 @@ class Speaker(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.pl = None
+        self.daemon = True
+        self.start()
 
     def play(self, fileName):
         if not self.isPlaying():
@@ -20,7 +22,6 @@ class Speaker(threading.Thread):
             self.pl.set_state(gst.STATE_READY)
             self.pl.set_property('uri','file://'+os.path.abspath(filePath))
             self.pl.set_state(gst.STATE_PLAYING)
-            self.start()
 
     def stop(self):
         self.pl.set_state(gst.STATE_READY)
@@ -29,11 +30,16 @@ class Speaker(threading.Thread):
         return gst.STATE_PLAYING in self.pl.get_state() if self.pl else False
 
     def run(self):
-        position = 0
-        last_position = -1
+        position = -1
+        last_position = -2
 
-        while position > last_position:
+        while True:
             time.sleep(1)
-            last_position = position
-            position, format = self.pl.query_position(gst.FORMAT_TIME)
-        self.stop()
+            if self.isPlaying():
+                if position > last_position: # Is the song done playing?
+                    last_position = position
+                    position, format = self.pl.query_position(gst.FORMAT_TIME)
+                else: # If so, shut the stream down
+                    position = -1
+                    last_position = -2
+                    return self.stop()
