@@ -15,11 +15,13 @@ class Speaker:
         gobject.threads_init()
 
     def play(self, fileName):
+        self.playList([fileName])
+
+    def playList(self, fileNames):
         if not self.isPlaying():
             # Create a queue of URIs
             audio_dir = configuration.get('audio_files')
-            files = [ fileName ] # TODO Remove this for playlist support
-            self.playlist = [ "file://"+os.path.abspath("%s/%s" % (audio_dir, fileName)) for file in files ]
+            self.playlist = [ "file://"+os.path.abspath("%s/%s" % (audio_dir, fileName)) for fileName in fileNames ]
             self.playlist.reverse()
 
             # Create the pipeline

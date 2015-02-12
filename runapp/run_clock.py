@@ -24,7 +24,7 @@ speaker = Speaker()
 
 # Play some music
 def playMusic():
-    speaker.play("AmicusMeus.ogg")
+    speaker.playList(["TestTrack.ogg", "AmicusMeus.ogg"])
 
 # Wake us up at 8:30 in the morning
 clock.atTime(8, 30, playMusic)
