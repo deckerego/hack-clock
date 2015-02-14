@@ -27,7 +27,6 @@ class Speaker:
             # Create the pipeline
             self.pl = gst.element_factory_make("playbin2", "player")
             self.pl.set_state(gst.STATE_READY)
-            self.pl.connect("about-to-finish", self.aboutToFinish)
 
             # Create the event bus
             self.bus = self.pl.get_bus()
@@ -37,23 +36,29 @@ class Speaker:
             self.eventLoop.start()
 
             # Play next track on playlist
-            self.pl.set_property('uri', self.playlist.pop())
-            self.pl.set_state(gst.STATE_PLAYING)
+            self.next()
 
     def stop(self):
+        print "Stopping player"
         self.pl.set_state(gst.STATE_NULL)
         if self.eventLoop: self.eventLoop.quit()
 
     def isPlaying(self):
         return gst.STATE_PLAYING in self.pl.get_state() if self.pl else False
 
-    def aboutToFinish(self, player):
+    def next(self):
         if self.playlist:
-            self.pl.set_property('uri', self.playlist.pop())
+            next_track = self.playlist.pop()
+            print "Playing track: %s" % next_track
+            self.pl.set_state(gst.STATE_READY)
+            self.pl.set_property('uri', next_track)
+            self.pl.set_state(gst.STATE_PLAYING)
+        else:
+            self.stop()
 
     def onMessage(self, bus, message):
         if message.type == gst.MESSAGE_EOS:
-            self.stop()
+            self.next()
 
 class GtkEventLoop(threading.Thread):
 
