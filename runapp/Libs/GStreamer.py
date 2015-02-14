@@ -39,7 +39,6 @@ class Speaker:
             self.next()
 
     def stop(self):
-        print "Stopping player"
         self.pl.set_state(gst.STATE_NULL)
         if self.eventLoop: self.eventLoop.quit()
 
@@ -48,10 +47,8 @@ class Speaker:
 
     def next(self):
         if self.playlist:
-            next_track = self.playlist.pop()
-            print "Playing track: %s" % next_track
             self.pl.set_state(gst.STATE_READY)
-            self.pl.set_property('uri', next_track)
+            self.pl.set_property('uri', self.playlist.pop())
             self.pl.set_state(gst.STATE_PLAYING)
         else:
             self.stop()
