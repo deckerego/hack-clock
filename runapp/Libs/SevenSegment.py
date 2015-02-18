@@ -27,15 +27,15 @@ class Display(SevenSegment):
     self.display.setBufferRow(2, int(row.hex, 16))
 
   def setMinutes(self, minutes):
-    self.writeDigit(3, int(minutes / 10))   # Tens
-    self.writeDigit(4, minutes % 10)        # Ones
+    self._writeDigit(3, int(minutes / 10))   # Tens
+    self._writeDigit(4, minutes % 10)        # Ones
 
   def setHours(self, hours):
     hourTens = int(hours / 10) if hours >= 10 else None
-    self.writeDigit(0, hourTens)          # Tens
-    self.writeDigit(1, hours % 10)        # Ones
+    self._writeDigit(0, hourTens)          # Tens
+    self._writeDigit(1, hours % 10)        # Ones
 
-  def writeDigit(self, charNumber, value, dot=False):
+  def _writeDigit(self, charNumber, value, dot=False):
     if (charNumber > 7): return
     if (value > 9): return
 
