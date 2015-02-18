@@ -2,6 +2,12 @@ import os
 import pygame
 import time
 import datetime
+import signal
+
+def _shutdown(signal, frame):
+    pygame.font.quit()
+    pygame.display.quit()
+    pygame.quit()
 
 class Display():
     __WIDTH = 320
@@ -17,6 +23,9 @@ class Display():
         pygame.font.init()
         pygame.mouse.set_visible(False)
 
+        signal.signal(signal.SIGTERM, _shutdown)
+        signal.signal(signal.SIGINT, _shutdown)
+
         size = (self.__WIDTH, self.__HEIGHT)
         self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
         self.time_font = pygame.font.SysFont(font, self.__FONT_SIZE)
@@ -28,6 +37,9 @@ class Display():
         self.evening = "AM"
 
         self.setBrightness(8)
+
+    def __del__(self):
+        self.shutdown()
 
     def setBrightness(self, level):
         self.font_color = (17 * level, 17 * level, 17 * level)
