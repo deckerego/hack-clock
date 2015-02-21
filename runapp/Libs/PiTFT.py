@@ -22,6 +22,7 @@ class Display():
         pygame.display.init()
         pygame.font.init()
         pygame.mouse.set_visible(False)
+        pygame.mixer.quit()
 
         signal.signal(signal.SIGTERM, _shutdown)
         signal.signal(signal.SIGINT, _shutdown)
