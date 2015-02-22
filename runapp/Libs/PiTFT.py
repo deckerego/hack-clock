@@ -5,6 +5,7 @@ import datetime
 import signal
 
 def _shutdown(signal, frame):
+    pygame.mouse.set_visible(True)
     pygame.font.quit()
     pygame.display.quit()
     pygame.quit()
@@ -12,9 +13,8 @@ def _shutdown(signal, frame):
 class Display():
     __WIDTH = 320
     __HEIGHT = 240
-    __FONT_SIZE = 64
 
-    def __init__(self, font="DejaVu Sans"):
+    def __init__(self, font="DejaVu Sans", font_size=64):
         os.putenv('SDL_FBDEV', '/dev/fb1')
         os.putenv('SDL_VIDEODRIVER', 'fbcon')
 
@@ -29,7 +29,7 @@ class Display():
 
         size = (self.__WIDTH, self.__HEIGHT)
         self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
-        self.time_font = pygame.font.SysFont(font, self.__FONT_SIZE)
+        self.time_font = pygame.font.SysFont(font, font_size)
 
         self.hour = 0
         self.minute = 0
@@ -40,7 +40,7 @@ class Display():
         self.setBrightness(8)
 
     def __del__(self):
-        self.shutdown()
+        _shutdown()
 
     def setBrightness(self, level):
         self.font_color = (17 * level, 17 * level, 17 * level)
