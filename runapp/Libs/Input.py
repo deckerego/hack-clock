@@ -1,4 +1,4 @@
-import wiringpi2
+import wiringpi
 import threading
 import time
 
@@ -14,13 +14,13 @@ class Button(threading.Thread):
     self.daemon = True
     self.pinNumber = pinNumber
 
-    wiringpi2.wiringPiSetupSys()
-    self.__initialState = wiringpi2.digitalRead(self.pinNumber)
+    wiringpi.wiringPiSetupSys()
+    self.__initialState = wiringpi.digitalRead(self.pinNumber)
     self.__previousState = self.__initialState
 
   def run(self):
     while self.__running:
-      state = wiringpi2.digitalRead(self.pinNumber)
+      state = wiringpi.digitalRead(self.pinNumber)
       if state != self.__previousState:
         self.onStateChange(state)
 
@@ -34,4 +34,3 @@ class Button(threading.Thread):
   def whenPressed(self, myFunction):
     self.myFunction = myFunction
     self.start()
-
