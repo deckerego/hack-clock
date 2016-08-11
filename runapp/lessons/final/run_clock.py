@@ -3,7 +3,7 @@
 import time
 import datetime
 from Libs.Clock import Clock
-from Libs.PiTFT import Display
+from Libs.SevenSegment import Display
 from Libs.Weather import Weather
 from Libs.Input import Button
 from Libs.GStreamer import Speaker
