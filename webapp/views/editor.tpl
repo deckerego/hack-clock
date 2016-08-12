@@ -41,6 +41,9 @@
             <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
             % end
           </button>
+          <button type="button" class="btn btn-default" aria-label="Restore" onClick="document.forms[0].submit(); window.location='/clock/code/backups';">
+            <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
+          </button>
           <button type="button" class="btn btn-default" aria-label="Refresh" onClick="restartClock(this, 'runstatus');">
             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
           </button>

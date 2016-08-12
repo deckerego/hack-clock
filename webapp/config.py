@@ -1,7 +1,8 @@
 import argparse
 
 config_values = {
-    'audio_files': '../runapp/audio'
+    'audio_files': '../runapp/audio',
+    'backup_files': '../runapp/backups'
 }
 
 class Configuration(object):
