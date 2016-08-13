@@ -110,12 +110,12 @@ def backup_list(clock):
 
     return template('backups', backups=backups)
 
-@application.put('/clock/code/restore')
-def restore_event_loop(clock):
-    uploaded = request.file.get('id')
+@application.get('/clock/code/restore/<file_id:int>')
+def restore_event_loop(clock, file_id):
     version_dir = configuration.get('backup_files')
     files = listdir(version_dir)
-    # Find the file we need to restore
+    restored_files = filter(lambda f: int(parser.parse(f.lstrip("run_clock.")).strftime("%s")) == file_id, files)
+    restored_file = "%s/%s" % (version_dir, restored_files[0])
 
     try:
         # Load saved file
