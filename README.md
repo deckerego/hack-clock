@@ -18,7 +18,7 @@ I'm assuming that you are starting with the Raspian Minimal Linux distribution. 
 
 1. Make sure your Raspberry Pi is up to date with the latest packages & firmware.
 2. Enable I2C as described in Adafruit's tutorial at https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
-3. Add the necessary Python and GStreamer dependencies using `sudo apt-get install wiringpi python-setuptools python-pip python-dev python-smbus gstreamer0.10-x gstreamer-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-bad python-gst0.10`
+3. Add the necessary Python and GStreamer dependencies using `sudo apt-get install wiringpi python-setuptools python-pip python-dev python-dateutil python-smbus gstreamer0.10-x gstreamer-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-bad python-gst0.10`
 4. To let the pi user sense button presses, use the WiringPi GPIO Utility to permit non-root access to the pins. As an example: `gpio export 24 in; gpio mode 24 up`
 5. Clone or download this repository using `git clone https://github.com/deckerego/hack-clock.git` or by downloading https://github.com/deckerego/hack-clock/archive/master.zip
 6. Install hack-clock's dependencies using `sudo pip install -r requirements.txt`. Note you MUST have `ntpdate` installed - pip doesn't like it when your system clock is wrong!

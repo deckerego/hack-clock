@@ -105,8 +105,11 @@ def backup_list(clock):
         backup_name = "%s/%s" % (version_dir, filename)
         diff = open(backup_name, 'r').read()
 
-        filetime = parser.parse(filename.lstrip("run_clock."))
-        backups.append((filetime.strftime("%s"), filetime.strftime("%Y-%m-%d"), filetime.strftime("%H:%M:%S"), diff, filename))
+        try:
+            filetime = parser.parse(filename.lstrip("run_clock."))
+            backups.append((filetime.strftime("%s"), filetime.strftime("%Y-%m-%d"), filetime.strftime("%H:%M:%S"), diff, filename))
+        except:
+            logger.warn("Could not parse file %s" % filename)
 
     return template('backups', backups=backups)
 
