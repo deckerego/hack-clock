@@ -2,6 +2,9 @@ import wiringpi
 import threading
 import time
 
+global WIRINGPI_INIT
+WIRINGPI_INIT = False
+
 class Button(threading.Thread):
   __RESOLUTION = 100
   __running = True
@@ -14,7 +17,11 @@ class Button(threading.Thread):
     self.daemon = True
     self.pinNumber = pinNumber
 
-    wiringpi.wiringPiSetupSys()
+    if not WIRINGPI_INIT: # Can only init this once per execution!
+        wiringpi.wiringPiSetupSys()
+        global WIRINGPI_INIT
+        WIRINGPI_INIT = True
+
     self.__initialState = wiringpi.digitalRead(self.pinNumber)
     self.__previousState = self.__initialState
 
