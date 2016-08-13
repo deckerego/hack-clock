@@ -5,7 +5,7 @@
   <title>Editing: run_clock.py</title>
   <link rel="stylesheet" href="/codemirror/lib/codemirror.css">
   <link rel="stylesheet" href="/codemirror/doc/docs.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/styles.css?v=2" type="text/css" />
   <script src="/codemirror/lib/codemirror.js"></script>
   <script src="/codemirror/mode/python/python.js"></script>

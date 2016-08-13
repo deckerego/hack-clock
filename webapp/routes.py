@@ -13,7 +13,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "."))
 
 from dateutil import parser
 from datetime import datetime
-from difflib import ndiff
 from config import configuration
 from clock import Clock, ProcessStatus
 from bottle import Bottle, HTTPResponse, static_file, get, put, request, response, redirect, template
@@ -97,16 +96,30 @@ def audio_list():
     return template('audio', files=files)
 
 @application.get('/clock/code/backups')
-def restore_list(clock):
+def backup_list(clock):
     version_dir = configuration.get('backup_files')
     files = listdir(version_dir)
 
     backups = []
     for filename in files:
         backup_name = "%s/%s" % (version_dir, filename)
-        diff = "".join(ndiff(open(backup_name, 'r').read().splitlines(1), open(clock.sourceFile, 'r').read().splitlines(1)))
+        diff = open(backup_name, 'r').read()
 
         filetime = parser.parse(filename.lstrip("run_clock."))
-        backups.append((filetime.strftime("%Y-%m-%d"), filetime.strftime("%H:%M:%S"), diff, filename))
+        backups.append((filetime.strftime("%s"), filetime.strftime("%Y-%m-%d"), filetime.strftime("%H:%M:%S"), diff, filename))
 
     return template('backups', backups=backups)
+
+@application.put('/clock/code/restore')
+def restore_event_loop(clock):
+    uploaded = request.file.get('id')
+    version_dir = configuration.get('backup_files')
+    files = listdir(version_dir)
+    # Find the file we need to restore
+
+    try:
+        # Load saved file
+        code_file = open(restored_file, 'r')
+        return template('editor', code=code_file.read(), status="Saved")
+    except:
+        return template('editor', code=request.forms.get('code'), status="Failed")
