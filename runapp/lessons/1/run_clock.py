@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-import time
-import datetime
 from Libs.Clock import Clock
 from Libs.SevenSegment import Display
 

@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
-import time
-import datetime
+from datetime import datetime
 from Libs.Clock import Clock
 from Libs.SevenSegment import Display
 from Libs.Weather import Weather
@@ -49,7 +48,7 @@ Button(24).whenPressed(switchWeatherStations)
 
 # Show the current time
 def showCurrentTime():
-    now = datetime.datetime.now()
+    now = datetime.now()
 
     # Set the hours
     is_evening = now.hour > 12
