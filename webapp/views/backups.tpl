@@ -29,28 +29,59 @@
       </nav>
 
       <div class="page-header">
-        <h1>Previously Saved Clocks</h1>
-        <p class="lead">A list of the previous versions of your hack clock code!</p>
+        <h1>Tutorials and Examples</h1>
+        <p class="lead">Some samples that demonstrate how to code your clock</p>
       </div>
 
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      % for id, date, time, diff, name in backups:
+      <div class="panel-group" id="lesson_accordion" role="tablist" aria-multiselectable="true">
+      % for id, description, diff in lessons:
         <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="h_{{id}}">
+          <div class="panel-heading" role="tab" id="lh_{{id}}">
             <div class="row">
               <h4 class="panel-title col-md-8">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#c_{{id}}" aria-expanded="false" aria-controls="c_{{id}}">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#lc_{{id}}" aria-expanded="false" aria-controls="lc_{{id}}">
+                  {{description}}
+                </a>
+              </h4>
+
+              <div class="text-right col-md-4">
+                <a href="/clock/code/lesson/{{id}}">&rarr; Load this lesson in the editor</a>
+              </div>
+            </div>
+          </div>
+
+          <div id="lc_{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="lh_{{id}}">
+            <div class="panel-body">
+              <pre>{{diff}}</pre>
+            </div>
+          </div>
+        </div>
+      % end
+      </div>
+
+      <div class="page-header">
+        <h1>Previously Saved Clocks</h1>
+        <p class="lead">A list of the previous versions of your hack clock code</p>
+      </div>
+
+      <div class="panel-group" id="backup_accordion" role="tablist" aria-multiselectable="true">
+      % for id, date, time, diff, name in backups:
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="bh_{{id}}">
+            <div class="row">
+              <h4 class="panel-title col-md-8">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#bc_{{id}}" aria-expanded="false" aria-controls="bc_{{id}}">
                   Clock code saved on {{date}} at {{time}}
                 </a>
               </h4>
 
               <div class="text-right col-md-4">
-                <a href="/clock/code/restore/{{id}}">&rarr; Restore this backup</a>
+                <a href="/clock/code/restore/{{id}}">&rarr; Load this backup into the editor</a>
               </div>
-              </div>
+            </div>
           </div>
 
-          <div id="c_{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="h_{{id}}">
+          <div id="bc_{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="bh_{{id}}">
             <div class="panel-body">
               <pre>{{diff}}</pre>
             </div>
