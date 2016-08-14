@@ -98,7 +98,19 @@ def audio_list():
 @application.get('/clock/code/backups')
 def backup_list(clock):
     version_dir = configuration.get('backup_files')
+    lesson_dir = configuration.get('lesson_files')
     files = listdir(version_dir)
+
+    lessons = [
+        ("1", "Lesson One: Light up the clock", open("%s/1/run_clock.py" % lesson_dir, 'r').read()),
+        ("2", "Lesson Two: Hours and minutes", open("%s/2/run_clock.py" % lesson_dir, 'r').read()),
+        ("3", "Lesson Three: AM/PM indicator", open("%s/3/run_clock.py" % lesson_dir, 'r').read()),
+        ("4", "Lesson Four: Play music!", open("%s/4/run_clock.py" % lesson_dir, 'r').read()),
+        ("5", "Lesson Five: Show the current temperature", open("%s/5/run_clock.py" % lesson_dir, 'r').read()),
+        ("6", "Lesson Six: Loading configuration settings", open("%s/6/run_clock.py" % lesson_dir, 'r').read()),
+        ("final", "Final Lesson: Putting it all together", open("%s/final/run_clock.py" % lesson_dir, 'r').read()),
+        ("musiclover", "Example: A music lover's clock", open("%s/musiclover/run_clock.py" % lesson_dir, 'r').read())
+    ]
 
     backups = []
     for filename in files:
@@ -111,7 +123,18 @@ def backup_list(clock):
         except:
             logger.warn("Could not parse file %s" % filename)
 
-    return template('backups', backups=backups)
+    return template('backups', backups=backups, lessons=lessons)
+
+@application.get('/clock/code/lesson/<file_id:int>')
+def lesson_event_loop(clock, file_id):
+    lesson_dir = configuration.get('lesson_files')
+    lesson_file = "%s/%s/run_clock.py" % (lesson_dir, file_id)
+
+    try:
+        code_file = open(lesson_file, 'r')
+        return template('editor', code=code_file.read(), status="Saved")
+    except:
+        return template('editor', code=request.forms.get('code'), status="Failed")
 
 @application.get('/clock/code/restore/<file_id:int>')
 def restore_event_loop(clock, file_id):
