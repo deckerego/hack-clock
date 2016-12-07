@@ -8,6 +8,10 @@ import logging
 logging.basicConfig(level=logging.WARN, format='%(levelname)-8s %(message)s')
 logger = logging.getLogger('hack-clock')
 
+console = logging.StreamHandler()
+console.setLevel(logging.WARNING)
+logger.addHandler(console)
+
 os.chdir(os.path.dirname(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
 
@@ -21,6 +25,10 @@ from os import listdir
 application = Bottle()
 application.install(Clock())
 
+@application.get('/')
+def editor():
+    return template('index')
+
 @application.route('/favicon.ico')
 def send_favicon():
     return static_file('favicon.ico', root='views/images')
@@ -33,13 +41,88 @@ def send_js(filename):
 def send_css(filename):
     return static_file(filename, root='views/css')
 
-@application.get('/')
-def editor():
-    return template('index')
-
+# Python Editing
 @application.route('/codemirror/<filename:path>')
-def send_js(filename):
+def send_codemirror(filename):
     return static_file(filename, root='views/codemirror')
+
+@application.get('/python/css/<filename:path>')
+def send_python_css(filename):
+    return static_file(filename, root='views/python/css')
+
+@application.get('/python/edit')
+def edit_event_loop(clock):
+    code_file = open(clock.sourceFile, 'r')
+    return template('python/editor', code=code_file.read(), status="Opened")
+
+# Blockly Editing
+@application.route('/blockly/<filename:path>')
+def send_blockly(filename):
+    return static_file(filename, root='views/blockly')
+
+@application.get('/blocks/css/<filename:path>')
+def send_blocks_css(filename):
+    return static_file(filename, root='views/blocks/css')
+
+@application.get('/blocks/js/<filename:path>')
+def send_blocks_js(filename):
+    return static_file(filename, root='views/blocks/js')
+
+@application.get('/blocks/edit')
+def edit_event_loop(clock):
+    blocks_file = configuration.get('blocks_file')
+    code_file = open(blocks_file, 'r')
+    return template('blocks/editor', blocks_state=code_file.read(), status="Opened")
+
+@application.put('/blocks/save')
+def save_event_loop(clock):
+    version_dir = configuration.get('backup_files')
+    backup_name = "%s/blocks_clock.%s" % (version_dir, datetime.now().isoformat())
+    blocks_state = request.body.read()
+    blocks_file = configuration.get('blocks_file')
+
+    try:
+        # Save backup
+        code_file = open(blocks_file, 'r')
+        backup_file = open(backup_name, 'w')
+        backup_file.write(code_file.read())
+
+        # Save file
+        code_file = open(blocks_file, 'w')
+        code_file.write(blocks_state)
+
+        # Load saved file
+        code_file = open(blocks_file, 'r')
+        return code_file.read()
+    except Exception as ex:
+        logger.error(ex)
+        return blocks_state
+
+# Clock REST API
+@application.put('/clock/code')
+def save_event_loop(clock):
+    version_dir = configuration.get('backup_files')
+    backup_name = "%s/run_clock.%s" % (version_dir, datetime.now().isoformat())
+    source_text = request.body.read()
+
+    try:
+        # Save backup
+        code_file = open(clock.sourceFile, 'r')
+        backup_file = open(backup_name, 'w')
+        backup_file.write(code_file.read())
+
+        # Save file
+        code_file = open(clock.sourceFile, 'w')
+        code_file.write(source_text)
+
+        clock.restart()
+
+        # Load saved file
+        code_file = open(clock.sourceFile, 'r')
+        return code_file.read()
+    except Exception as ex:
+        logger.error(ex)
+        return source_text
 
 @application.post('/clock/restart')
 def restart_event_loop(clock):
@@ -54,34 +137,7 @@ def status_event_loop(clock):
 def status_stderr(clock):
     return clock.failures()
 
-@application.get('/clock/code')
-def edit_event_loop(clock):
-    code_file = open(clock.sourceFile, 'r')
-    return template('editor', code=code_file.read(), status="Opened")
-
-@application.post('/clock/code')
-def save_event_loop(clock):
-    version_dir = configuration.get('backup_files')
-    backup_name = "%s/run_clock.%s" % (version_dir, datetime.now().isoformat())
-
-    try:
-        # Save backup
-        code_file = open(clock.sourceFile, 'r')
-        backup_file = open(backup_name, 'w')
-        backup_file.write(code_file.read())
-
-        # Save file
-        code_file = open(clock.sourceFile, 'w')
-        code_file.write(request.forms.get('code'))
-
-        clock.restart()
-
-        # Load saved file
-        code_file = open(clock.sourceFile, 'r')
-        return template('editor', code=code_file.read(), status="Saved")
-    except:
-        return template('editor', code=request.forms.get('code'), status="Failed")
-
+# File Asset Upload
 @application.post('/audio')
 def audio_upload():
     uploaded = request.files.get('upload')
@@ -95,6 +151,7 @@ def audio_list():
     files = listdir(audio_dir)
     return template('audio', files=files)
 
+# Backup / Restore
 @application.get('/clock/code/backups')
 def backup_list(clock):
     version_dir = configuration.get('backup_files')

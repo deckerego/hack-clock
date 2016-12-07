@@ -1,6 +1,8 @@
 import argparse
 
 config_values = {
+    'python_file': '../runapp/run_clock.py',
+    'blocks_file': '../runapp/blocks_clock.xml',
     'audio_files': '../runapp/audio',
     'backup_files': '../runapp/backups',
     'lesson_files': '../runapp/lessons'

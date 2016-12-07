@@ -17,13 +17,3 @@
   margin: 0 5px;
   font-size: 36px;
 }
-
-.CodeMirror {
-  border: 5px solid #eee;
-  height: 65vh;
-}
-
-.CodeMirror-scroll {
-  overflow-y: hidden;
-  overflow-x: auto;
-}
