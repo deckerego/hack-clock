@@ -10,6 +10,8 @@
   <script src="/blockly/blocks_compressed.js"></script>
   <script src="/blockly/python_compressed.js"></script>
   <script src="/blockly/msg/js/en.js"></script>
+  <script src="/blocks/js/blocks.js?v=4"></script>
+  <script src="/blocks/js/generators.js?v=4"></script>
 </head>
 <body>
   <div class="container">
@@ -62,10 +64,13 @@
             <block type="controls_if"></block>
             <block type="controls_repeat_ext"></block>
             <block type="logic_compare"></block>
+            <block type="procedures_defnoreturn"></block>
+            <block type="variables_set"></block>
+            <block type="variables_get"></block>
+            <block type="controls_if_else"></block>
             <block type="math_number"></block>
             <block type="math_arithmetic"></block>
-            <block type="text"></block>
-            <block type="text_print"></block>
+            <block type="set_display_minutes"></block>
           </xml>
         </td>
       </table>
