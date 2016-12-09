@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <title>Editing: run_clock.py</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/styles.css?v=2" type="text/css" />
-  <link rel="stylesheet" href="/blocks/css/styles.css?v=2" type="text/css" />
+  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="/blocks/css/styles.css" type="text/css" />
   <script src="/blockly/blockly_compressed.js"></script>
   <script src="/blockly/blocks_compressed.js"></script>
   <script src="/blockly/python_compressed.js"></script>
   <script src="/blockly/msg/js/en.js"></script>
-  <script src="/blocks/js/blocks.js?v=4"></script>
-  <script src="/blocks/js/generators.js?v=4"></script>
+  <script src="/blocks/js/blocks/display.js"></script>
+  <script src="/blocks/js/generators/display.js"></script>
 </head>
 <body>
   <div class="container">
@@ -61,16 +61,23 @@
       <table id="blocklyArea">
         <td id="blocklyCode">
           <xml id="toolbox" style="display: none">
-            <block type="controls_if"></block>
-            <block type="controls_repeat_ext"></block>
-            <block type="logic_compare"></block>
-            <block type="procedures_defnoreturn"></block>
-            <block type="variables_set"></block>
-            <block type="variables_get"></block>
-            <block type="controls_if_else"></block>
-            <block type="math_number"></block>
-            <block type="math_arithmetic"></block>
-            <block type="set_display_minutes"></block>
+            <category name="Logic" colour="210">
+              <block type="controls_if"></block>
+              <block type="controls_repeat_ext"></block>
+              <block type="controls_if_else"></block>
+              <block type="logic_compare"></block>
+            </category>
+            <category name="Variables" colour="330" custom="VARIABLE"></category>
+            <category name="Math" colour="230">
+              <block type="math_number"></block>
+              <block type="math_arithmetic"></block>
+            </category>
+            <category name="Display" colour="210">
+              <block type="set_display_minutes"></block>
+              <block type="set_display_hours"></block>
+              <block type="set_display_brightness"></block>
+            </category>
+            <category name="Functions" colour="290" custom="PROCEDURE"></category>
           </xml>
         </td>
       </table>
@@ -81,8 +88,8 @@
 
       <textarea id="errors" name="errors" readonly>Checking...</textarea>
 
-      <script src="/js/editor.js?v=4"></script>
-      <script src="/blocks/js/editor.js?v=4"></script>
+      <script src="/js/editor.js"></script>
+      <script src="/blocks/js/editor.js"></script>
 
       <script>
         var workspace = Blockly.inject('blocklyCode', {toolbox: document.getElementById('toolbox')});

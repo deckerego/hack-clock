@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="/codemirror/lib/codemirror.css">
   <link rel="stylesheet" href="/codemirror/doc/docs.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/styles.css?v=2" type="text/css" />
-  <link rel="stylesheet" href="/python/css/styles.css?v=2" type="text/css" />
+  <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="/python/css/styles.css" type="text/css" />
   <script src="/codemirror/lib/codemirror.js"></script>
   <script src="/codemirror/mode/python/python.js"></script>
 </head>
@@ -87,6 +87,6 @@
     </form>
   </div>
 
-  <script src="/js/editor.js?v=3"></script>
+  <script src="/js/editor.js"></script>
 </body>
 </html>
