@@ -18,6 +18,22 @@ Blockly.Python['set_display_hours'] = function(block) {
   return ''+variable_display+'.setHours('+value_hours+');\n'
 };
 
+Blockly.Python['set_colon'] = function(block) {
+  var variable_display = Blockly.Python.variableDB_.getName(block.getFieldValue('display'), Blockly.Variables.NAME_TYPE);
+  var value_on = Blockly.Python.valueToCode(block, 'enabled', Blockly.Python.ORDER_ATOMIC);
+  Blockly.Python.definitions_['import_display'] = 'from Libs.SevenSegment import Display';
+  Blockly.Python.definitions_['init_display'] = 'display = Display()'
+  return ''+variable_display+'.setColon('+value_on+');\n'
+};
+
+Blockly.Python['is_evening'] = function(block) {
+  var variable_display = Blockly.Python.variableDB_.getName(block.getFieldValue('display'), Blockly.Variables.NAME_TYPE);
+  var value_on = Blockly.Python.valueToCode(block, 'enabled', Blockly.Python.ORDER_ATOMIC);
+  Blockly.Python.definitions_['import_display'] = 'from Libs.SevenSegment import Display';
+  Blockly.Python.definitions_['init_display'] = 'display = Display()'
+  return ''+variable_display+'.setEvening('+value_on+');\n'
+};
+
 Blockly.Python['set_display_brightness'] = function(block) {
   var variable_display = Blockly.Python.variableDB_.getName(block.getFieldValue('display'), Blockly.Variables.NAME_TYPE);
   var option_brightness = block.getFieldValue('brightness');

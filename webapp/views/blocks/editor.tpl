@@ -68,6 +68,14 @@
               <block type="logic_compare"></block>
             </category>
             <category name="Variables" colour="330" custom="VARIABLE"></category>
+            <category name="Boolean" colour="320">
+              <block type="logic_compare"></block>
+              <block type="logic_operation"></block>
+              <block type="logic_negate"></block>
+              <block type="logic_boolean"></block>
+              <block type="logic_null"></block>
+              <block type="logic_ternary"></block>
+            </category>
             <category name="Math" colour="230">
               <block type="math_number"></block>
               <block type="math_arithmetic"></block>
@@ -76,6 +84,8 @@
               <block type="set_display_minutes"></block>
               <block type="set_display_hours"></block>
               <block type="set_display_brightness"></block>
+              <block type="set_colon"></block>
+              <block type="is_evening"></block>
             </category>
             <category name="Functions" colour="290" custom="PROCEDURE"></category>
           </xml>

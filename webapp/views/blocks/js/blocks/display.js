@@ -74,6 +74,76 @@ Blockly.Blocks['set_display_hours'] = {
   }
 };
 
+Blockly.Blocks['set_colon'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "set_colon",
+      "message0": "Set %1 hour separator %2",
+      "args0": [
+        {
+          "type": "field_variable",
+          "name": "display",
+          "variable": "display"
+        },
+        {
+          "type": "input_value",
+          "name": "enabled",
+          "check": "Boolean",
+          "align": "CENTRE"
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 210,
+      "tooltip": "Set the colon delimiter on the display",
+      "helpUrl": "http://hackclock.deckerego.net/"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'Set the colon delimiter on the display';
+    });
+  }
+};
+
+Blockly.Blocks['is_evening'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "is_evening",
+      "message0": "Set %1 evening indicator %2",
+      "args0": [
+        {
+          "type": "field_variable",
+          "name": "display",
+          "variable": "display"
+        },
+        {
+          "type": "input_value",
+          "name": "enabled",
+          "check": "Boolean",
+          "align": "CENTRE"
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 210,
+      "tooltip": "Set evening indicator on the display",
+      "helpUrl": "http://hackclock.deckerego.net/"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'Set evening indicator on the display';
+    });
+  }
+};
+
 Blockly.Blocks['set_display_brightness'] = {
   init: function() {
     this.jsonInit({
@@ -95,8 +165,7 @@ Blockly.Blocks['set_display_brightness'] = {
             ["Normal", "9"],
             ["Slightly Dimmed", "7"],
             ["Dim", "5"],
-            ["Dimmer", "3"],
-            ["Dimmest", "1"],
+            ["Really Dim", "3"],
             ["Off", "0"]
           ]
         }
