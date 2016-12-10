@@ -32,7 +32,7 @@
 
       <div id="indexButtonGroup" class="btn-group btn-group-justified" role="group">
         <a id="editButton" class="btn btn-lg" href="/blocks/edit" role="button">
-          <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
           Edit the clock's code
         </a>
         <a id="uploadButton" class="btn btn-lg" href="/audio" role="button">

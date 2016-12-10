@@ -68,7 +68,7 @@
               <block type="logic_compare"></block>
             </category>
             <category name="Variables" colour="330" custom="VARIABLE"></category>
-            <category name="Boolean" colour="320">
+            <category name="Boolean" colour="210">
               <block type="logic_compare"></block>
               <block type="logic_operation"></block>
               <block type="logic_negate"></block>
@@ -80,7 +80,8 @@
               <block type="math_number"></block>
               <block type="math_arithmetic"></block>
             </category>
-            <category name="Display" colour="210">
+            <category name="Display" colour="255">
+              <block type="led_display"></block>
               <block type="set_display_minutes"></block>
               <block type="set_display_hours"></block>
               <block type="set_display_brightness"></block>
