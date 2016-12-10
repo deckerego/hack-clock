@@ -52,8 +52,12 @@ def send_python_css(filename):
 
 @application.get('/python/edit')
 def edit_event_loop(clock):
-    code_file = open(clock.sourceFile, 'r')
-    return template('python/editor', code=code_file.read(), status="Opened")
+    try:
+        code_file = open(clock.sourceFile, 'r')
+        return template('python/editor', code=code_file.read(), status="Opened")
+    except Exception as ex:
+        logger.error(ex)
+        return template('python/editor', code='', status="Opened")
 
 # Blockly Editing
 @application.route('/blockly/<filename:path>')
@@ -70,23 +74,31 @@ def send_blocks_js(filename):
 
 @application.get('/blocks/edit')
 def edit_event_loop(clock):
-    blocks_file = configuration.get('blocks_file')
-    code_file = open(blocks_file, 'r')
-    return template('blocks/editor', blocks_state=code_file.read(), status="Opened")
+    try:
+        blocks_file = configuration.get('blocks_file')
+        code_file = open(blocks_file, 'r')
+        return template('blocks/editor', blocks_state=code_file.read(), status="Opened")
+    except Exception as ex:
+        logger.error(ex)
+        return template('blocks/editor', blocks_state='', status="Opened")
 
 @application.put('/blocks/save')
 def save_event_loop(clock):
     version_dir = configuration.get('backup_files')
     backup_name = "%s/blocks_clock.%s" % (version_dir, datetime.now().isoformat())
     blocks_state = request.body.read()
-    blocks_file = configuration.get('blocks_file')
 
     try:
+        blocks_file = configuration.get('blocks_file')
+
         # Save backup
         code_file = open(blocks_file, 'r')
         backup_file = open(backup_name, 'w')
         backup_file.write(code_file.read())
+    except Exception as ex:
+        logger.error(ex)
 
+    try:
         # Save file
         code_file = open(blocks_file, 'w')
         code_file.write(blocks_state)
@@ -110,7 +122,10 @@ def save_event_loop(clock):
         code_file = open(clock.sourceFile, 'r')
         backup_file = open(backup_name, 'w')
         backup_file.write(code_file.read())
+    except Exception as ex:
+        logger.error(ex)
 
+    try:
         # Save file
         code_file = open(clock.sourceFile, 'w')
         code_file.write(source_text)

@@ -65,7 +65,7 @@ Blockly.Blocks['set_display_hours'] = {
   init: function() {
     this.jsonInit({
       "type": "set_display_hours",
-      "message0": "Set Hours %1 %2",
+      "message0": "Set %1 hours to %2",
       "args0": [
         {
           "type": "input_value",

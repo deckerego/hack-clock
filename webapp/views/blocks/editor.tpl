@@ -11,7 +11,9 @@
   <script src="/blockly/python_compressed.js"></script>
   <script src="/blockly/msg/js/en.js"></script>
   <script src="/blocks/js/blocks/display.js"></script>
+  <script src="/blocks/js/blocks/clock.js"></script>
   <script src="/blocks/js/generators/display.js"></script>
+  <script src="/blocks/js/generators/clock.js"></script>
 </head>
 <body>
   <div class="container">
@@ -87,6 +89,12 @@
               <block type="set_display_brightness"></block>
               <block type="set_colon"></block>
               <block type="is_evening"></block>
+            </category>
+            <category name="Time" colour="255">
+              <block type="clock"></block>
+              <block type="clock_tick"></block>
+              <block type="current_hour"></block>
+              <block type="current_minute"></block>
             </category>
             <category name="Functions" colour="290" custom="PROCEDURE"></category>
           </xml>

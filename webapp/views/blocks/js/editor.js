@@ -6,11 +6,11 @@ function saveBlocks(saveCallback) {
     saveCode(Blockly.Python.workspaceToCode(workspace), saveCallback);
   };
 
-  request.send(Blockly.Xml.workspaceToDom(workspace).innerHTML);
+  var xml = Blockly.Xml.workspaceToDom(workspace);
+  request.send(Blockly.Xml.domToText(xml));
 };
 
 function loadBlocks(xmlString) {
-  var parser = new DOMParser();
-  var xmlWorkspace = parser.parseFromString(xmlString,"text/xml");
-  Blockly.Xml.domToWorkspace(xmlWorkspace, workspace);
+  var xml = Blockly.Xml.textToDom(xmlString);
+  Blockly.Xml.domToWorkspace(xml, workspace);
 }

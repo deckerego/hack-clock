@@ -1,10 +1,17 @@
 from Libs.SevenSegment import Display
+from datetime import datetime
+from Libs.Clock import Clock
 
 display = Display()
 
+"""Update the clock's display
+"""
+def showCurrentTime():
+  display.setHours(datetime.now().hour);
+  display.setMinutes(datetime.now().minute);
+  display.setColon(True);
 
-display.setMinutes(12);
-display.setHours(59);
-display.setBrightness(9);
-display.setColon(True);
-display.setEvening(False);
+clock = Clock()
+
+
+clock.onTick(showCurrentTime);
