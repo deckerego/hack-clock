@@ -29,21 +29,21 @@ Blockly.Blocks['set_display_minutes'] = {
   init: function() {
     this.jsonInit({
       "type": "set_display_minutes",
-      "message0": "Set Minutes %1 %2",
+      "message0": "Set %1 minutes to %2",
       "args0": [
-        {
-          "type": "field_number",
-          "name": "minutes",
-          "value": 0,
-          "min": 0,
-          "max": 99
-        },
         {
           "type": "input_value",
           "name": "display",
           "check": "Display"
+        },
+        {
+          "type": "input_value",
+          "name": "minutes",
+          "check": "Number",
+          "align": "CENTRE"
         }
       ],
+      "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
       "colour": 255,
@@ -68,18 +68,18 @@ Blockly.Blocks['set_display_hours'] = {
       "message0": "Set Hours %1 %2",
       "args0": [
         {
-          "type": "field_number",
-          "name": "hours",
-          "value": 0,
-          "min": 0,
-          "max": 99
-        },
-        {
           "type": "input_value",
           "name": "display",
           "check": "Display"
+        },
+        {
+          "type": "input_value",
+          "name": "hours",
+          "check": "Number",
+          "align": "CENTRE"
         }
       ],
+      "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
       "colour": 255,
@@ -101,19 +101,21 @@ Blockly.Blocks['set_colon'] = {
   init: function() {
     this.jsonInit({
       "type": "set_colon",
-      "message0": "Enable Hours Separator %1 %2",
+      "message0": "Enable %1 Hours Separator %2",
       "args0": [
-        {
-          "type": "field_checkbox",
-          "name": "enabled",
-          "checked": true
-        },
         {
           "type": "input_value",
           "name": "display",
           "check": "Display"
+        },
+        {
+          "type": "input_value",
+          "name": "enabled",
+          "check": "Boolean",
+          "align": "CENTRE"
         }
       ],
+      "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
       "colour": 255,
@@ -135,19 +137,21 @@ Blockly.Blocks['is_evening'] = {
   init: function() {
     this.jsonInit({
       "type": "is_evening",
-      "message0": "Enable Evening Indicator %1 %2",
+      "message0": "Enable %1 Evening Indicator %2",
       "args0": [
-        {
-          "type": "field_checkbox",
-          "name": "enabled",
-          "checked": true
-        },
         {
           "type": "input_value",
           "name": "display",
           "check": "Display"
+        },
+        {
+          "type": "input_value",
+          "name": "enabled",
+          "check": "Boolean",
+          "align": "CENTRE"
         }
       ],
+      "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
       "colour": 255,
@@ -172,6 +176,11 @@ Blockly.Blocks['set_display_brightness'] = {
       "message0": "Set Brightness %1 %2",
       "args0": [
         {
+          "type": "input_value",
+          "name": "display",
+          "check": "Display"
+        },
+        {
           "type": "field_dropdown",
           "name": "brightness",
           "options": [
@@ -184,13 +193,9 @@ Blockly.Blocks['set_display_brightness'] = {
             ["Really Dim", "3"],
             ["Off", "0"]
           ]
-        },
-        {
-          "type": "input_value",
-          "name": "display",
-          "check": "Display"
         }
       ],
+      "inputsInline": true,
       "previousStatement": null,
       "nextStatement": null,
       "colour": 255,
