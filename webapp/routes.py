@@ -50,14 +50,22 @@ def send_codemirror(filename):
 def send_python_css(filename):
     return static_file(filename, root='views/python/css')
 
+@application.get('/python/js/<filename:path>')
+def send_python_css(filename):
+    return static_file(filename, root='views/python/js')
+
 @application.get('/python/edit')
+def edit_event_loop(clock):
+    return template('python/editor', status="Opened")
+
+@application.get('/python/read')
 def edit_event_loop(clock):
     try:
         code_file = open(clock.sourceFile, 'r')
-        return template('python/editor', code=code_file.read(), status="Opened")
+        return code_file.read()
     except Exception as ex:
         logger.error(ex)
-        return template('python/editor', code='', status="Opened")
+        return ''
 
 # Blockly Editing
 @application.route('/blockly/<filename:path>')
@@ -74,13 +82,17 @@ def send_blocks_js(filename):
 
 @application.get('/blocks/edit')
 def edit_event_loop(clock):
+    return template('blocks/editor', status="Opened")
+
+@application.get('/blocks/read')
+def read_event_loop(clock):
     try:
         blocks_file = configuration.get('blocks_file')
         code_file = open(blocks_file, 'r')
-        return template('blocks/editor', blocks_state=code_file.read(), status="Opened")
+        return code_file.read()
     except Exception as ex:
         logger.error(ex)
-        return template('blocks/editor', blocks_state='', status="Opened")
+        return ''
 
 @application.put('/blocks/save')
 def save_event_loop(clock):

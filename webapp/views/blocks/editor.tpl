@@ -37,7 +37,7 @@
 
       <div class="btn-toolbar" role="toolbar">
         <div class="btn-group btn-group-lg" role="group" >
-          <button type="button" class="btn btn-default" aria-label="Save" onClick="saveBlocks(saveCallback);">
+          <button type="button" class="btn btn-default" aria-label="Save" onClick="saveBlocks(workspace, saveCallback);">
             % if status == "Saved":
             <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
             % elif status == "Failed":
@@ -112,7 +112,7 @@
 
       <script>
         var workspace = Blockly.inject('blocklyCode', {toolbox: document.getElementById('toolbox')});
-        loadBlocks('{{!blocks_state}}');
+        loadBlocks(workspace);
       </script>
 
       <script>

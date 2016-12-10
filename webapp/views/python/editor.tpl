@@ -56,7 +56,7 @@
         <span id="runstatus" class="label label-default">Checking Status...</span>
       </div>
 
-      <textarea id="code" name="code">{{code}}</textarea>
+      <textarea id="code" name="code"></textarea>
 
       <div class="titlebar">
         Errors:
@@ -72,21 +72,23 @@
             singleLineStringErrors: false
           },
           lineNumbers: true,
-          indentUnit: 4,
+          indentUnit: 2,
           height: "dynamic",
           tabMode: "shift",
           matchBrackets: true
         });
       </script>
 
+      <script src="/js/editor.js"></script>
+      <script src="/python/js/editor.js"></script>
+
       <script>
         setInterval(function() { getErrors("errors") }, 2000);
         setInterval(function() { getStatus("runstatus") }, 5000);
         function saveCallback(savedCode) { editor.setValue(savedCode); };
+        loadCode(editor)
       </script>
     </form>
   </div>
-
-  <script src="/js/editor.js"></script>
 </body>
 </html>
