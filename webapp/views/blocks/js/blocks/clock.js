@@ -83,6 +83,8 @@ Blockly.Blocks['clock_tick'] = {
           "name": "on_tick_function"
         }
       ],
+      "previousStatement": null,
+      "nextStatement": null,
       "colour": 255,
       "tooltip": "Execute this statement when the clock ticks every second",
       "helpUrl": "http://hackclock.deckerego.net/"
