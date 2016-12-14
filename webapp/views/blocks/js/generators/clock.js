@@ -28,3 +28,16 @@ Blockly.Python['clock_tick'] = function(block) {
   }
   return value_clock + '.onTick(' + name_on_tick_function + ');\n';
 };
+
+Blockly.Python['clock_run_at'] = function(block) {
+  var value_hour = Blockly.Python.valueToCode(block, 'hour', Blockly.Python.ORDER_ATOMIC);
+  var value_minute = Blockly.Python.valueToCode(block, 'minute', Blockly.Python.ORDER_ATOMIC);
+  var value_clock = Blockly.Python.valueToCode(block, 'clock', Blockly.Python.ORDER_ATOMIC);
+  var target_at_time_function = block.getInputTargetBlock('at_time_function');
+  var name_at_time_function = '';
+  if (target_at_time_function) {
+    var label_at_time_function = target_at_time_function.getFieldValue('NAME');
+    name_at_time_function = Blockly.Python.variableDB_.getName(label_at_time_function, Blockly.Procedures.NAME_TYPE);
+  }
+  return value_clock + '.atTime(' + value_hour + ", " + value_minute + ", " + name_at_time_function + ');\n';
+};

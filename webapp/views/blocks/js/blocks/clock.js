@@ -99,3 +99,45 @@ Blockly.Blocks['clock_tick'] = {
     });
   }
 };
+
+Blockly.Blocks['clock_run_at'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "attime",
+      "message0": "At Time %1 : %2 In Clock %3 %4",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "hour",
+          "check": "Number"
+        },
+        {
+          "type": "input_value",
+          "name": "minute",
+          "check": "Number"
+        },
+        {
+          "type": "input_value",
+          "name": "clock",
+          "check": "Clock"
+        },
+        {
+          "type": "input_statement",
+          "name": "at_time_function"
+        }
+      ],
+      "inputsInline": true,
+      "colour": 255,
+      "tooltip": "Execute this statement at a given time",
+      "helpUrl": "http://hackclock.deckerego.net/"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'Execute this statement at a given time';
+    });
+  }
+};

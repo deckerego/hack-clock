@@ -12,8 +12,12 @@
   <script src="/blockly/msg/js/en.js"></script>
   <script src="/blocks/js/blocks/display.js"></script>
   <script src="/blocks/js/blocks/clock.js"></script>
+  <script src="/blocks/js/blocks/speaker.js"></script>
+  <script src="/blocks/js/blocks/audio.js"></script>
   <script src="/blocks/js/generators/display.js"></script>
   <script src="/blocks/js/generators/clock.js"></script>
+  <script src="/blocks/js/generators/speaker.js"></script>
+  <script src="/blocks/js/generators/audio.js"></script>
 </head>
 <body>
   <div class="container">
@@ -93,8 +97,21 @@
             <category name="Time" colour="255">
               <block type="clock"></block>
               <block type="clock_tick"></block>
+              <block type="clock_run_at"></block>
               <block type="current_hour"></block>
               <block type="current_minute"></block>
+            </category>
+            <category name="Speaker" colour="255">
+              <block type="speaker"></block>
+              <block type="play_list"></block>
+            </category>
+            <category name="Lists" colour="260">
+              <block type="lists_create_empty"></block>
+              <block type="lists_create_with"></block>
+            </category>
+            <category name="Audio" colour="255">
+              <block type="AmicusMeus.ogg"></block>
+              <block type="TestTrack.ogg"></block>
             </category>
             <category name="Functions" colour="290" custom="PROCEDURE"></category>
           </xml>

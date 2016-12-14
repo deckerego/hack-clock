@@ -1,6 +1,7 @@
 from datetime import datetime
 from Libs.SevenSegment import Display
 from Libs.Clock import Clock
+from Libs.GStreamer import Speaker
 
 Is_Evening = None
 Proper_Hour = None
@@ -17,8 +18,16 @@ def showCurrentTime():
   display.setColon(Is_Evening);
   display.setMinutes(datetime.now().minute);
 
-clock = Clock()
+speaker = Speaker()
+
+"""Describe this function...
+"""
+def playMusic():
+  global Is_Evening, Proper_Hour
+  speaker.playList([AmicusMeus.ogg, TestTrack.ogg]);
 
 
 clock.onTick(showCurrentTime);
 display.setBrightness(11);
+
+clock.atTime(8, 30, playMusic);
