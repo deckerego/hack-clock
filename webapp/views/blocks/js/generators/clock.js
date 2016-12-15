@@ -41,3 +41,9 @@ Blockly.Python['clock_run_at'] = function(block) {
   }
   return value_clock + '.atTime(' + value_hour + ", " + value_minute + ", " + name_at_time_function + ');\n';
 };
+
+Blockly.Python['clock_wait'] = function(block) {
+  var value_clock = Blockly.Python.valueToCode(block, 'clock', Blockly.Python.ORDER_ATOMIC);
+  var value_seconds = Blockly.Python.valueToCode(block, 'seconds', Blockly.Python.ORDER_ATOMIC);
+  return value_clock + '.waitAbout(' + value_seconds + ');\n';
+};

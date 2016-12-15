@@ -98,6 +98,7 @@
               <block type="clock"></block>
               <block type="clock_tick"></block>
               <block type="clock_run_at"></block>
+              <block type="clock_wait"></block>
               <block type="current_hour"></block>
               <block type="current_minute"></block>
             </category>

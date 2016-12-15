@@ -141,3 +141,38 @@ Blockly.Blocks['clock_run_at'] = {
     });
   }
 };
+
+Blockly.Blocks['clock_wait'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "wait",
+      "message0": "Using %1 wait for %2 seconds",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "clock",
+          "check": "Clock"
+        },
+        {
+          "type": "input_value",
+          "name": "seconds",
+          "check": "Number"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 255,
+      "tooltip": "Make the application wait for a few seconds",
+      "helpUrl": "http://hackclock.deckerego.net/"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'Make the application wait for a few seconds';
+    });
+  }
+};

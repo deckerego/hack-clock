@@ -18,13 +18,23 @@ def showCurrentTime():
   display.setColon(Is_Evening);
   display.setMinutes(datetime.now().minute);
 
-speaker = Speaker()
+clock = Clock()
 
 """Play music through the attached speaker
 """
 def playMusic():
   global Is_Evening, Proper_Hour
   speaker.playList(["AmicusMeus.ogg", "TestTrack.ogg"]);
+
+"""Show current temperature
+"""
+def switchWeatherStations():
+  global Is_Evening, Proper_Hour
+  display.setEvening(False);
+  display.setHours(0);
+  display.setColon(False);
+  display.setMinutes(0);
+  clock.waitAbout(3);
 
 
 clock.onTick(showCurrentTime);
