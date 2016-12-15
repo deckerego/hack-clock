@@ -5,7 +5,8 @@ config_values = {
     'blocks_file': '../runapp/blocks_clock.xml',
     'audio_files': '../runapp/audio',
     'backup_files': '../runapp/backups',
-    'lesson_files': '../runapp/lessons'
+    'lesson_files': '../runapp/lessons',
+    'file_filter': ['README.md', '.DS_Store']
 }
 
 class Configuration(object):

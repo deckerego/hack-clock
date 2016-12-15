@@ -4,6 +4,7 @@
 import os
 import sys
 import logging
+import json
 
 logging.basicConfig(level=logging.WARN, format='%(levelname)-8s %(message)s')
 logger = logging.getLogger('hack-clock')
@@ -173,10 +174,17 @@ def audio_upload():
     redirect("/audio")
 
 @application.get('/audio')
-def audio_list():
+def audio_view():
     audio_dir = configuration.get('audio_files')
     files = listdir(audio_dir)
     return template('audio', files=files)
+
+@application.get('/audio/list')
+def audio_list():
+    audio_dir = configuration.get('audio_files')
+    filename_filter = configuration.get('file_filter')
+    dir_list = filter(lambda e: e not in filename_filter, listdir(audio_dir))
+    return json.dumps(dir_list)
 
 # Backup / Restore
 @application.get('/clock/code/backups')

@@ -20,11 +20,11 @@ def showCurrentTime():
 
 speaker = Speaker()
 
-"""Describe this function...
+"""Play music through the attached speaker
 """
 def playMusic():
   global Is_Evening, Proper_Hour
-  speaker.playList([AmicusMeus.ogg, TestTrack.ogg]);
+  speaker.playList(["AmicusMeus.ogg", "TestTrack.ogg"]);
 
 
 clock.onTick(showCurrentTime);

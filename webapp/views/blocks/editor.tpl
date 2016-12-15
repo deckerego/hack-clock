@@ -110,8 +110,6 @@
               <block type="lists_create_with"></block>
             </category>
             <category name="Audio" colour="255">
-              <block type="AmicusMeus.ogg"></block>
-              <block type="TestTrack.ogg"></block>
             </category>
             <category name="Functions" colour="290" custom="PROCEDURE"></category>
           </xml>
@@ -130,6 +128,7 @@
       <script>
         var workspace = Blockly.inject('blocklyCode', {toolbox: document.getElementById('toolbox')});
         loadBlocks(workspace);
+        loadAudioTools(document.getElementById('toolbox'));
       </script>
 
       <script>
