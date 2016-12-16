@@ -2,10 +2,23 @@ goog.provide('Blockly.Python.audio');
 
 goog.require('Blockly.Python');
 
-Blockly.Python['AmicusMeus.ogg'] = function(block) {
-  return ['\"AmicusMeus.ogg\"', Blockly.Python.ORDER_NONE];
-};
+function createParser(audioFile) {
+  Blockly.Python[audioFile] = function(block) {
+    return ['\"'+ audioFile + '\"', Blockly.Python.ORDER_NONE];
+  };
+}
 
-Blockly.Python['TestTrack.ogg'] = function(block) {
-  return ['\"TestTrack.ogg\"', Blockly.Python.ORDER_NONE];
-};
+function loadAudioParser() {
+  var request = new XMLHttpRequest();
+  request.open("GET", "/audio/list", true);
+
+  request.onload = function(evt) {
+    var response = JSON.parse(request.responseText);
+
+    for(var i=0; i < response.length; i++) {
+      createParser(response[i]);
+    }
+  }
+
+  request.send();
+}

@@ -21,7 +21,19 @@ function addAudioBlock(audioCategory, audioFile) {
   audioCategory.appendChild(blockElement);
 }
 
-function loadAudioTools(toolbox) {
+function createBlock(audioFile) {
+  Blockly.Blocks[audioFile] = {
+    init: function() {
+      this.appendDummyInput().appendField(audioFile);
+      this.setOutput(true, "String");
+      this.setColour(60);
+      this.setTooltip('Sound File to Play');
+      this.setHelpUrl('http://hackclock.deckerego.net/');
+    }
+  };
+}
+
+function loadAudioTools(workspace, toolbox, callback) {
   var request = new XMLHttpRequest();
   request.open("GET", "/audio/list", true);
 
@@ -29,31 +41,14 @@ function loadAudioTools(toolbox) {
     var response = JSON.parse(request.responseText);
     var audioCategory = findToolboxCategory(toolbox, 'Audio');
 
-    for(var i=0; i < response.length; i++)
+    for(var i=0; i < response.length; i++) {
+      createBlock(response[i]);
       addAudioBlock(audioCategory, response[i]);
+    }
 
     workspace.updateToolbox(toolbox);
+    callback(workspace);
   }
 
   request.send();
 }
-
-Blockly.Blocks['AmicusMeus.ogg'] = {
-  init: function() {
-    this.appendDummyInput().appendField("AmicusMeus.ogg");
-    this.setOutput(true, "String");
-    this.setColour(60);
-    this.setTooltip('Amicus Meus');
-    this.setHelpUrl('http://hackclock.deckerego.net/');
-  }
-};
-
-Blockly.Blocks['TestTrack.ogg'] = {
-  init: function() {
-    this.appendDummyInput().appendField("TestTrack.ogg");
-    this.setOutput(true, "String");
-    this.setColour(60);
-    this.setTooltip('Test Track');
-    this.setHelpUrl('http://hackclock.deckerego.net/');
-  }
-};

@@ -4,7 +4,7 @@ goog.require('Blockly.Python');
 
 Blockly.Python['speaker'] = function(block) {
   Blockly.Python.definitions_['import_speaker'] = 'from Libs.GStreamer import Speaker';
-  Blockly.Python.definitions_['init_clock'] = 'speaker = Speaker()';
+  Blockly.Python.definitions_['init_speaker'] = 'speaker = Speaker()';
   return ['speaker', Blockly.Python.ORDER_ATOMIC];
 };
 

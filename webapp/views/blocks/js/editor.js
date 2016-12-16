@@ -21,3 +21,8 @@ function loadBlocks(workspace) {
 
   request.send();
 }
+
+function restoreWorkspace(workspace) {
+  loadAudioTools(workspace, document.getElementById('toolbox'), loadBlocks);
+  loadAudioParser();
+}

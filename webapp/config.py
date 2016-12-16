@@ -6,7 +6,9 @@ config_values = {
     'audio_files': '../runapp/audio',
     'backup_files': '../runapp/backups',
     'lesson_files': '../runapp/lessons',
-    'file_filter': ['README.md', '.DS_Store']
+    'file_filter': ['README.md', '.DS_Store'],
+    'buttons_gpio': [24],
+    'switches_gpio': []
 }
 
 class Configuration(object):

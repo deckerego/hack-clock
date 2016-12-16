@@ -6,18 +6,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/styles.css" type="text/css" />
   <link rel="stylesheet" href="/blocks/css/styles.css" type="text/css" />
-  <script src="/blockly/blockly_compressed.js"></script>
-  <script src="/blockly/blocks_compressed.js"></script>
-  <script src="/blockly/python_compressed.js"></script>
-  <script src="/blockly/msg/js/en.js"></script>
-  <script src="/blocks/js/blocks/display.js"></script>
-  <script src="/blocks/js/blocks/clock.js"></script>
-  <script src="/blocks/js/blocks/speaker.js"></script>
-  <script src="/blocks/js/blocks/audio.js"></script>
-  <script src="/blocks/js/generators/display.js"></script>
-  <script src="/blocks/js/generators/clock.js"></script>
-  <script src="/blocks/js/generators/speaker.js"></script>
-  <script src="/blocks/js/generators/audio.js"></script>
 </head>
 <body>
   <div class="container">
@@ -73,7 +61,8 @@
               <block type="controls_if_else"></block>
               <block type="logic_compare"></block>
             </category>
-            <category name="Variables" colour="330" custom="VARIABLE"></category>
+            <category name="Variables" colour="330" custom="VARIABLE">
+            </category>
             <category name="Boolean" colour="210">
               <block type="logic_compare"></block>
               <block type="logic_operation"></block>
@@ -112,7 +101,10 @@
             </category>
             <category name="Audio" colour="255">
             </category>
-            <category name="Functions" colour="290" custom="PROCEDURE"></category>
+            <category name="Buttons &amp; Switches" colour="255">
+            </category>
+            <category name="Functions" colour="290" custom="PROCEDURE">
+            </category>
           </xml>
         </td>
       </table>
@@ -123,13 +115,26 @@
 
       <textarea id="errors" name="errors" readonly>Checking...</textarea>
 
+      <script src="/blockly/blockly_compressed.js"></script>
+      <script src="/blockly/blocks_compressed.js"></script>
+      <script src="/blockly/python_compressed.js"></script>
+      <script src="/blockly/msg/js/en.js"></script>
+      <script src="/blocks/js/blocks/display.js"></script>
+      <script src="/blocks/js/blocks/clock.js"></script>
+      <script src="/blocks/js/blocks/speaker.js"></script>
+      <script src="/blocks/js/blocks/audio.js"></script>
+      <script src="/blocks/js/blocks/gpio.js"></script>
+      <script src="/blocks/js/generators/display.js"></script>
+      <script src="/blocks/js/generators/clock.js"></script>
+      <script src="/blocks/js/generators/speaker.js"></script>
+      <script src="/blocks/js/generators/audio.js"></script>
+      <script src="/blocks/js/generators/gpio.js"></script>
       <script src="/js/editor.js"></script>
       <script src="/blocks/js/editor.js"></script>
 
       <script>
         var workspace = Blockly.inject('blocklyCode', {toolbox: document.getElementById('toolbox')});
-        loadBlocks(workspace);
-        loadAudioTools(document.getElementById('toolbox'));
+        restoreWorkspace(workspace);
       </script>
 
       <script>
