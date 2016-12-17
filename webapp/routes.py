@@ -196,6 +196,11 @@ def switch_list():
     switch_pins = configuration.get('switches_gpio')
     return json.dumps(switch_pins)
 
+@application.get('/weather/station/id')
+def switch_list():
+    switch_pins = configuration.get('switches_gpio')
+    return json.dumps(switch_pins)
+
 # Backup / Restore
 @application.get('/clock/code/backups')
 def backup_list(clock):

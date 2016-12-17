@@ -102,6 +102,10 @@
             <category name="Buttons &amp; Switches" colour="255">
               <block type="when_pressed"></block>
             </category>
+            <category name="Weather" colour="255">
+              <block type="weather_station"></block>
+              <block type="current_temp"></block>
+            </category>
             <category name="Functions" colour="290" custom="PROCEDURE">
             </category>
           </xml>
@@ -123,11 +127,13 @@
       <script src="/blocks/js/blocks/speaker.js"></script>
       <script src="/blocks/js/blocks/audio.js"></script>
       <script src="/blocks/js/blocks/gpio.js"></script>
+      <script src="/blocks/js/blocks/weather.js"></script>
       <script src="/blocks/js/generators/display.js"></script>
       <script src="/blocks/js/generators/clock.js"></script>
       <script src="/blocks/js/generators/speaker.js"></script>
       <script src="/blocks/js/generators/audio.js"></script>
       <script src="/blocks/js/generators/gpio.js"></script>
+      <script src="/blocks/js/generators/weather.js"></script>
       <script src="/js/editor.js"></script>
       <script src="/blocks/js/editor.js"></script>
 

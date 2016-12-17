@@ -2,6 +2,7 @@ from datetime import datetime
 from Libs.SevenSegment import Display
 from Libs.Clock import Clock
 from Libs.GStreamer import Speaker
+from Libs.Weather import Weather
 from Libs.Input import Button
 
 Is_Evening = None
@@ -35,7 +36,7 @@ def switchWeatherStations():
   display.setColon(False);
   display.setEvening(False);
   display.setMinutes(0);
-  display.setMinutes(0);
+  display.setMinutes(weather_station.getCurrentTemp());
   clock.waitAbout(3);
 
 gpio_24 = Button(24)
