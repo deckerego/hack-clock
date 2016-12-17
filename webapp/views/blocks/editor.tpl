@@ -91,17 +91,16 @@
               <block type="current_hour"></block>
               <block type="current_minute"></block>
             </category>
-            <category name="Speaker" colour="255">
-              <block type="speaker"></block>
-              <block type="play_list"></block>
-            </category>
             <category name="Lists" colour="260">
               <block type="lists_create_empty"></block>
               <block type="lists_create_with"></block>
             </category>
             <category name="Audio" colour="255">
+              <block type="speaker"></block>
+              <block type="play_list"></block>
             </category>
             <category name="Buttons &amp; Switches" colour="255">
+              <block type="when_pressed"></block>
             </category>
             <category name="Functions" colour="290" custom="PROCEDURE">
             </category>

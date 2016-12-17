@@ -25,7 +25,7 @@ function createInputBlock(pin) {
   Blockly.Blocks['gpio_' + pin] = {
     init: function() {
       this.appendDummyInput().appendField("Button #" + pin);
-      this.setOutput(true, "String");
+      this.setOutput(true, "Button");
       this.setColour(60);
       this.setTooltip('Watch For Button Presses');
       this.setHelpUrl('http://hackclock.deckerego.net/');
@@ -37,7 +37,7 @@ function createOutputBlock(pin) {
   Blockly.Blocks['gpio_' + pin] = {
     init: function() {
       this.appendDummyInput().appendField("Switch #" + pin);
-      this.setOutput(true, "String");
+      this.setOutput(true, "Switch");
       this.setColour(60);
       this.setTooltip('Flip a Switch');
       this.setHelpUrl('http://hackclock.deckerego.net/');
@@ -88,3 +88,34 @@ function loadSwitchTools(workspace, toolbox, callback) {
 function loadGPIOTools(workspace, toolbox, callback) {
   loadButtonTools(workspace, toolbox, function() { loadSwitchTools(workspace, toolbox, callback); });
 }
+
+Blockly.Blocks['when_pressed'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "when_pressed",
+      "message0": "When I press %1 %2",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "button",
+          "check": "Button"
+        },
+        {
+          "type": "input_statement",
+          "name": "pressed_function"
+        }
+      ],
+      "colour": 255,
+      "tooltip": "When a button is pressed...",
+      "helpUrl": "http://hackclock.deckerego.net/"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'When a button is pressed...';
+    });
+  }
+};
