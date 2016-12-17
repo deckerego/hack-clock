@@ -23,6 +23,13 @@ function loadBlocks(workspace) {
 }
 
 function restoreWorkspace(workspace) {
-  loadAudioTools(workspace, document.getElementById('toolbox'), loadBlocks);
+  //Setup the callbacks
+  var toolbox = document.getElementById('toolbox');
+  var callback_two = function() { loadBlocks(workspace); };
+  var callback_one = function() { loadAudioTools(workspace, toolbox, callback_two); };
+
+  //And fire them off
+  loadGPIOTools(workspace, document.getElementById('toolbox'), callback_one);
+  loadGPIOParser();
   loadAudioParser();
 }

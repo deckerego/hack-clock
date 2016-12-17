@@ -186,6 +186,16 @@ def audio_list():
     dir_list = filter(lambda e: e not in filename_filter, listdir(audio_dir))
     return json.dumps(dir_list)
 
+@application.get('/gpio/button/list')
+def button_list():
+    button_pins = configuration.get('buttons_gpio')
+    return json.dumps(button_pins)
+
+@application.get('/gpio/switch/list')
+def switch_list():
+    switch_pins = configuration.get('switches_gpio')
+    return json.dumps(switch_pins)
+
 # Backup / Restore
 @application.get('/clock/code/backups')
 def backup_list(clock):

@@ -4,11 +4,11 @@ goog.provide('Blockly.Blocks.audio');
 
 goog.require('Blockly.Blocks');
 
-function findToolboxCategory(toolbox, name) {
+function findAudioCategory(toolbox) {
   var categories = toolbox.getElementsByTagName('category');
   for(var i = 0; i < categories.length; i++) {
     var category = categories[i];
-    if(category.attributes['name'].nodeValue == name)
+    if(category.attributes['name'].nodeValue == 'Audio')
       return category;
   }
 
@@ -21,7 +21,7 @@ function addAudioBlock(audioCategory, audioFile) {
   audioCategory.appendChild(blockElement);
 }
 
-function createBlock(audioFile) {
+function createAudioBlock(audioFile) {
   Blockly.Blocks[audioFile] = {
     init: function() {
       this.appendDummyInput().appendField(audioFile);
@@ -39,15 +39,15 @@ function loadAudioTools(workspace, toolbox, callback) {
 
   request.onload = function(evt) {
     var response = JSON.parse(request.responseText);
-    var audioCategory = findToolboxCategory(toolbox, 'Audio');
+    var audioCategory = findAudioCategory(toolbox);
 
     for(var i=0; i < response.length; i++) {
-      createBlock(response[i]);
+      createAudioBlock(response[i]);
       addAudioBlock(audioCategory, response[i]);
     }
 
     workspace.updateToolbox(toolbox);
-    callback(workspace);
+    callback();
   }
 
   request.send();
