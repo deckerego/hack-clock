@@ -55,7 +55,7 @@
       <table id="blocklyArea">
         <td id="blocklyCode">
           <xml id="toolbox" style="display: none">
-            <category name="Logic" colour="210">
+            <category name="Logic" colour="30">
               <block type="controls_if"></block>
               <block type="controls_repeat_ext"></block>
               <block type="controls_if_else"></block>
@@ -63,7 +63,7 @@
             </category>
             <category name="Variables" colour="330" custom="VARIABLE">
             </category>
-            <category name="Boolean" colour="210">
+            <category name="Boolean" colour="60">
               <block type="logic_compare"></block>
               <block type="logic_operation"></block>
               <block type="logic_negate"></block>
@@ -71,11 +71,11 @@
               <block type="logic_null"></block>
               <block type="logic_ternary"></block>
             </category>
-            <category name="Math" colour="230">
+            <category name="Math" colour="90">
               <block type="math_number"></block>
               <block type="math_arithmetic"></block>
             </category>
-            <category name="Display" colour="255">
+            <category name="Display" colour="120">
               <block type="led_display"></block>
               <block type="set_display_minutes"></block>
               <block type="set_display_hours"></block>
@@ -83,7 +83,7 @@
               <block type="set_colon"></block>
               <block type="is_evening"></block>
             </category>
-            <category name="Time" colour="255">
+            <category name="Time" colour="150">
               <block type="clock"></block>
               <block type="clock_tick"></block>
               <block type="clock_run_at"></block>
@@ -91,22 +91,22 @@
               <block type="current_hour"></block>
               <block type="current_minute"></block>
             </category>
-            <category name="Lists" colour="260">
+            <category name="Lists" colour="180">
               <block type="lists_create_empty"></block>
               <block type="lists_create_with"></block>
             </category>
-            <category name="Audio" colour="255">
+            <category name="Audio" colour="210">
               <block type="speaker"></block>
               <block type="play_list"></block>
             </category>
-            <category name="Buttons &amp; Switches" colour="255">
+            <category name="Buttons &amp; Switches" colour="240">
               <block type="when_pressed"></block>
             </category>
-            <category name="Weather" colour="255">
+            <category name="Weather" colour="270">
               <block type="weather_station"></block>
               <block type="current_temp"></block>
             </category>
-            <category name="Functions" colour="290" custom="PROCEDURE">
+            <category name="Functions" colour="300" custom="PROCEDURE">
             </category>
           </xml>
         </td>
