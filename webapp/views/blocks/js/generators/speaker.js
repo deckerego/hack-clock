@@ -11,5 +11,5 @@ Blockly.Python['speaker'] = function(block) {
 Blockly.Python['play_list'] = function(block) {
   var value_speaker = Blockly.Python.valueToCode(block, 'speaker', Blockly.Python.ORDER_ATOMIC);
   var value_songs = Blockly.Python.valueToCode(block, 'songs', Blockly.Python.ORDER_ATOMIC);
-  return ''+value_speaker+'.playList('+value_songs+');\n';
+  return ''+value_speaker+'.playList('+value_songs+')\n';
 };

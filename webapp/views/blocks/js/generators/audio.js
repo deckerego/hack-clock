@@ -22,3 +22,13 @@ function loadAudioParser() {
 
   request.send();
 }
+
+Blockly.Python['is_playing'] = function(block) {
+  var value_speaker = Blockly.Python.valueToCode(block, 'speaker', Blockly.Python.ORDER_ATOMIC);
+  return [value_speaker + '.isPlaying()', Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['audio_stop'] = function(block) {
+  var value_speaker = Blockly.Python.valueToCode(block, 'speaker', Blockly.Python.ORDER_ATOMIC);
+  return value_speaker + ".stop()\n";
+};

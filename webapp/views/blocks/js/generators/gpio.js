@@ -53,5 +53,5 @@ Blockly.Python['when_pressed'] = function(block) {
     var label_pressed_function = target_pressed_function.getFieldValue('NAME');
     name_pressed_function = Blockly.Python.variableDB_.getName(label_pressed_function, Blockly.Procedures.NAME_TYPE);
   }
-  return value_button + '.whenPressed(' + name_pressed_function + ');\n';
+  return value_button + '.whenPressed(' + name_pressed_function + ')\n';
 };

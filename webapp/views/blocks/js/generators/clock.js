@@ -26,7 +26,7 @@ Blockly.Python['clock_tick'] = function(block) {
     var label_on_tick_function = target_on_tick_function.getFieldValue('NAME');
     name_on_tick_function = Blockly.Python.variableDB_.getName(label_on_tick_function, Blockly.Procedures.NAME_TYPE);
   }
-  return value_clock + '.onTick(' + name_on_tick_function + ');\n';
+  return value_clock + '.onTick(' + name_on_tick_function + ')\n';
 };
 
 Blockly.Python['clock_run_at'] = function(block) {
@@ -39,11 +39,11 @@ Blockly.Python['clock_run_at'] = function(block) {
     var label_at_time_function = target_at_time_function.getFieldValue('NAME');
     name_at_time_function = Blockly.Python.variableDB_.getName(label_at_time_function, Blockly.Procedures.NAME_TYPE);
   }
-  return value_clock + '.atTime(' + value_hour + ", " + value_minute + ", " + name_at_time_function + ');\n';
+  return value_clock + '.atTime(' + value_hour + ", " + value_minute + ", " + name_at_time_function + ')\n';
 };
 
 Blockly.Python['clock_wait'] = function(block) {
   var value_clock = Blockly.Python.valueToCode(block, 'clock', Blockly.Python.ORDER_ATOMIC);
   var value_seconds = Blockly.Python.valueToCode(block, 'seconds', Blockly.Python.ORDER_ATOMIC);
-  return value_clock + '.waitAbout(' + value_seconds + ');\n';
+  return value_clock + '.waitAbout(' + value_seconds + ')\n';
 };
