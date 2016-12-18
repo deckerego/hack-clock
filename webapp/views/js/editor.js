@@ -47,9 +47,9 @@ function restartClock(buttonElement, statusElementName) {
   textElement.innerHTML = "Checking Status...";
 }
 
-function saveCode(codeText, callbackFunction) {
+function savePython(codeText, callbackFunction) {
   var request = new XMLHttpRequest();
-  request.open("PUT", "/clock/code", true);
+  request.open("PUT", "/python/save", true);
 
   request.onload = function(evt) {
     callbackFunction(request.responseText);

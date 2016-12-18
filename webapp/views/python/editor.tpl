@@ -29,66 +29,63 @@
       </div>
     </nav>
 
-    <form method="POST" action="/clock/code">
-
-      <div class="btn-toolbar" role="toolbar">
-        <div class="btn-group btn-group-lg" role="group" >
-          <button type="button" class="btn btn-default" aria-label="Save" onClick="saveCode(editor.getValue(), saveCallback);">
-            % if status == "Saved":
-            <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
-            % elif status == "Failed":
-            <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
-            % else:
-            <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
-            % end
-          </button>
-          <button type="button" class="btn btn-default" aria-label="Restore" onClick="window.location='/clock/code/backups';">
-            <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-default" aria-label="Refresh" onClick="restartClock(this, 'runstatus');">
-            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-default" aria-label="Edit Blocks" onClick="window.location='/blocks/edit';">
-            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-          </button>
-        </div>
-
-        <span id="runstatus" class="label label-default">Checking Status...</span>
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group btn-group-lg" role="group" >
+        <button type="button" class="btn btn-default" aria-label="Save" onClick="savePython(editor.getValue(), saveCallback);">
+          % if status == "Saved":
+          <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
+          % elif status == "Failed":
+          <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+          % else:
+          <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+          % end
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Restore" onClick="window.location='/clock/python/backups';">
+          <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Refresh" onClick="restartClock(this, 'runstatus');">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Edit Blocks" onClick="window.location='/blocks/edit';">
+          <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+        </button>
       </div>
 
-      <textarea id="code" name="code"></textarea>
+      <span id="runstatus" class="label label-default">Checking Status...</span>
+    </div>
 
-      <div class="titlebar">
-        Errors:
-      </div>
+    <textarea id="code" name="code"></textarea>
 
-      <textarea id="errors" name="errors" readonly>Checking...</textarea>
+    <div class="titlebar">
+      Errors:
+    </div>
 
-      <script>
-        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-          mode: {
-            name: "python",
-            version: 2,
-            singleLineStringErrors: false
-          },
-          lineNumbers: true,
-          indentUnit: 2,
-          height: "dynamic",
-          tabMode: "shift",
-          matchBrackets: true
-        });
-      </script>
+    <textarea id="errors" name="errors" readonly>Checking...</textarea>
 
-      <script src="/js/editor.js"></script>
-      <script src="/python/js/editor.js"></script>
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: {
+          name: "python",
+          version: 2,
+          singleLineStringErrors: false
+        },
+        lineNumbers: true,
+        indentUnit: 2,
+        height: "dynamic",
+        tabMode: "shift",
+        matchBrackets: true
+      });
+    </script>
 
-      <script>
-        setInterval(function() { getErrors("errors") }, 2000);
-        setInterval(function() { getStatus("runstatus") }, 5000);
-        function saveCallback(savedCode) { editor.setValue(savedCode); };
-        loadCode(editor)
-      </script>
-    </form>
+    <script src="/js/editor.js"></script>
+    <script src="/python/js/editor.js"></script>
+
+    <script>
+      setInterval(function() { getErrors("errors") }, 2000);
+      setInterval(function() { getStatus("runstatus") }, 5000);
+      function saveCallback(savedCode) { editor.setValue(savedCode); };
+      loadCode(editor)
+    </script>
   </div>
 </body>
 </html>

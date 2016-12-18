@@ -22,6 +22,7 @@ from config import configuration
 from clock import Clock, ProcessStatus
 from bottle import Bottle, HTTPResponse, static_file, get, put, request, response, redirect, template
 from os import listdir
+import re
 
 application = Bottle()
 application.install(Clock())
@@ -56,17 +57,45 @@ def send_python_css(filename):
     return static_file(filename, root='views/python/js')
 
 @application.get('/python/edit')
-def edit_event_loop(clock):
+def python_edit_event_loop(clock):
     return template('python/editor', status="Opened")
 
 @application.get('/python/read')
-def edit_event_loop(clock):
+def python_edit_event_loop(clock):
     try:
         code_file = open(clock.sourceFile, 'r')
         return code_file.read()
     except Exception as ex:
         logger.error(ex)
         return ''
+
+@application.put('/python/save')
+def python_save_event_loop(clock):
+    version_dir = configuration.get('backup_files')
+    backup_name = "%s/run_clock.%s" % (version_dir, datetime.now().isoformat())
+    source_text = request.body.read()
+
+    try:
+        # Save backup
+        code_file = open(clock.sourceFile, 'r')
+        backup_file = open(backup_name, 'w')
+        backup_file.write(code_file.read())
+    except Exception as ex:
+        logger.error(ex)
+
+    try:
+        # Save file
+        code_file = open(clock.sourceFile, 'w')
+        code_file.write(source_text)
+
+        clock.restart()
+
+        # Load saved file
+        code_file = open(clock.sourceFile, 'r')
+        return code_file.read()
+    except Exception as ex:
+        logger.error(ex)
+        return source_text
 
 # Blockly Editing
 @application.route('/blockly/<filename:path>')
@@ -82,11 +111,11 @@ def send_blocks_js(filename):
     return static_file(filename, root='views/blocks/js')
 
 @application.get('/blocks/edit')
-def edit_event_loop(clock):
+def blocks_edit_event_loop(clock):
     return template('blocks/editor', status="Opened")
 
 @application.get('/blocks/read')
-def read_event_loop(clock):
+def blocks_read_event_loop(clock):
     try:
         blocks_file = configuration.get('blocks_file')
         code_file = open(blocks_file, 'r')
@@ -96,7 +125,7 @@ def read_event_loop(clock):
         return ''
 
 @application.put('/blocks/save')
-def save_event_loop(clock):
+def blocks_save_event_loop(clock):
     version_dir = configuration.get('backup_files')
     backup_name = "%s/blocks_clock.%s" % (version_dir, datetime.now().isoformat())
     blocks_state = request.body.read()
@@ -124,34 +153,6 @@ def save_event_loop(clock):
         return blocks_state
 
 # Clock REST API
-@application.put('/clock/code')
-def save_event_loop(clock):
-    version_dir = configuration.get('backup_files')
-    backup_name = "%s/run_clock.%s" % (version_dir, datetime.now().isoformat())
-    source_text = request.body.read()
-
-    try:
-        # Save backup
-        code_file = open(clock.sourceFile, 'r')
-        backup_file = open(backup_name, 'w')
-        backup_file.write(code_file.read())
-    except Exception as ex:
-        logger.error(ex)
-
-    try:
-        # Save file
-        code_file = open(clock.sourceFile, 'w')
-        code_file.write(source_text)
-
-        clock.restart()
-
-        # Load saved file
-        code_file = open(clock.sourceFile, 'r')
-        return code_file.read()
-    except Exception as ex:
-        logger.error(ex)
-        return source_text
-
 @application.post('/clock/restart')
 def restart_event_loop(clock):
     clock.restart()
@@ -186,6 +187,7 @@ def audio_list():
     dir_list = filter(lambda e: e not in filename_filter, listdir(audio_dir))
     return json.dumps(dir_list)
 
+# GPIO pin list
 @application.get('/gpio/button/list')
 def button_list():
     button_pins = configuration.get('buttons_gpio')
@@ -196,17 +198,19 @@ def switch_list():
     switch_pins = configuration.get('switches_gpio')
     return json.dumps(switch_pins)
 
+# Weather Station
 @application.get('/weather/station/id')
-def switch_list():
+def weather_list():
     switch_pins = configuration.get('switches_gpio')
     return json.dumps(switch_pins)
 
-# Backup / Restore
-@application.get('/clock/code/backups')
-def backup_list(clock):
+# Python Backup / Restore
+@application.get('/clock/python/backups')
+def python_backup_list(clock):
     version_dir = configuration.get('backup_files')
     lesson_dir = configuration.get('lesson_files')
-    files = listdir(version_dir)
+    python_file_re = re.compile('run_clock.*')
+    files = filter(python_file_re.match, listdir(version_dir))
 
     lessons = [
         ("1", "Lesson One: Light up the clock", open("%s/1/run_clock.py" % lesson_dir, 'r').read()),
@@ -232,8 +236,8 @@ def backup_list(clock):
 
     return template('backups', backups=backups, lessons=lessons)
 
-@application.get('/clock/code/lesson/<file_id:int>')
-def lesson_event_loop(clock, file_id):
+@application.get('/clock/python/lesson/<file_id:int>')
+def python_lesson_event_loop(clock, file_id):
     lesson_dir = configuration.get('lesson_files')
     lesson_file = "%s/%s/run_clock.py" % (lesson_dir, file_id)
 
@@ -243,8 +247,8 @@ def lesson_event_loop(clock, file_id):
     except:
         return template('editor', code=request.forms.get('code'), status="Failed")
 
-@application.get('/clock/code/restore/<file_id:int>')
-def restore_event_loop(clock, file_id):
+@application.get('/clock/python/restore/<file_id:int>')
+def python_restore_event_loop(clock, file_id):
     version_dir = configuration.get('backup_files')
     files = listdir(version_dir)
     restored_files = filter(lambda f: int(parser.parse(f.lstrip("run_clock.")).strftime("%s")) == file_id, files)
@@ -256,3 +260,60 @@ def restore_event_loop(clock, file_id):
         return template('editor', code=code_file.read(), status="Saved")
     except:
         return template('editor', code=request.forms.get('code'), status="Failed")
+
+# Blocks Backup / Restore
+@application.get('/clock/blocks/backups')
+def blocks_backup_list(clock):
+    version_dir = configuration.get('backup_files')
+    lesson_dir = configuration.get('lesson_files')
+    block_file_re = re.compile('blocks_clock.*')
+    files = filter(block_file_re.match, listdir(version_dir))
+
+    lessons = [
+        ("1", "Lesson One: Light up the clock", open("%s/1/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("2", "Lesson Two: Hours and minutes", open("%s/2/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("3", "Lesson Three: AM/PM indicator", open("%s/3/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("4", "Lesson Four: Play music!", open("%s/4/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("5", "Lesson Five: Show the current temperature", open("%s/5/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("6", "Lesson Six: Loading configuration settings", open("%s/6/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("final", "Final Lesson: Putting it all together", open("%s/final/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("musiclover", "Example: A music lover's clock", open("%s/musiclover/blocks_clock.xml" % lesson_dir, 'r').read())
+    ]
+
+    backups = []
+    for filename in files:
+        backup_name = "%s/%s" % (version_dir, filename)
+        diff = open(backup_name, 'r').read()
+
+        try:
+            filetime = parser.parse(filename.lstrip("blocks_clock.xml."))
+            backups.append((filetime.strftime("%s"), filetime.strftime("%Y-%m-%d"), filetime.strftime("%H:%M:%S"), diff, filename))
+        except:
+            logger.warn("Could not parse file %s" % filename)
+
+    return template('backups', backups=backups, lessons=lessons)
+
+    @application.get('/clock/blocks/lesson/<file_id:int>')
+    def blocks_lesson_event_loop(clock, file_id):
+        lesson_dir = configuration.get('lesson_files')
+        lesson_file = "%s/%s/blocks_clock.xml" % (lesson_dir, file_id)
+
+        try:
+            code_file = open(lesson_file, 'r')
+            return template('editor', code=code_file.read(), status="Saved")
+        except:
+            return template('editor', code=request.forms.get('code'), status="Failed")
+
+    @application.get('/clock/blocks/restore/<file_id:int>')
+    def blocks_restore_event_loop(clock, file_id):
+        version_dir = configuration.get('backup_files')
+        files = listdir(version_dir)
+        restored_files = filter(lambda f: int(parser.parse(f.lstrip("blocks_clock.")).strftime("%s")) == file_id, files)
+        restored_file = "%s/%s" % (version_dir, restored_files[0])
+
+        try:
+            # Load saved file
+            code_file = open(restored_file, 'r')
+            return template('editor', code=code_file.read(), status="Saved")
+        except:
+            return template('editor', code=request.forms.get('code'), status="Failed")

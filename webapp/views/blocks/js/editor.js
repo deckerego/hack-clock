@@ -3,7 +3,7 @@ function saveBlocks(workspace, saveCallback) {
   request.open("PUT", "/blocks/save", true);
 
   request.onload = function(evt) {
-    saveCode(Blockly.Python.workspaceToCode(workspace), saveCallback);
+    savePython(Blockly.Python.workspaceToCode(workspace), saveCallback);
   };
 
   var xml = Blockly.Xml.workspaceToDom(workspace);
