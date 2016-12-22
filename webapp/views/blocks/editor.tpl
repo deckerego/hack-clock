@@ -36,7 +36,7 @@
           <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
           % end
         </button>
-        <button type="button" class="btn btn-default" aria-label="Restore" onClick="window.location='/clock/blocks/backups';">
+        <button type="button" class="btn btn-default" aria-label="Restore" onClick="window.location='/blocks/backups';">
           <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn btn-default" aria-label="Refresh" onClick="restartClock(this, 'runstatus');">

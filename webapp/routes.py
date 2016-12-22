@@ -205,7 +205,7 @@ def weather_list():
     return json.dumps(switch_pins)
 
 # Python Backup / Restore
-@application.get('/clock/python/backups')
+@application.get('/python/backups')
 def python_backup_list(clock):
     version_dir = configuration.get('backup_files')
     lesson_dir = configuration.get('lesson_files')
@@ -234,35 +234,35 @@ def python_backup_list(clock):
         except:
             logger.warn("Could not parse file %s" % filename)
 
-    return template('backups', backups=backups, lessons=lessons)
+    return template('python/backups', backups=backups, lessons=lessons)
 
-@application.get('/clock/python/lesson/<file_id:int>')
+@application.get('/python/lesson/<file_id>')
 def python_lesson_event_loop(clock, file_id):
     lesson_dir = configuration.get('lesson_files')
     lesson_file = "%s/%s/run_clock.py" % (lesson_dir, file_id)
 
     try:
         code_file = open(lesson_file, 'r')
-        return template('editor', code=code_file.read(), status="Saved")
+        return template('python/editor', code=code_file.read(), status="Saved")
     except:
-        return template('editor', code=request.forms.get('code'), status="Failed")
+        return template('python/editor', code=request.forms.get('code'), status="Failed")
 
-@application.get('/clock/python/restore/<file_id:int>')
+@application.get('/python/restore/<file_id:int>')
 def python_restore_event_loop(clock, file_id):
     version_dir = configuration.get('backup_files')
     files = listdir(version_dir)
-    restored_files = filter(lambda f: int(parser.parse(f.lstrip("run_clock.")).strftime("%s")) == file_id, files)
+    restored_files = filter(lambda f: f.startswith('run_clock.') and int(parser.parse(f.lstrip("run_clock.")).strftime("%s")) == file_id, files)
     restored_file = "%s/%s" % (version_dir, restored_files[0])
 
     try:
         # Load saved file
         code_file = open(restored_file, 'r')
-        return template('editor', code=code_file.read(), status="Saved")
+        return template('python/editor', code=code_file.read(), status="Saved")
     except:
-        return template('editor', code=request.forms.get('code'), status="Failed")
+        return template('python/editor', code=request.forms.get('code'), status="Failed")
 
 # Blocks Backup / Restore
-@application.get('/clock/blocks/backups')
+@application.get('/blocks/backups')
 def blocks_backup_list(clock):
     version_dir = configuration.get('backup_files')
     lesson_dir = configuration.get('lesson_files')
@@ -291,29 +291,29 @@ def blocks_backup_list(clock):
         except:
             logger.warn("Could not parse file %s" % filename)
 
-    return template('backups', backups=backups, lessons=lessons)
+    return template('blocks/backups', backups=backups, lessons=lessons)
 
-    @application.get('/clock/blocks/lesson/<file_id:int>')
-    def blocks_lesson_event_loop(clock, file_id):
-        lesson_dir = configuration.get('lesson_files')
-        lesson_file = "%s/%s/blocks_clock.xml" % (lesson_dir, file_id)
+@application.get('/blocks/lesson/<file_id>')
+def blocks_lesson_event_loop(clock, file_id):
+    lesson_dir = configuration.get('lesson_files')
+    lesson_file = "%s/%s/blocks_clock.xml" % (lesson_dir, file_id)
 
-        try:
-            code_file = open(lesson_file, 'r')
-            return template('editor', code=code_file.read(), status="Saved")
-        except:
-            return template('editor', code=request.forms.get('code'), status="Failed")
+    try:
+        code_file = open(lesson_file, 'r')
+        return template('blocks/editor', code=code_file.read(), status="Saved")
+    except:
+        return template('blocks/editor', code=request.forms.get('code'), status="Failed")
 
-    @application.get('/clock/blocks/restore/<file_id:int>')
-    def blocks_restore_event_loop(clock, file_id):
-        version_dir = configuration.get('backup_files')
-        files = listdir(version_dir)
-        restored_files = filter(lambda f: int(parser.parse(f.lstrip("blocks_clock.")).strftime("%s")) == file_id, files)
-        restored_file = "%s/%s" % (version_dir, restored_files[0])
+@application.get('/blocks/restore/<file_id:int>')
+def blocks_restore_event_loop(clock, file_id):
+    version_dir = configuration.get('backup_files')
+    files = listdir(version_dir)
+    restored_files = filter(lambda f: f.startswith('blocks_clock.') and int(parser.parse(f.lstrip("blocks_clock.")).strftime("%s")) == file_id, files)
+    restored_file = "%s/%s" % (version_dir, restored_files[0])
 
-        try:
-            # Load saved file
-            code_file = open(restored_file, 'r')
-            return template('editor', code=code_file.read(), status="Saved")
-        except:
-            return template('editor', code=request.forms.get('code'), status="Failed")
+    try:
+        # Load saved file
+        code_file = open(restored_file, 'r')
+        return template('blocks/editor', code=code_file.read(), status="Saved")
+    except:
+        return template('blocks/editor', code=request.forms.get('code'), status="Failed")
