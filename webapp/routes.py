@@ -29,7 +29,8 @@ application.install(Clock())
 
 @application.get('/')
 def editor():
-    return template('index')
+    default_editor = configuration.get('default_editor')
+    return template('index', edit_path=default_editor)
 
 @application.route('/favicon.ico')
 def send_favicon():

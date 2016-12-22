@@ -18,7 +18,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="/blocks/edit">Edit Code</a></li>
+            <li><a href="{{edit_path}}">Edit Code</a></li>
             <li><a href="/audio">Upload Audio</a></li>
           </ul>
         </div>
@@ -31,7 +31,7 @@
       </p>
 
       <div id="indexButtonGroup" class="btn-group btn-group-justified" role="group">
-        <a id="editButton" class="btn btn-lg" href="/blocks/edit" role="button">
+        <a id="editButton" class="btn btn-lg" href="{{edit_path}}" role="button">
           <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
           Edit the clock's code
         </a>
