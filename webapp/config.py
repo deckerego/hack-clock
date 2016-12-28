@@ -2,6 +2,7 @@ import argparse
 
 config_values = {
     'default_editor': '/python/edit',
+    'disable_editor_button': True,
     'python_file': '../runapp/run_clock.py',
     'blocks_file': '../runapp/blocks_clock.xml',
     'audio_files': '../runapp/audio',

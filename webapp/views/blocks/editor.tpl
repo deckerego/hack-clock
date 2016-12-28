@@ -42,9 +42,11 @@
         <button type="button" class="btn btn-default" aria-label="Refresh" onClick="restartClock(this, 'runstatus');">
           <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
         </button>
-        <button type="button" class="btn btn-default" aria-label="Edit Python" onClick="window.location='/python/edit';">
+        % if switch_visible:
+        <button type="button" class="btn btn-default" style="visibility: {{switch_visible}};" aria-label="Edit Python" onClick="window.location='/python/edit';">
           <span class="glyphicon glyphicon-console" aria-hidden="true"></span>
         </button>
+        % end
       </div>
 
       <span id="runstatus" class="label label-default">Checking Status...</span>

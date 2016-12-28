@@ -46,9 +46,11 @@
         <button type="button" class="btn btn-default" aria-label="Refresh" onClick="restartClock(this, 'runstatus');">
           <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
         </button>
+        % if switch_visible:
         <button type="button" class="btn btn-default" aria-label="Edit Blocks" onClick="window.location='/blocks/edit';">
           <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
         </button>
+        % end
       </div>
 
       <span id="runstatus" class="label label-default">Checking Status...</span>
