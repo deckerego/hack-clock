@@ -1,10 +1,52 @@
-#!/usr/bin/python
+from datetime import datetime
+from Libs.SevenSegment import Display
+from Libs.Clock import Clock
+import random
+from Libs.GStreamer import Speaker
+from Libs.Input import Button
+
+Is_Evening = None
+songs = None
+
+display = Display()
+
+"""Display the current time
+"""
+def showCurrentTime():
+  global Is_Evening, songs
+  Is_Evening = datetime.now().hour > 12
+  display.setHours((datetime.now().hour - 12 if Is_Evening else datetime.now().hour))
+  display.setColon(True)
+  display.setEvening(Is_Evening)
+  display.setMinutes(datetime.now().minute)
+
+clock = Clock()
+
+speaker = Speaker()
+
+"""Play audio files through the speaker
+"""
+def playMusic():
+  global Is_Evening, songs
+  songs = ["AmicusMeus.ogg", "TestTrack.ogg"]
+  random.shuffle(songs)
+  speaker.playList(songs)
+
+gpio_24 = Button(24)
+
+"""Stop music if playing, otherwise start music
+"""
+def playStopMusic():
+  global Is_Evening, songs
+  if speaker.isPlaying():
+    speaker.stop()
+  else:
+    playMusic()
 
 
-#########################################################################################
-# This is an empty file! The run_clock.py code is what makes your alarm clock "think" - #
-# but right now its brain is empty!                                                     #
-#                                                                                       #
-# Take a look at the code in the lessons/ subdirectory, or visit the Hack Clock site at #
-# http://hackclock.deckerego.net/ to find out how to build the brains for your clock!   #
-#########################################################################################
+clock.onTick(showCurrentTime)
+display.setBrightness(13)
+
+clock.atTime(8, 30, playMusic)
+
+gpio_24.whenPressed(playStopMusic)
