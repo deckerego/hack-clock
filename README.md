@@ -50,9 +50,13 @@ License is Apache Public License 2.0 (APL 2) unless otherwise noted.
 The Adafruit libraries located in the /Adafruit directory are licensed separately, see Adafruit/README.md for details.
 The original code is available at https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code
 
-CodeMirror is licensed separately as detailed in views/codemirror/LICENSE. The CodeMirror codebase is
+CodeMirror is licensed separately as detailed in views/python/codemirror/LICENSE. The CodeMirror codebase is
 not directly committed into this repository (although it appears that way) - it is a subtree of
 the repository available at https://github.com/codemirror/codemirror
+
+Blockly is licensed separately as detailed in views/blocks/blockly/LICENSE. The Blockly codebase is
+not directly committed into this repository (although it appears that way) - it is a subtree of
+the repository available at https://github.com/google/blockly
 
 Drawing of a 0.36" single digit seven-segment display has been released into the Public Domain by Inductiveload,
 available at http://commons.wikimedia.org/wiki/File:7-Segment_Display,_0.36in,_Single_(shaded).svg

@@ -16,8 +16,6 @@ develop-eggs/
 dist/
 downloads/
 eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
@@ -57,3 +55,4 @@ docs/_build/
 target/
 
 runapp/backups/run_clock.*
+runapp/backups/blocks_clock.*

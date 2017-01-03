@@ -1,8 +1,13 @@
 import subprocess
 import logging
 import inspect
+from config import configuration
 
 logger = logging.getLogger('clock')
+
+console = logging.StreamHandler()
+console.setLevel(logging.WARNING)
+logger.addHandler(console)
 
 class ProcessStatus():
     RUNNING = "running"
@@ -12,7 +17,7 @@ class ProcessStatus():
 class Clock():
     name = 'clock'
     keyword = 'clock'
-    sourceFile = '../runapp/run_clock.py'
+    sourceFile = configuration.get('python_file')
 
     def __init__(self):
         self.eventLoop = None

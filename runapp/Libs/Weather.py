@@ -12,6 +12,8 @@ class Weather:
   __WINDSPEED_MPH = 'wind_mph'
   __WINDSPEED_KT = 'wind_kt'
   __RELATIVE_HUMIDITY = 'relative_humidity'
+  __LOCATION = 'location'
+  __STATION = 'station_id'
   __REFRESH_DELTA = timedelta(minutes=60)
 
   def __init__(self, weatherStation):
@@ -47,3 +49,11 @@ class Weather:
     self.__refreshData()
     temp_string = self.root.findall(self.__RELATIVE_HUMIDITY)[0].text
     return int(Decimal(temp_string).to_integral())
+
+  def getLocation(self):
+    self.__refreshData()
+    return self.root.findall(self.__LOCATION)[0].text
+
+  def getStation(self):
+    self.__refreshData()
+    return self.root.findall(self.__STATION)[0].text
