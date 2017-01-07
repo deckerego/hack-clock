@@ -25,13 +25,13 @@ function getStatus(elementName) {
     textElement.innerHTML = "Application " + response.status;
 
     if(response.status == "running") {
-      textElement.className = "label label-success"
+      textElement.className = "label label-success";
     } else if(response.status == "terminated") {
-      textElement.className = "label label-warning"
+      textElement.className = "label label-warning";
     } else if(response.status == "not_started") {
-      textElement.className = "label label-warning"
+      textElement.className = "label label-warning";
     } else {
-      textElement.className = "label label-default"
+      textElement.className = "label label-default";
     }
   };
 
