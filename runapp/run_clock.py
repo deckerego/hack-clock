@@ -32,6 +32,7 @@ def playMusic():
   random.shuffle(songs)
   speaker.playList(songs)
 
+gpio_23 = Button(23)
 gpio_24 = Button(24)
 
 """Stop music if playing, otherwise start music
@@ -49,4 +50,5 @@ display.setBrightness(13)
 
 clock.atTime(8, 30, playMusic)
 
+gpio_23.whenPressed(playStopMusic)
 gpio_24.whenPressed(playStopMusic)
