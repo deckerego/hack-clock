@@ -32,6 +32,13 @@ def playMusic():
   random.shuffle(songs)
   speaker.playList(songs)
 
+"""Wake up only on weekdays
+"""
+def wakeUp():
+  global Is_Evening, songs
+  if not (datetime.now().weekday() in (5, 6)):
+    playMusic()
+
 gpio_24 = Button(24)
 
 """Stop music if playing, otherwise start music
@@ -47,6 +54,6 @@ def playStopMusic():
 clock.onTick(showCurrentTime)
 display.setBrightness(13)
 
-clock.atTime(8, 30, playMusic)
+clock.atTime(7, 0, wakeUp)
 
 gpio_24.whenPressed(playStopMusic)

@@ -61,15 +61,26 @@
             <block type="lists_create_empty"></block>
             <block type="lists_create_with"></block>
             <block type="randomize_list"></block>
+            <block type="lists_create_with_container"></block>
+            <block type="lists_create_with_item"></block>
+            <block type="lists_repeat"></block>
+            <block type="lists_length"></block>
+            <block type="lists_isEmpty"></block>
+            <block type="lists_indexOf"></block>
+            <block type="lists_getIndex"></block>
+            <block type="lists_setIndex"></block>
+            <block type="lists_getSublist"></block>
+            <block type="lists_sort"></block>
+            <block type="lists_split"></block>
           </category>
           <category name="Conditional Logic" colour="90">
             <block type="controls_if"></block>
-             <block type="controls_if">
-               <mutation else="1"></mutation>
-             </block>
-             <block type="controls_if">
-               <mutation elseif="1" else="1"></mutation>
-             </block>
+            <block type="controls_if">
+              <mutation else="1"></mutation>
+            </block>
+            <block type="controls_if">
+              <mutation elseif="1" else="1"></mutation>
+            </block>
             <block type="logic_compare"></block>
           </category>
           <category name="Boolean Logic" colour="120">
@@ -83,6 +94,11 @@
           <category name="Math" colour="150">
             <block type="math_number"></block>
             <block type="math_arithmetic"></block>
+            <block type="math_number_property"></block>
+            <block type="math_change"></block>
+            <block type="math_on_list"></block>
+            <block type="math_modulo"></block>
+            <block type="math_random_int"></block>
           </category>
           <category name="Display" colour="180">
             <block type="led_display"></block>
@@ -99,6 +115,7 @@
             <block type="clock_wait"></block>
             <block type="current_hour"></block>
             <block type="current_minute"></block>
+            <block type="is_weekend"></block>
           </category>
           <category name="Audio" colour="240">
             <block type="speaker"></block>
