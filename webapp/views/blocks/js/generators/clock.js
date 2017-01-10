@@ -18,6 +18,11 @@ Blockly.Python['current_minute'] = function(block) {
   return ['datetime.now().minute', Blockly.Python.ORDER_ATOMIC];
 };
 
+Blockly.Python['is_weekend'] = function(block) {
+  Blockly.Python.definitions_['import_datetime'] = 'from datetime import datetime';
+  return ['datetime.now().weekday() in (5, 6)', Blockly.Python.ORDER_NONE];
+};
+
 Blockly.Python['clock_tick'] = function(block) {
   var value_clock = Blockly.Python.valueToCode(block, 'clock', Blockly.Python.ORDER_ATOMIC);
   var target_on_tick_function = block.getInputTargetBlock('on_tick_function');

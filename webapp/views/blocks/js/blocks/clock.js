@@ -67,6 +67,27 @@ Blockly.Blocks['current_minute'] = {
   }
 };
 
+Blockly.Blocks['is_weekend'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "is_weekend",
+      "message0": "Today Is a Weekend",
+      "output": "Boolean",
+      "colour": 60,
+      "tooltip": "Is it currently a weekend?",
+      "helpUrl": "http://hackclock.deckerego.net/"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'Is the given clock set to a weekend?';
+    });
+  }
+};
+
 Blockly.Blocks['clock_tick'] = {
   init: function() {
     this.jsonInit({
