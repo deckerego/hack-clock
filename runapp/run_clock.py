@@ -1,30 +1,11 @@
-from datetime import datetime
-from Libs.SevenSegment import Display
-from Libs.Clock import Clock
-import random
-from Libs.GStreamer import Speaker
 from Libs.Input import Button
+from Libs.GStreamer import Speaker
 
-Is_Evening = None
-songs = None
-
-display = Display()
-
-"""Display the current time
-"""
-def showCurrentTime():
-  global Is_Evening, songs
-  Is_Evening = datetime.now().hour > 12
-  display.setHours((datetime.now().hour - 12 if Is_Evening else datetime.now().hour))
-  display.setColon(True)
-  display.setEvening(Is_Evening)
-  display.setMinutes(datetime.now().minute)
-
-clock = Clock()
+gpio_24 = Button(24)
 
 speaker = Speaker()
 
-"""Play audio files through the speaker
+"""Describe this function...
 """
 def playMusic():
   global Is_Evening, songs

@@ -10,7 +10,7 @@ config_values = {
     'lesson_files': '../runapp/lessons',
     'file_filter': ['README.md', '.DS_Store'],
     'buttons_gpio': [23, 24],
-    'switches_gpio': [17, 27]
+    'switches_gpio': [25]
 }
 
 class Configuration(object):
