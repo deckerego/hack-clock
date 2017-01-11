@@ -20,7 +20,7 @@ DAEMON_USER='pi'
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 BUTTON_BCM_PIN=24
-SWITCH_BCM_PIN=23
+SWITCH_BCM_PIN=25
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
@@ -45,9 +45,6 @@ do_start()
   sudo -u $DAEMON_USER gpio mode $BUTTON_BCM_PIN up
 
   sudo -u $DAEMON_USER gpio export $SWITCH_BCM_PIN out
-
-  # FIXME The following script is a work-around until the pull up resistor is successfully set with wiringPi
-  $DAEMON "$APP_DIR/gpio_pullup.py" $BUTTON_BCM_PIN
 
   start-stop-daemon --start --quiet --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
     || return 1

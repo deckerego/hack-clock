@@ -1,40 +1,55 @@
-from Libs.Input import Button
+from datetime import datetime
+from Libs.SevenSegment import Display
+from Libs.Clock import Clock
 from Libs.GStreamer import Speaker
+from Libs.Input import Button
 
-gpio_24 = Button(24)
-gpio_23 = Button(23)
+Is_Evening = None
 
-speaker = Speaker()
+display = Display()
 
 """Describe this function...
 """
+def showCurrentTime():
+  global Is_Evening
+  Is_Evening = datetime.now().hour > 12
+  display.setHours((datetime.now().hour - 12 if Is_Evening else datetime.now().hour))
+  display.setColon(True)
+  display.setEvening(Is_Evening)
+  display.setMinutes(datetime.now().minute)
+
+clock = Clock()
+
+speaker = Speaker()
+
+"""Play audio files through the speaker
+"""
 def playMusic():
-  global Is_Evening, songs
-  songs = ["AmicusMeus.ogg", "TestTrack.ogg"]
-  random.shuffle(songs)
-  speaker.playList(songs)
+  global Is_Evening
+  speaker.playList(["AmicusMeus.ogg", "TestTrack.ogg"])
 
-"""Wake up only on weekdays
-"""
-def wakeUp():
-  global Is_Evening, songs
-  if not (datetime.now().weekday() in (5, 6)):
-    playMusic()
+gpio_23 = Button(23)
 
-"""Stop music if playing, otherwise start music
+"""Describe this function...
 """
-def playStopMusic():
-  global Is_Evening, songs
-  if speaker.isPlaying():
-    speaker.stop()
-  else:
-    playMusic()
+def bright():
+  global Is_Evening
+  display.setBrightness(15)
+
+gpio_24 = Button(24)
+
+"""Describe this function...
+"""
+def dim():
+  global Is_Evening
+  display.setBrightness(0)
 
 
 clock.onTick(showCurrentTime)
-display.setBrightness(13)
+display.setBrightness(9)
 
-clock.atTime(7, 0, wakeUp)
+clock.atTime(8, 30, playMusic)
 
-gpio_23.whenPressed(playStopMusic)
-gpio_24.whenPressed(playStopMusic)
+gpio_23.whenPressed(dim)
+
+gpio_24.whenPressed(bright)
