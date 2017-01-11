@@ -2,6 +2,7 @@ from Libs.Input import Button
 from Libs.GStreamer import Speaker
 
 gpio_24 = Button(24)
+gpio_23 = Button(23)
 
 speaker = Speaker()
 
@@ -13,8 +14,12 @@ def playMusic():
   random.shuffle(songs)
   speaker.playList(songs)
 
-gpio_23 = Button(23)
-gpio_24 = Button(24)
+"""Wake up only on weekdays
+"""
+def wakeUp():
+  global Is_Evening, songs
+  if not (datetime.now().weekday() in (5, 6)):
+    playMusic()
 
 """Stop music if playing, otherwise start music
 """
@@ -29,7 +34,7 @@ def playStopMusic():
 clock.onTick(showCurrentTime)
 display.setBrightness(13)
 
-clock.atTime(8, 30, playMusic)
+clock.atTime(7, 0, wakeUp)
 
 gpio_23.whenPressed(playStopMusic)
 gpio_24.whenPressed(playStopMusic)
