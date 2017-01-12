@@ -1,7 +1,7 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from distutils.core import setup
-import os
 
 setup(
     name='HackClock',
@@ -11,17 +11,35 @@ setup(
     author_email='john@deckerego.net',
     url='http://hackclock.deckerego.net/',
     long_description=open('README.md').read(),
-    packages=['runapp', 'webapp'],
+    packages=[
+        'runapp',
+        'runapp.Libs',
+        'runapp.Adafruit',
+        'webapp'
+    ],
     package_dir={
         'runapp': 'runapp',
         'webapp': 'webapp'
     },
     package_data={
-        'runapp': ['audio/*', 'backups/README.md', 'lessons/*'],
-        'webapp': ['views/*']
+        'runapp': [
+            'audio/*',
+            'backups/README.md',
+            'lessons/**/*',
+            'config.sample',
+            'blocks_clock.xml'
+        ],
+        'webapp': [
+            'views/**/*'
+        ]
     },
     data_files=[
-        ('/etc/init.d',    ['debian/etc/init.d/hack-clock'])
+        ('/etc/init.d',    ['debian/etc/init.d/hack-clock']),
+        ('requirements.txt', ['requirements.txt']),
+        ('README.md', ['README.md'])
+    ],
+    scripts=[
+        'webapp/run_server.py'
     ],
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
