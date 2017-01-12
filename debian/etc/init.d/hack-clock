@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 ### BEGIN INIT INFO
 # Provides:          hack-clock
 # Required-Start:    $remote_fs $syslog
@@ -42,12 +42,25 @@ SWITCH_BCM_PIN=(25)
 gpio_init()
 {
   for PIN in ${BUTTON_BCM_PIN[@]}; do
-    sudo -u $DAEMON_USER gpio export $BUTTON_BCM_PIN in
-    sudo -u $DAEMON_USER gpio mode $BUTTON_BCM_PIN up
+    sudo -u $DAEMON_USER gpio export $PIN in
+    sudo -u $DAEMON_USER gpio mode $PIN up
   done
 
   for PIN in ${SWITCH_BCM_PIN[@]}; do
-    sudo -u $DAEMON_USER gpio export $SWITCH_BCM_PIN out
+    sudo -u $DAEMON_USER gpio export $PIN out
+  done
+
+  return $?
+}
+
+gpio_destroy()
+{
+  for PIN in ${BUTTON_BCM_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio unexport $PIN
+  done
+
+  for PIN in ${SWITCH_BCM_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio unexport $PIN
   done
 
   return $?
@@ -58,7 +71,7 @@ gpio_init()
 #
 do_start()
 {
-  gpio_init()
+  gpio_init
 
   start-stop-daemon --start --quiet --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
     || return 1
@@ -72,7 +85,7 @@ do_start()
 #
 do_stop()
 {
-  gpio unexport $BUTTON_BCM_PIN
+  gpio_destroy
 
   start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
   RETVAL="$?"
@@ -87,7 +100,8 @@ do_stop()
 #
 # Function that sends a SIGHUP to the daemon/service
 #
-do_reload() {
+do_reload()
+{
   start-stop-daemon --stop --signal 1 --quiet --pidfile $PIDFILE --name $NAME
   return 0
 }
