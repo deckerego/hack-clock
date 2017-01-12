@@ -9,8 +9,8 @@ config_values = {
     'backup_files': '../runapp/backups',
     'lesson_files': '../runapp/lessons',
     'file_filter': ['README.md', '.DS_Store'],
-    'buttons_gpio': [4, 5],
-    'switches_gpio': [6]
+    'buttons_gpio': [23, 24],
+    'switches_gpio': [25]
 }
 
 class Configuration(object):
