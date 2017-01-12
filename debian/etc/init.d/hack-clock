@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 ### BEGIN INIT INFO
 # Provides:          hack-clock
 # Required-Start:    $remote_fs $syslog
@@ -19,8 +19,8 @@ DAEMON_ARGS="$WEB_DIR/$APP_BIN"
 DAEMON_USER='pi'
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-BUTTON_BCM_PIN=24
-SWITCH_BCM_PIN=23
+BUTTON_WPI_PIN=(23 24)
+SWITCH_WPI_PIN=(25)
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
@@ -37,17 +37,41 @@ SWITCH_BCM_PIN=23
 . /lib/lsb/init-functions
 
 #
+# Initialize the GPIO pins for inputs and outputs
+#
+gpio_init()
+{
+  for PIN in ${BUTTON_WPI_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio export $PIN in
+    sudo -u $DAEMON_USER gpio mode $PIN up
+  done
+
+  for PIN in ${SWITCH_WPI_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio export $PIN out
+  done
+
+  return $?
+}
+
+gpio_destroy()
+{
+  for PIN in ${BUTTON_WPI_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio unexport $PIN
+  done
+
+  for PIN in ${SWITCH_WPI_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio unexport $PIN
+  done
+
+  return $?
+}
+
+#
 # Function that starts the daemon/service
 #
 do_start()
 {
-  sudo -u $DAEMON_USER gpio export $BUTTON_BCM_PIN in
-  sudo -u $DAEMON_USER gpio mode $BUTTON_BCM_PIN up
-
-  sudo -u $DAEMON_USER gpio export $SWITCH_BCM_PIN out
-
-  # FIXME The following script is a work-around until the pull up resistor is successfully set with wiringPi
-  $DAEMON "$APP_DIR/gpio_pullup.py" $BUTTON_BCM_PIN
+  gpio_init
 
   start-stop-daemon --start --quiet --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
     || return 1
@@ -61,7 +85,7 @@ do_start()
 #
 do_stop()
 {
-  gpio unexport $BUTTON_BCM_PIN
+  gpio_destroy
 
   start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
   RETVAL="$?"
@@ -76,7 +100,8 @@ do_stop()
 #
 # Function that sends a SIGHUP to the daemon/service
 #
-do_reload() {
+do_reload()
+{
   start-stop-daemon --stop --signal 1 --quiet --pidfile $PIDFILE --name $NAME
   return 0
 }

@@ -1,12 +1,12 @@
+from Libs.WiringPi import WiringPiSingleton
 import wiringpi
-import threading
-import time
 
 class Switch:
-
   def __init__(self, pinNumber):
-    self.daemon = True
+
     self.pinNumber = pinNumber
+
+    WiringPiSingleton().setup()
 
     wiringpi.digitalWrite(self.pinNumber, 0)
 
