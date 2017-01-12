@@ -19,7 +19,8 @@ DAEMON_ARGS="$WEB_DIR/$APP_BIN"
 DAEMON_USER='pi'
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-BUTTON_WPI_PIN=(23 24)
+# For some reason both the Broadcom numbers AND wiringPi numbers need exported
+BUTTON_WPI_PIN=(23 24 4 5)
 SWITCH_WPI_PIN=(25)
 
 # Exit if the package is not installed
