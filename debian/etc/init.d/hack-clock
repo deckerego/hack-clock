@@ -19,8 +19,8 @@ DAEMON_ARGS="$WEB_DIR/$APP_BIN"
 DAEMON_USER='pi'
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-BUTTON_BCM_PIN=24
-SWITCH_BCM_PIN=25
+BUTTON_BCM_PIN=(23 24)
+SWITCH_BCM_PIN=(25)
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
@@ -37,14 +37,28 @@ SWITCH_BCM_PIN=25
 . /lib/lsb/init-functions
 
 #
+# Initialize the GPIO pins for inputs and outputs
+#
+gpio_init()
+{
+  for PIN in ${BUTTON_BCM_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio export $BUTTON_BCM_PIN in
+    sudo -u $DAEMON_USER gpio mode $BUTTON_BCM_PIN up
+  done
+
+  for PIN in ${SWITCH_BCM_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio export $SWITCH_BCM_PIN out
+  done
+
+  return $?
+}
+
+#
 # Function that starts the daemon/service
 #
 do_start()
 {
-  sudo -u $DAEMON_USER gpio export $BUTTON_BCM_PIN in
-  sudo -u $DAEMON_USER gpio mode $BUTTON_BCM_PIN up
-
-  sudo -u $DAEMON_USER gpio export $SWITCH_BCM_PIN out
+  gpio_init()
 
   start-stop-daemon --start --quiet --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
     || return 1

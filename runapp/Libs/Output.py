@@ -1,3 +1,4 @@
+from Libs.WiringPi import WiringPiSingleton
 import wiringpi
 
 class Switch:
@@ -5,12 +6,7 @@ class Switch:
 
     self.pinNumber = pinNumber
 
-    # So... I do acknowledge that Drogon considers calling the wiringPiSetup
-    # routines more than once a "fatal error," however using a global var
-    # in Python to guarantee once-only execution is a huge pain in the case of
-    # keeping run_clock.py succinct and free of clutter. So I'll take advantage
-    # of if(alreadyDoneThis) return 0; for now with apologies to Drogon
-    wiringpi.wiringPiSetupSys()
+    WiringPiSingleton().setup()
 
     wiringpi.digitalWrite(self.pinNumber, 0)
 

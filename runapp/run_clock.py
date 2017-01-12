@@ -3,6 +3,7 @@ from Libs.SevenSegment import Display
 from Libs.Clock import Clock
 from Libs.GStreamer import Speaker
 from Libs.Input import Button
+from Libs.Input import Switch
 
 Is_Evening = None
 
@@ -30,10 +31,13 @@ def playMusic():
 
 gpio_23 = Button(23)
 
+gpio_25 = Switch(25)
+
 """Describe this function...
 """
 def bright():
   global Is_Evening
+  gpio_25.turnOn();
   display.setBrightness(15)
 
 gpio_24 = Button(24)
@@ -42,7 +46,8 @@ gpio_24 = Button(24)
 """
 def dim():
   global Is_Evening
-  display.setBrightness(0)
+  gpio_25.turnOff();
+  display.setBrightness(3)
 
 
 clock.onTick(showCurrentTime)
