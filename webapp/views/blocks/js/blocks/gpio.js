@@ -89,6 +89,54 @@ function loadGPIOTools(workspace, toolbox, callback) {
   loadButtonTools(workspace, toolbox, function() { loadSwitchTools(workspace, toolbox, callback); });
 }
 
+Blockly.Blocks['flip_switch'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "flip_switch",
+      "message0": "Turn %1 %2 the switch %3",
+      "args0": [
+        {
+          "type": "field_dropdown",
+          "name": "on_off",
+          "options": [
+            [
+              "on",
+              "true"
+            ],
+            [
+              "off",
+              ""
+            ]
+          ]
+        },
+        {
+          "type": "input_dummy"
+        },
+        {
+          "type": "input_value",
+          "name": "switch",
+          "check": "Switch"
+        }
+      ],
+      "inputsInline": true,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 255,
+      "tooltip": "Flip a switch on or off",
+      "helpUrl": "http://hackclock.deckerego.net"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'Flip a switch on or off';
+    });
+  }
+};
+
+
 Blockly.Blocks['when_pressed'] = {
   init: function() {
     this.jsonInit({

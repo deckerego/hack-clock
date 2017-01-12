@@ -125,6 +125,7 @@
           </category>
           <category name="Buttons &amp; Switches" colour="270">
             <block type="when_pressed"></block>
+            <block type="flip_switch"></block>
           </category>
           <category name="Weather" colour="300">
             <block type="weather_station"></block>
