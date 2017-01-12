@@ -19,8 +19,8 @@ DAEMON_ARGS="$WEB_DIR/$APP_BIN"
 DAEMON_USER='pi'
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-BUTTON_BCM_PIN=(23 24)
-SWITCH_BCM_PIN=(25)
+BUTTON_WPI_PIN=(23 24)
+SWITCH_WPI_PIN=(25)
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
@@ -41,12 +41,12 @@ SWITCH_BCM_PIN=(25)
 #
 gpio_init()
 {
-  for PIN in ${BUTTON_BCM_PIN[@]}; do
+  for PIN in ${BUTTON_WPI_PIN[@]}; do
     sudo -u $DAEMON_USER gpio export $PIN in
     sudo -u $DAEMON_USER gpio mode $PIN up
   done
 
-  for PIN in ${SWITCH_BCM_PIN[@]}; do
+  for PIN in ${SWITCH_WPI_PIN[@]}; do
     sudo -u $DAEMON_USER gpio export $PIN out
   done
 
@@ -55,11 +55,11 @@ gpio_init()
 
 gpio_destroy()
 {
-  for PIN in ${BUTTON_BCM_PIN[@]}; do
+  for PIN in ${BUTTON_WPI_PIN[@]}; do
     sudo -u $DAEMON_USER gpio unexport $PIN
   done
 
-  for PIN in ${SWITCH_BCM_PIN[@]}; do
+  for PIN in ${SWITCH_WPI_PIN[@]}; do
     sudo -u $DAEMON_USER gpio unexport $PIN
   done
 

@@ -3,7 +3,7 @@ from Libs.SevenSegment import Display
 from Libs.Clock import Clock
 from Libs.GStreamer import Speaker
 from Libs.Input import Button
-from Libs.Input import Switch
+from Libs.Output import Switch
 
 Is_Evening = None
 
