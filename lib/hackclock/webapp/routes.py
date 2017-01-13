@@ -13,9 +13,6 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARNING)
 logger.addHandler(console)
 
-os.chdir(os.path.dirname(__file__))
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
-
 from dateutil import parser
 from datetime import datetime
 from hackclock.config import configuration

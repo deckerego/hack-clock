@@ -19,3 +19,4 @@ Running Locally
 To test locally:
 
     export PYTHONPATH=/Users/deckerego/Projects/hack-clock/lib
+    ./scripts/run_server.py --config /Users/deckerego/Projects/hack-clock/tests/localsettings.conf
