@@ -1,11 +1,21 @@
+Building Binary Distributions
+=============================
+
 Distributions are generated using stdeb. To build the Debian package python-hackclock, execute:
 
     python setup.py --command-packages=stdeb.command bdist_deb
 
 To debug installation:
 
-    sudo dpkg -D113 -i python-hackclock_2.0-beta-1_all.deb
+    sudo dpkg -D113 -i deb_dist/python-hackclock_2.0-beta-1_all.deb
 
 To uninstall:
 
     sudo dpkg -r python-hackclock
+
+Running Locally
+===============
+
+To test locally:
+
+    export PYTHONPATH=/Users/deckerego/Projects/hack-clock/lib

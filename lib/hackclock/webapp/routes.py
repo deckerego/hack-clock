@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "."))
 
 from dateutil import parser
 from datetime import datetime
-from config import configuration
+from hackclock.config import configuration
 from clock import Clock, ProcessStatus
 from bottle import Bottle, HTTPResponse, static_file, get, put, request, response, redirect, template
 from os import listdir

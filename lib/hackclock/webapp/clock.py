@@ -1,7 +1,7 @@
 import subprocess
 import logging
 import inspect
-from config import configuration
+from hackclock.config import configuration
 
 logger = logging.getLogger('clock')
 

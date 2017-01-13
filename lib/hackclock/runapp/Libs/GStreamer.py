@@ -5,7 +5,7 @@ pygst.require('0.10')
 import gst
 import gobject
 import os
-from config import configuration
+from hackclock.config import configuration
 
 class Speaker:
 

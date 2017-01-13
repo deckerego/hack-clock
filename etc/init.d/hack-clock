@@ -11,17 +11,13 @@
 
 DESC="I2C Alarm Clock Interface"
 NAME=hack-clock
-APP_DIR=/home/pi/hack-clock/runapp
-WEB_DIR=/home/pi/hack-clock/webapp
+WEB_DIR=/srv/hackclock
 APP_BIN=run_server.py
 DAEMON=/usr/bin/python
-DAEMON_ARGS="$WEB_DIR/$APP_BIN"
+DAEMON_ARGS="$APP_BIN"
 DAEMON_USER='pi'
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-# For some reason both the Broadcom numbers AND wiringPi numbers need exported
-BUTTON_WPI_PIN=(23 24 4 5)
-SWITCH_WPI_PIN=(25)
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
@@ -42,18 +38,21 @@ SWITCH_WPI_PIN=(25)
 #
 gpio_init()
 {
-  for PIN in ${BUTTON_WPI_PIN[@]}; do
+  for PIN in ${BUTTON_BCM_PIN[@]}; do
     sudo -u $DAEMON_USER gpio export $PIN in
-    sudo -u $DAEMON_USER gpio mode $PIN up
+    sudo -u $DAEMON_USER gpio -g mode $PIN down
   done
 
-  for PIN in ${SWITCH_WPI_PIN[@]}; do
+  for PIN in ${SWITCH_BCM_PIN[@]}; do
     sudo -u $DAEMON_USER gpio export $PIN out
   done
 
   return $?
 }
 
+#
+# Tear down the GPIO pins for inputs and outputs
+#
 gpio_destroy()
 {
   for PIN in ${BUTTON_WPI_PIN[@]}; do

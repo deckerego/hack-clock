@@ -3,7 +3,7 @@ goog.provide('Blockly.Python.clock');
 goog.require('Blockly.Python');
 
 Blockly.Python['clock'] = function(block) {
-  Blockly.Python.definitions_['import_clock'] = 'from Libs.Clock import Clock';
+  Blockly.Python.definitions_['import_clock'] = 'from hackclock.runapp.Libs.Clock import Clock';
   Blockly.Python.definitions_['init_clock'] = 'clock = Clock()';
   return ['clock', Blockly.Python.ORDER_ATOMIC];
 };

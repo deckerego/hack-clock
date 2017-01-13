@@ -2,6 +2,29 @@
 # -*- coding: utf-8 -*-
 
 from distutils.core import setup
+import os
+
+def all_files(newroot, oldroot):
+    fdtuples = []
+    for root, dirs, files in os.walk(oldroot):
+        fds = []
+        for fd in files:
+            if not fd[0] is '.':
+                fds.append(os.path.join(root, fd))
+        relpath = os.path.relpath(root, oldroot)
+        fdtuple = (os.path.join(newroot, relpath), fds)
+        fdtuples.append(fdtuple)
+    return fdtuples
+
+base_data_files = [
+    ('/etc/hackclock',    ['etc/hack-clock/runapp.py']),
+    ('/etc/hackclock',    ['etc/hack-clock/webapp.py']),
+    ('/etc/init.d',    ['etc/init.d/hack-clock']),
+    ('/etc/default',    ['etc/default/hack-clock']),
+    ('/usr/share/doc/hack-clock', ['README.md'])
+]
+webapp_data_files = all_files('/srv/hackclock', 'srv/hackclock')
+runapp_data_files = all_files('/home/pi/hack-clock', 'home/pi/hack-clock')
 
 setup(
     name='HackClock',
@@ -12,34 +35,23 @@ setup(
     url='http://hackclock.deckerego.net/',
     long_description=open('README.md').read(),
     packages=[
-        'runapp',
-        'runapp.Libs',
-        'runapp.Adafruit',
-        'webapp'
+        'hackclock',
+        'hackclock.runapp',
+        'hackclock.runapp.Adafruit',
+        'hackclock.runapp.Libs',
+        'hackclock.webapp',
     ],
     package_dir={
-        'runapp': 'runapp',
-        'webapp': 'webapp'
+        '': 'lib'
     },
     package_data={
-        'runapp': [
-            'audio/*',
-            'backups/README.md',
-            'lessons/**/*',
-            'config.sample',
-            'blocks_clock.xml'
-        ],
-        'webapp': [
-            'views/**/*'
+        'hackclock': [
+            'lessons/**/*'
         ]
     },
-    data_files=[
-        ('/etc/init.d',    ['debian/etc/init.d/hack-clock']),
-        ('requirements.txt', ['requirements.txt']),
-        ('README.md', ['README.md'])
-    ],
+    data_files=base_data_files + webapp_data_files + runapp_data_files,
     scripts=[
-        'webapp/run_server.py'
+        'scripts/run_server.py'
     ],
     classifiers=[
         "License :: OSI Approved :: Apache Software License",

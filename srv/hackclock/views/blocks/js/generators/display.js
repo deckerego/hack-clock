@@ -3,7 +3,7 @@ goog.provide('Blockly.Python.display');
 goog.require('Blockly.Python');
 
 Blockly.Python['led_display'] = function(block) {
-  Blockly.Python.definitions_['import_display'] = 'from Libs.SevenSegment import Display';
+  Blockly.Python.definitions_['import_display'] = 'from hackclock.runapp.Libs.SevenSegment import Display';
   Blockly.Python.definitions_['init_display'] = 'display = Display()';
   return ['display', Blockly.Python.ORDER_ATOMIC];
 };

@@ -4,7 +4,7 @@ goog.require('Blockly.Python');
 
 function createButtonParser(pin) {
   Blockly.Python['gpio_' + pin] = function(block) {
-    Blockly.Python.definitions_['import_input'] = 'from Libs.Input import Button';
+    Blockly.Python.definitions_['import_input'] = 'from hackclock.runapp.Libs.Input import Button';
     Blockly.Python.definitions_['init_gpio_' + pin] = 'gpio_' + pin + ' = Button(' + pin + ')';
 
     return ['gpio_' + pin, Blockly.Python.ORDER_ATOMIC];
@@ -13,7 +13,7 @@ function createButtonParser(pin) {
 
 function createSwitchParser(pin) {
   Blockly.Python['gpio_' + pin] = function(block) {
-    Blockly.Python.definitions_['import_output'] = 'from Libs.Output import Switch';
+    Blockly.Python.definitions_['import_output'] = 'from hackclock.runapp.Libs.Output import Switch';
     Blockly.Python.definitions_['init_gpio_' + pin] = 'gpio_' + pin + ' = Switch(' + pin + ')';
 
     return ['gpio_' + pin, Blockly.Python.ORDER_ATOMIC];
