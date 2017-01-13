@@ -1,5 +1,5 @@
-from Adafruit.SevenSegment import SevenSegment
-from Adafruit.LEDBackpack import LEDBackpack
+from hackclock.runapp.Adafruit.SevenSegment import SevenSegment
+from hackclock.runapp.Adafruit.LEDBackpack import LEDBackpack
 from bitstring import BitArray
 
 class Display(SevenSegment):

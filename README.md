@@ -39,8 +39,7 @@ To start the clock as soon as your Raspberry Pi boots up:
 3. Ensure the clock starts at boot using the command `sudo update-rc.d hack-clock defaults`
 4. Start the clock with `sudo service hack-clock start`
 
-The start-up script also sets GPIO5 (Broadcom GPIO 24) with the correct input values and resistor states, so this is a helpful
-way to make sure your button pins are set correctly.
+The start-up script also sets GPIO5 (Broadcom GPIO 24) with the correct input values and resistor states, so this is a helpful way to make sure your button pins are set correctly.
 
 IN BETA - Coding With Blocks!
 --------------------------

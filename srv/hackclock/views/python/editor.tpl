@@ -21,7 +21,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="/blocks/edit">Edit Code</a></li>
+            <li class="active"><a href="/python/edit">Edit Code</a></li>
             <li><a href="/audio">Upload Audio</a></li>
           </ul>
         </div>
