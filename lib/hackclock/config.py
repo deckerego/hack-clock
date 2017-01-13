@@ -7,7 +7,7 @@ class Configuration(object):
 
     def __init__(self):
         parser = argparse.ArgumentParser(description='The Hack Clock\'s custom code')
-        parser.add_argument('--config', type=str, default='/etc/hackclock', help='path to configuration file')
+        parser.add_argument('--config', type=str, default='/etc/hack-clock.conf', help='path to configuration file')
         args = parser.parse_args()
 
         config_file = open(args.config, 'r')

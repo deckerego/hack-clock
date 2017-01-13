@@ -17,8 +17,7 @@ def all_files(newroot, oldroot):
     return fdtuples
 
 base_data_files = [
-    ('/etc/hackclock',    ['etc/hack-clock/runapp.py']),
-    ('/etc/hackclock',    ['etc/hack-clock/webapp.py']),
+    ('/etc',    ['etc/hack-clock.conf']),
     ('/etc/init.d',    ['etc/init.d/hack-clock']),
     ('/etc/default',    ['etc/default/hack-clock']),
     ('/usr/share/doc/hack-clock', ['README.md'])

@@ -202,7 +202,12 @@
     <script>
       setInterval(function() { getErrors("errors") }, 2000);
       setInterval(function() { getStatus("runstatus") }, 5000);
-      function saveCallback(savedCode) { console.log(savedCode); };
+      function saveCallback(savedCode) {
+        var textElement = document.getElementById("runstatus");
+        textElement.className = "label label-default";
+        textElement.innerHTML = "Checking Status...";
+        editor.setValue(savedCode);
+      };
     </script>
   </div>
 </body>
