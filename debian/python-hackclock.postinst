@@ -1,3 +1,40 @@
 #!/bin/bash
 
 chown -R pi:pi /home/pi/hack-clock
+
+# Also modify /boot/config.txt
+# Turn off audio and add dtoverlay=hifiberry-dac
+# As well as dtoverlay=i2s-mmap
+CONFIG=/boot/config.txt
+
+if [ -e $CONFIG ] && grep -q "^dtoverlay=hifiberry-dac$" $CONFIG; then
+    echo "dtoverlay already active"
+else
+    echo "dtoverlay=hifiberry-dac" | sudo tee -a $CONFIG
+    ASK_TO_REBOOT=true
+fi
+
+if [ -e $CONFIG ] && grep -q -E "^dtparam=audio=on$" $CONFIG; then
+    bcm2835off="no"
+    newline
+    echo "Disabling default sound driver"
+    sudo sed -i "s|^dtparam=audio=on$|#dtparam=audio=on|" $CONFIG &> /dev/null
+    if [ -e $LOADMOD ] && grep -q "^snd-bcm2835" $LOADMOD; then
+        sudo sed -i "s|^snd-bcm2835|#snd-bcm2835|" $LOADMOD &> /dev/null
+    fi
+    ASK_TO_REBOOT=true
+elif [ -e $LOADMOD ] && grep -q "^snd-bcm2835" $LOADMOD; then
+    bcm2835off="no"
+    newline
+    echo "Disabling default sound module"
+    sudo sed -i "s|^snd-bcm2835|#snd-bcm2835|" $LOADMOD &> /dev/null
+    ASK_TO_REBOOT=true
+else
+    newline
+    echo "Default sound driver currently not loaded"
+    bcm2835off="yes"
+fi
+
+speaker-test -l5 -c2 -t wav
+
+amixer set PCM -- 85%
