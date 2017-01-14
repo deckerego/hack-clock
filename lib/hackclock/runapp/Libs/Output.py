@@ -1,4 +1,4 @@
-from Libs.WiringPi import WiringPiSingleton
+from hackclock.runapp.Libs.WiringPi import WiringPiSingleton
 import wiringpi
 
 class Switch:
