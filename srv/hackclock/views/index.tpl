@@ -40,6 +40,12 @@
           Upload an audio file
         </a>
       </div>
+      % if missing_deps:
+      <p class="bg-danger">
+        It appears you are missing a few Python dependencies. Make sure you have installed everything by logging into this device and calling:
+        <code>sudo pip install -r /usr/share/doc/hack-clock/requirements.txt</code>
+      </p>
+      % end
     </div>
 
   </div>

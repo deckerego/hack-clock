@@ -27,7 +27,15 @@ application.install(Clock())
 @application.get('/')
 def editor():
     default_editor = configuration.get('default_editor')
-    return template('index', edit_path=default_editor)
+    is_deps_missing = False
+
+    try:
+        import wiringpi
+        import bitstring
+    except(ImportError):
+        is_deps_missing = True
+
+    return template('index', edit_path=default_editor, missing_deps=is_deps_missing)
 
 @application.route('/favicon.ico')
 def send_favicon():

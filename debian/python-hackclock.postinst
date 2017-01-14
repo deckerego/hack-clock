@@ -1,0 +1,3 @@
+#!/bin/bash
+
+chown -R pi:pi /home/pi/hack-clock

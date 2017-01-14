@@ -20,7 +20,7 @@ base_data_files = [
     ('/etc',    ['etc/hack-clock.conf']),
     ('/etc/init.d',    ['etc/init.d/hack-clock']),
     ('/etc/default',    ['etc/default/hack-clock']),
-    ('/usr/share/doc/hack-clock', ['README.md'])
+    ('/usr/share/doc/hack-clock', ['README.md', 'LICENSE', 'MANIFEST', 'requirements.txt'])
 ]
 webapp_data_files = all_files('/srv/hackclock', 'srv/hackclock')
 runapp_data_files = all_files('/home/pi/hack-clock', 'home/pi/hack-clock')
@@ -48,7 +48,7 @@ setup(
             'lessons/**/*'
         ]
     },
-    data_files=base_data_files + webapp_data_files + runapp_data_files,
+    data_files=(base_data_files + webapp_data_files + runapp_data_files),
     scripts=[
         'scripts/run_server.py'
     ],

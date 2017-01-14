@@ -3,43 +3,41 @@ The Hackable Clock
 
 A hackable alarm clock, made for experimentation in order to build programming skills as well as the basics of circuit building.
 
-Project page detailing out the hardware build is available at http://hackaday.io/project/3413-hack-ready-alarm-clock
-
 Lessons and tutorials are currently a work-in-progress, however drafts are available at http://hackclock.deckerego.net/
+
+
+Building the Hardware
+---------------------
+
+Step-by-step instructions for creating your clock are available at http://hackaday.io/project/3413-hack-ready-alarm-clock
+
+A suggested list of hardware you might need to buy is saved as a wishlist at Adafruit: https://www.adafruit.com/wishlists/413935
 
 Installation
 ------------
-
-The hack-clock application is intended to be distributed as source, not in binary or packaged form, since
-it is intended to be a teaching tool. Unfortunately this means we need to take a few extra steps to
-install, but the entire process should take only a few minutes.
 
 I'm assuming that you are starting with the Raspian Minimal Linux distribution. NOOBS or the like also works, but Raspian Minimal is small enough to fit on a 2GB microSD card. To install the hack-clock distribution on top of it:
 
 1. Make sure your Raspberry Pi is up to date with the latest packages & firmware.
 2. Enable I2C as described in Adafruit's tutorial at https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 3. Add the necessary Python and GStreamer dependencies using `sudo apt-get install wiringpi python-setuptools python-pip python-dev python-dateutil python-smbus gstreamer0.10-x gstreamer-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-bad python-gst0.10`
-4. To let the pi user sense button presses, use the WiringPi GPIO Utility to permit non-root access to the pins. As an example: `gpio export 24 in; gpio mode 24 up`
-5. Clone or download this repository using `git clone https://github.com/deckerego/hack-clock.git` or by downloading https://github.com/deckerego/hack-clock/archive/master.zip
-6. Install hack-clock's dependencies using `sudo pip install -r requirements.txt`. Note you MUST have `ntpdate` installed - pip doesn't like it when your system clock is wrong!
-7. Copy the file `config.sample` to `config.py` and customize it for your environment (e.g. your local weather station)
-8. Start the app by executing `./run_server.py` from within the hack-clock/webapp directory
+4. Install hack-clock via `dpkg -i http://hackclock.deckerego.net/downloads/python-hackclock_2.0-beta-1_all.deb`
+5. Install hack-clock's Python dependencies using `sudo pip install -r /usr/share/doc/hack-clock/requirements.txt`
+6. Tweak `/etc/hack-clock.conf` and `/etc/default/hack-clock` to fit your needs (GPIO pins, correct weather station, etc.)
+7. Start the app by executing `sudo service hack-clock start`
+
+
+Usage
+-----
 
 Once the app starts, you should be able to get to the clock's web interface on port 9003. For example - http://192.168.1.2:9003/
 
-Bear in mind you may want to consider forking the source instead of cloning the parent repository - that way you can make alterations and save your changes independently!
+Audio files and user-created source code is saved within the `/home/pi/hack-clock` directory - so it should be easily accessible for the pi user. This can be changed in `/etc/hack-clock.conf`.
 
-Starting the Clock at Boot
---------------------------
+Source is backed up each time the user saves - so if you accidentally screw something up it is quick to recover.
 
-To start the clock as soon as your Raspberry Pi boots up:
+Clicking the "restore" button also opens up the source code for each lesson provided at http://hackclock.deckerego.net/. If you restore a lesson, you can find some good starting points and suggestions for your clock.
 
-1. Copy the startup script `hack-clock` into the directory `/etc/init.d`
-2. Make sure the startup script is executable with `sudo chmod u+x /etc/init.d/hack-clock`
-3. Ensure the clock starts at boot using the command `sudo update-rc.d hack-clock defaults`
-4. Start the clock with `sudo service hack-clock start`
-
-The start-up script also sets GPIO5 (Broadcom GPIO 24) with the correct input values and resistor states, so this is a helpful way to make sure your button pins are set correctly.
 
 IN BETA - Coding With Blocks!
 --------------------------
