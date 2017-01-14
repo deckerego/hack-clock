@@ -1,40 +1,37 @@
 #!/bin/bash
 
+BOOT_CONFIG=/boot/config.txt
+MOD_CONFIG=/etc/modules
+
+# Fix ownership in home directory after installing
 chown -R pi:pi /home/pi/hack-clock
 
-# Also modify /boot/config.txt
-# Turn off audio and add dtoverlay=hifiberry-dac
-# As well as dtoverlay=i2s-mmap
-CONFIG=/boot/config.txt
+# Install those Python modules that only exist via pip
+echo "Installing missing Python modules..."
+pip install -r /usr/share/doc/hack-clock/requirements.txt
 
-if [ -e $CONFIG ] && grep -q "^dtoverlay=hifiberry-dac$" $CONFIG; then
-    echo "dtoverlay already active"
+# Set the hifiberry-dac i2s module
+echo "Installing I2S audio..."
+if [ -e $BOOT_CONFIG ] && grep -q "^dtoverlay=hifiberry-dac$" $BOOT_CONFIG; then
+    echo "hifiberry already installed"
 else
-    echo "dtoverlay=hifiberry-dac" | sudo tee -a $CONFIG
-    ASK_TO_REBOOT=true
+    echo "dtoverlay=hifiberry-dac" | sudo tee -a $BOOT_CONFIG
 fi
 
-if [ -e $CONFIG ] && grep -q -E "^dtparam=audio=on$" $CONFIG; then
-    bcm2835off="no"
-    newline
-    echo "Disabling default sound driver"
-    sudo sed -i "s|^dtparam=audio=on$|#dtparam=audio=on|" $CONFIG &> /dev/null
-    if [ -e $LOADMOD ] && grep -q "^snd-bcm2835" $LOADMOD; then
-        sudo sed -i "s|^snd-bcm2835|#snd-bcm2835|" $LOADMOD &> /dev/null
-    fi
-    ASK_TO_REBOOT=true
-elif [ -e $LOADMOD ] && grep -q "^snd-bcm2835" $LOADMOD; then
-    bcm2835off="no"
-    newline
-    echo "Disabling default sound module"
-    sudo sed -i "s|^snd-bcm2835|#snd-bcm2835|" $LOADMOD &> /dev/null
-    ASK_TO_REBOOT=true
+# Enable (optional) i2s-mmap to get rid of popping and set volumes
+if [ -e $BOOT_CONFIG ] && grep -q "^dtoverlay=i2s-mmap$" $BOOT_CONFIG; then
+    echo "i2s-mmap already installed"
 else
-    newline
-    echo "Default sound driver currently not loaded"
-    bcm2835off="yes"
+    echo "dtoverlay=i2s-mmap" | sudo tee -a $BOOT_CONFIG
 fi
 
-speaker-test -l5 -c2 -t wav
+# Make sure old audio is disabled
+if [ -e $BOOT_CONFIG ] && grep -q -E "^dtparam=audio=on$" $BOOT_CONFIG; then
+    echo "Commenting out dtparam=audio=on in $BOOT_CONFIG"
+    sudo sed -i "s|^dtparam=audio=on$|#dtparam=audio=on|" $BOOT_CONFIG &> /dev/null
+elif [ -e $MOD_CONFIG ] && grep -q "^snd-bcm2835" $MOD_CONFIG; then
+    echo "Commenting out snd-bcm2835 in $MOD_CONFIG"
+    sudo sed -i "s|^snd-bcm2835|#snd-bcm2835|" $MOD_CONFIG &> /dev/null
+fi
 
-amixer set PCM -- 85%
+echo "Please reboot your Raspberry Pi!"

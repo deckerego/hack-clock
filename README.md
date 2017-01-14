@@ -18,13 +18,12 @@ Installation
 
 I'm assuming that you are starting with the Raspian Minimal Linux distribution. NOOBS or the like also works, but Raspian Minimal is small enough to fit on a 2GB microSD card. To install the hack-clock distribution on top of it:
 
-1. Make sure your Raspberry Pi is up to date with the latest packages & firmware.
-2. Enable I2C as described in Adafruit's tutorial at https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
+1. Make sure your Raspberry Pi is up to date with the latest packages & firmware with `sudo apt-get update; sudo apt-get dist-upgrade`
+2. Enable I2C by executing `sudo raspi-config` as described in Adafruit's tutorial: https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 3. Add the necessary Python and GStreamer dependencies using `sudo apt-get install wiringpi python-setuptools python-pip python-dev python-dateutil python-smbus gstreamer0.10-x gstreamer-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-bad python-gst0.10`
 4. Install hack-clock via `dpkg -i http://hackclock.deckerego.net/downloads/python-hackclock_2.0-beta-1_all.deb`
-5. Install hack-clock's Python dependencies using `sudo pip install -r /usr/share/doc/hack-clock/requirements.txt`
-6. Tweak `/etc/hack-clock.conf` and `/etc/default/hack-clock` to fit your needs (GPIO pins, correct weather station, etc.)
-7. Start the app by executing `sudo service hack-clock start`
+5. Tweak `/etc/hack-clock.conf` and `/etc/default/hack-clock` to fit your needs (GPIO pins, correct weather station, etc.)
+6. Reboot your Pi or start the app by executing `sudo service hack-clock start`
 
 
 Usage

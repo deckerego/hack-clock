@@ -3,3 +3,6 @@ BUTTON_BCM_PIN=(23 24)
 
 # The pins (using the Broadcom numbering scheme) to be used for switches (output)
 SWITCH_BCM_PIN=(25)
+
+# Volume level to feed to ALSA SoftVol
+MASTER_VOLUME='75%'
