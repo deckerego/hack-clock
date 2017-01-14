@@ -32,6 +32,11 @@ SCRIPTNAME=/etc/init.d/$NAME
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
+set_volume()
+{
+  amixer set Master -- "$MASTER_VOLUME"
+}
+
 #
 # Some dependencies can only be provided by PIP, check them
 #
