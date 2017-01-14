@@ -206,7 +206,6 @@
         var textElement = document.getElementById("runstatus");
         textElement.className = "label label-default";
         textElement.innerHTML = "Checking Status...";
-        editor.setValue(savedCode);
       };
     </script>
   </div>

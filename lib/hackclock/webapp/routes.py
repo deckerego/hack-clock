@@ -120,7 +120,8 @@ def python_backup_list(clock):
         ("5", "Lesson Five: Show the current temperature", open("%s/5/run_clock.py" % lesson_dir, 'r').read()),
         ("6", "Lesson Six: Loading configuration settings", open("%s/6/run_clock.py" % lesson_dir, 'r').read()),
         ("final", "Final Lesson: Putting it all together", open("%s/final/run_clock.py" % lesson_dir, 'r').read()),
-        ("musiclover", "Example: A music lover's clock", open("%s/musiclover/run_clock.py" % lesson_dir, 'r').read())
+        ("musiclover", "Example: A music lover's clock", open("%s/musiclover/run_clock.py" % lesson_dir, 'r').read()),
+        ("gpio", "Example: Using switches and buttons", open("%s/gpio/run_clock.py" % lesson_dir, 'r').read())
     ]
 
     backups = []
@@ -236,7 +237,7 @@ def blocks_backup_list(clock):
         ("5", "Lesson Five: Show the current temperature", open("%s/5/blocks_clock.xml" % lesson_dir, 'r').read()),
         ("6", "Lesson Six: Loading configuration settings", open("%s/6/blocks_clock.xml" % lesson_dir, 'r').read()),
         ("final", "Final Lesson: Putting it all together", open("%s/final/blocks_clock.xml" % lesson_dir, 'r').read()),
-        ("musiclover", "Example: A music lover's clock", open("%s/musiclover/blocks_clock.xml" % lesson_dir, 'r').read())
+        ("musiclover", "Example: A music lover's clock", open("%s/musiclover/blocks_clock.xml" % lesson_dir, 'r').read()),
         ("gpio", "Example: Using switches and buttons", open("%s/gpio/blocks_clock.xml" % lesson_dir, 'r').read())
     ]
 
