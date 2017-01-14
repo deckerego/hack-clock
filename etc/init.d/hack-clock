@@ -52,7 +52,7 @@ gpio_init()
 {
   for PIN in ${BUTTON_BCM_PIN[@]}; do
     sudo -u $DAEMON_USER gpio export $PIN in
-    sudo -u $DAEMON_USER gpio -g mode $PIN down
+    sudo -u $DAEMON_USER gpio -g mode $PIN up
   done
 
   for PIN in ${SWITCH_BCM_PIN[@]}; do
