@@ -1,0 +1,167 @@
+#! /bin/bash
+### BEGIN INIT INFO
+# Provides:          hack-clock
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: An interface for alarmclock-like functionality
+# Description:       Start the alarm-clock interface via I2C on a Raspberry Pi
+### END INIT INFO
+
+DESC="I2C Alarm Clock Interface"
+NAME='hack-clock'
+WEB_DIR='/srv/hackclock'
+DAEMON='/usr/bin/run_server.py'
+DAEMON_ARGS=''
+DAEMON_USER='pi'
+PIDFILE=/var/run/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
+
+# Read configuration variable file if it is present
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+# Load the VERBOSE setting and other rcS variables
+. /lib/init/vars.sh
+
+# Define LSB log_* functions.
+# Depend on lsb-base (>= 3.2-14) to ensure that this file is present
+# and status_of_proc is working.
+. /lib/lsb/init-functions
+
+#
+# Some dependencies can only be provided by PIP, check them
+#
+pip_check()
+{
+  BITSTRING_INSTALLED=$(pip list | grep 'bitstring')
+  WIRINGPI2_INSTALLED=$(pip list | grep 'wiringpi2')
+
+  if [[ -z "$BITSTRING_INSTALLED" || -z "$WIRINGPI2_INSTALLED" ]]; then
+    log_daemon_msg "WARNING: Missing Python dependencies. Install them with:\n    sudo pip install -r /usr/share/doc/hack-clock/requirements.txt"
+  fi
+}
+
+#
+# Initialize the GPIO pins for inputs and outputs
+#
+gpio_init()
+{
+  for PIN in ${BUTTON_BCM_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio export $PIN in
+    sudo -u $DAEMON_USER gpio -g mode $PIN up
+  done
+
+  for PIN in ${SWITCH_BCM_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio export $PIN out
+  done
+
+  return $?
+}
+
+#
+# Tear down the GPIO pins for inputs and outputs
+#
+gpio_destroy()
+{
+  for PIN in ${BUTTON_WPI_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio unexport $PIN
+  done
+
+  for PIN in ${SWITCH_WPI_PIN[@]}; do
+    sudo -u $DAEMON_USER gpio unexport $PIN
+  done
+
+  return $?
+}
+
+#
+# Function that starts the daemon/service
+#
+do_start()
+{
+  pip_check
+  gpio_init
+
+  start-stop-daemon --start --quiet --chdir $WEB_DIR --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
+    || return 1
+  start-stop-daemon --background --start --quiet --chdir $WEB_DIR --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON -- \
+    $DAEMON_ARGS \
+    || return 2
+}
+
+#
+# Function that stops the daemon/service
+#
+do_stop()
+{
+  gpio_destroy
+
+  start-stop-daemon --stop --quiet --chdir $WEB_DIR --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
+  RETVAL="$?"
+  [ "$RETVAL" = 2 ] && return 2
+  start-stop-daemon --stop --quiet --oknodo --chdir $WEB_DIR --retry=0/30/KILL/5 --exec $DAEMON
+  [ "$?" = 2 ] && return 2
+  # Many daemons don't delete their pidfiles when they exit.
+  rm -f $PIDFILE
+  return "$RETVAL"
+}
+
+#
+# Function that sends a SIGHUP to the daemon/service
+#
+do_reload()
+{
+  start-stop-daemon --stop --signal 1 --quiet --chdir $WEB_DIR --pidfile $PIDFILE --name $NAME
+  return 0
+}
+
+case "$1" in
+  start)
+  [ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC" "$NAME"
+  do_start
+  case "$?" in
+    0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+    2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+  esac
+  ;;
+  stop)
+  [ "$VERBOSE" != no ] && log_daemon_msg "Stopping $DESC" "$NAME"
+  do_stop
+  case "$?" in
+    0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+    2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+  esac
+  ;;
+  status)
+  status_of_proc "$DAEMON" "$NAME" && exit 0 || exit $?
+  ;;
+  restart|force-reload)
+  log_daemon_msg "Restarting $DESC" "$NAME"
+  do_stop
+  case "$?" in
+    0|1)
+    do_start
+    case "$?" in
+      0) log_end_msg 0 ;;
+      1) log_end_msg 1 ;; # Old process is still running
+      *) log_end_msg 1 ;; # Failed to start
+    esac
+    ;;
+    *)
+    # Failed to stop
+    log_end_msg 1
+    ;;
+  esac
+  ;;
+  *)
+  #echo "Usage: $SCRIPTNAME {start|stop|restart|reload|force-reload}" >&2
+  echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
+  exit 3
+  ;;
+esac
+
+:

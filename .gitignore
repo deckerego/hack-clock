@@ -1,6 +1,3 @@
-# Your own personal configuration file
-runapp/config.py
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -54,5 +51,8 @@ docs/_build/
 # PyBuilder
 target/
 
-runapp/backups/run_clock.*
-runapp/backups/blocks_clock.*
+# Hack Clock files generated during local testing
+home/pi/hack-clock/backups/run_clock.*
+home/pi/hack-clock/backups/blocks_clock.*
+home/pi/hack-clock/blocks_clock.xml
+home/pi/hack-clock/run_clock.py

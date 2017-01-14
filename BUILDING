@@ -1,0 +1,38 @@
+Building Binary Distributions
+=============================
+
+stdeb generates the debian/ folder automatically & this is version controlled.
+However, if it needs regeneration one can save python-hackclock.postinst to a
+separate directory, delete the debian/ directory, then re-issue:
+
+    python ./setup.py --command-packages=stdeb.command debianize
+
+To build the Debian package python-hackclock, first copy over the files to your Raspberry Pi:
+
+     rsync --exclude=.git --exclude=**/*.pyc --delete -ave ssh . pi@raspberrypi:/home/pi/build/hack-clock/
+
+Distributions are generated using stdeb, execute it on the Raspberry Pi to build for the correct architecture:
+
+    ./package.sh
+
+To debug installation:
+
+    sudo dpkg -D113 -i deb_dist/python-hackclock_2.0-beta-1_all.deb
+
+To completely uninstall:
+
+    sudo dpkg -P python-hackclock
+
+To verify the files inside the package:
+
+    dpkg -c deb_dist/python-hackclock_2.0-beta-1_all.deb
+
+
+Running Locally
+===============
+
+To test locally:
+
+    export PYTHONPATH="$HOME/Projects/hack-clock/lib"
+    cd srv/hackclock
+    ./scripts/run_server.py --config "$HOME/Projects/hack-clock/tests/localsettings.conf"
