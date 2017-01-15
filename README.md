@@ -9,7 +9,7 @@ Lessons and tutorials are currently a work-in-progress, however drafts are avail
 Building the Hardware
 ---------------------
 
-Step-by-step instructions for creating your clock are available at http://hackaday.io/project/3413-hack-ready-alarm-clock
+Step-by-step instructions for creating your clock are available at https://hackaday.io/project/3413/instructions
 
 A suggested list of hardware you might need to buy is saved as a wishlist at Adafruit: https://www.adafruit.com/wishlists/413935
 
