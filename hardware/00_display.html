@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>Connecting the 7-Segment LED Display</h1>
+
+  <p>
+    The LED display and the "backpack" logic board ships in two separate pieces from Adafruit -
+    follow the instructions at https://learn.adafruit.com/adafruit-led-backpack/1-2-inch-7-segment-backpack
+    to solder the pieces together. Don't worry about the "Seven-Segment Backpack Firmware"
+    section - at this point we just need to solder the pins correctly and connect the wires
+    to our Raspberry Pi.
+  </p>
+
+  <p>
+    To wire up the LED display to the Raspberry Pi you need to grab a five jumper wires of varying colors.
+    The actual color doesn't matter at all... however sometimes it is helpful to stick with a color scheme.
+    By using the same colors each time, you can more easily determine what each wire is supposed to do.
+  </p>
+
+  <img src="/images/00_display/display_wiring.jpg" alt="Wiring Diagram for LED Display"/>
+
+  <h2>To wire up the Adafruit 7-Segment LED backpack to a Raspberry Pi:</h2>
+
+  <ol>
+    <li>Wire the VIO (I/O power) pin on the display to Pin #1 (3.3V power) on the Raspberry Pi using a grey jumper cable</li>
+    <li>Connect the SDA (I2C Data) pin on the display to Pin #3 (SDA) on the Raspberry Pi using a red cable</li>
+    <li>Connect the SCL (I2C Clock) pin on the display to Pin #5 (SCL) on the Raspberry Pi with a blue cable</li>
+    <li>Wire the GND (Ground) pin on the display to Pin #7 (Ground) on the Raspberry Pi using a black jumper cable</li>
+    <li>Connect the VDC (LED power) pin on the display to Pin #2 (5V power) on the Raspberry Pi with a white jumper cable</li>
+  </ol>
+
+  <p>
+    Once the display is wired up, double-check your connections and power on your Raspberry Pi. If you have loaded
+    <a href="https://github.com/deckerego/hack-clock/tree/lesson_one">Lesson One</a> of the Hack Clock on the Pi,
+    you should see a lit-up display with three 0's!
+  </p>
+
+  <img src="/images/00_display/display_backpack_example.jpg" alt="Wiring the LED backpack" />
+
+  <img src="/images/00_display/display_pi_example.jpg" alt="Wiring the Raspberry Pi" align="right" />
+
+  <p>
+    Next up - <a href="01_gpio_board.html">create some buttons and switches for your display</a>!
+</div>

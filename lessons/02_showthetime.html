@@ -1,0 +1,110 @@
+---
+layout: default
+---
+
+<div class="home">
+  <h1>Lesson Four: Keep Updating the Current Time</h1>
+
+  <p>
+    The clock now shows whatever we tell it - but how do we get it to always show
+    the current time?
+  </p>
+
+  <p>
+    The first step is to find a way to ask our computer for the current time. First
+    we need to ask Python to give us the datetime library, so towards the top of our
+    code we need to add:
+    <pre>import datetime</pre>
+    Now that we have the datetime library imported, we can fetch the current time
+    using:
+    <pre>now = datetime.datetime.now()</pre>
+    Do you recognize what "now" means from our previous lesson? "now" is a
+    <i>variable</i> that stores what the current time is. You can read the line
+    "datetime.datetime.now()" as "run the method 'now()' on the datetime object
+    inside of the datetime library." It may seem like a long way of doing it, but
+    this stores the current time in the "now" variable so we can use it later.
+  </p>
+
+  <p>
+    If we want to pull out the minutes of our new "now" variable, we can access
+    its "minute" and "hour" properties. For example, to get the current hour,
+    we would type in:
+    <pre>now.hour</pre>
+    If we wanted to make our clock show the current hour and minute
+    on our display, we would use:
+    <pre>
+      display.setHours(now.hour)
+      display.setMinutes(now.minute)
+    </pre>
+  </p>
+
+  <p>
+    Fantastic! We can how show the current minutes and hours on our display!
+    There's just one problem: this only sets the time on the display <i>once</i>
+    when the clock starts up - it never changes!
+  </p>
+
+  <p>
+    First let's clean up our code a bit. We're going to create a function to display
+    the current time by moving our code into a function. Replace your old "display.setHours"
+    and "display.setMinutes" code with a new method of your creation:
+
+    <pre>
+def showCurrentTime():
+    now = datetime.datetime.now()
+
+    # Set the hours
+    display.setHours(now.hour)
+
+    # Set the indicator lights
+    display.setColon(True)
+
+    # Set the minutes
+    display.setMinutes(now.minute)
+
+showCurrentTime()
+    </pre>
+
+    This will still only change the display once, but this cleans up our code a bit
+    and will make it easier to set the current time over and over again. Save
+    your work, and make sure the clock is still showing the time on its display.
+  </p>
+
+  <p>
+    To keep displaying the current time we need to listen to the "ticks" of the
+    computer's internal clock. To do this we are going to use the "Clock" object
+    we created earlier and tell it to call our function every time the clock "ticks."
+    In this case one tick is almost one second - so our code is going to tell our
+    clock to update itself about once every second.
+  </p>
+
+  <p>
+    Instead of calling the "showCurrentTime" function right away, instead tell
+    the clock to call it using the following code that replaces the old:
+    <pre>
+# Show the current time
+def showCurrentTime():
+    now = datetime.datetime.now()
+
+    # Set the hours
+    display.setHours(now.hour)
+
+    # Set the indicator lights
+    display.setColon(True)
+
+    # Set the minutes
+    display.setMinutes(now.minute)
+
+# What to do when the internal clock ticks
+clock.onTick(showCurrentTime)
+    </pre>
+  </p>
+
+  <p>
+    Save your changes and watch your clock carefully. The time should now update when the minutes change!
+  </p>
+
+  <p>
+    Previously - <a href="/lessons/03_changethetime.html">Change the Time!</a>
+  </p>
+</div>

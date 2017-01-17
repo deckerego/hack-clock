@@ -1,0 +1,80 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>Creating Buttons and Switches</h1>
+
+  <p>
+    The GPIO board is a bit different than the display and the audio amp...
+    it is not a ready-made breakout board, but instead one we need to assemble.
+    We need the following parts (also listed in the
+    <a href="https://www.adafruit.com/wishlists/413935">Hack Clock's v2 Wishlist</a>):
+    <ul>
+      <li>A <a href="https://www.sparkfun.com/products/12043">mini breadboard</a></li>
+      <li>A few <a href="https://www.sparkfun.com/products/10302">push buttons</a></li>
+      <li>One or two <a href="https://www.sparkfun.com/products/10213">N-channel MOSFETs</a> (or a relay switch)</li>
+      <li>
+        A <a href="https://www.sparkfun.com/products/10969">4.7k resistor</a> for each MOSFET
+        (probably won't need this for a relay)</a>
+      </li>
+      <li>Some short lengths of insulated wire</li>
+    </ul>
+
+    If you don't have a good stock of random resistors around, I would recommend ordering
+    Sparkfun's <a href="https://www.sparkfun.com/products/10969">resistor kit</a>. It will
+    save you on future projects!
+  </p>
+
+  <h2>Input (Buttons)</h2>
+
+  <p>
+    Let's wire up some buttons. The buttons will connect a general purpose
+    input/output (GPIO) pin to a ground pin. Once the GPIO pin is connected to ground,
+    our alarm clock will notice a button has been pressed and react likewise.
+  </p>
+
+  <p>
+    First, let's push our button onto the mini breadboard. This button should act
+    as a bridge over the middle, empty space within our breadboard. One half of this
+    breadboard is not electrically connected to the other half... unless we use a
+    button or a wire as a bridge. When the button is pressed into the breadboard,
+    all the pins on one side should be on one half of the breadboard:
+  </p>
+
+  <img src="/images/01_gpio_board/" alt="Button being inserted into mini breadboard"/>
+
+  <p>
+    Next, let's connect GPIO pin #23 to our mini breadboard using a jumper wire.
+    This will connect a pin on the button to a pin on the Raspberry Pi.
+    Connect your jumper wire to the XXth pin on the right side of the Raspberry Pi's row of GPIO pins:
+  </p>
+
+  <img src="/images/01_gpio_board/" alt="GPIO pin #23 connected to mini breadboard"/>
+
+  <p>
+    Finally, to complete this button's circuit we need to connect the other pin on
+    the button to a ground pin on the Raspberry Pi. Let's pick the closest ground
+    pin to the GPIO pin we just used:
+  </p>
+
+  <img src="/images/01_gpio_board/" alt="Ground pin connected to mini breadboard"/>
+
+  <p>
+    Let's add a second button as well. Note that we can have all of our buttons and
+    switches share the <i>same</i> ground pin, which cuts down on the number of wires
+    going back and forth. We will add some short wire to our mini breadboard
+    to connect our new button to ground, and then will wire the new button to
+    GPIO pin #24:
+  </p>
+
+  <img src="/images/01_gpio_board/" alt="Ground pin connected to mini breadboard"/>
+
+  <h2>Output (Switches)</h2>
+
+  <p>
+    Now that we've wired up a few buttons, let's connect a switch that we can turn
+    on or off.
+  </p>
+</div>
