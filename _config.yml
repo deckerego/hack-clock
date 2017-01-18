@@ -1,14 +1,18 @@
 # Site settings
 title: Hack Clock
+# Architect Theme : https://github.com/pages-themes/architect
+theme: jekyll-theme-architect
 email: john@deckerego.net
 description: > # this means to ignore newlines until "baseurl:"
   A hackable alarm clock, made for experimentation to learn GPIO and programming.
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://hackclock.deckerego.net" # the base hostname & protocol for your site
+baseurl: ""
+url: "http://hackclock.deckerego.net"
+show_downloads: true
 twitter_username: deckerego
 github_username:  deckerego
 hackaday_url: http://hackaday.io/hacker/5116-deckerego
 hackaday_username: deckerego
+google_analytics: UA-32628230-2
 
 # Build settings
 markdown: kramdown
