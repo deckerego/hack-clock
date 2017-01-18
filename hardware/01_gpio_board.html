@@ -9,7 +9,7 @@ layout: default
   <p>
     The GPIO board is a bit different than the display and the audio amp...
     it is not a ready-made breakout board, but instead one we need to assemble.
-    We need the following parts (also listed in the
+    We need the following parts (some of which are on the
     <a href="https://www.adafruit.com/wishlists/413935">Hack Clock's v2 Wishlist</a>):
     <ul>
       <li>A <a href="https://www.sparkfun.com/products/12043">mini breadboard</a></li>
@@ -36,45 +36,122 @@ layout: default
   </p>
 
   <p>
-    First, let's push our button onto the mini breadboard. This button should act
+    The tactile buttons in the hardware list have four pins, two on each side.
+    Note that a pin on one side is <u>always</u> connected to the other side; if
+    you were to take an x-ray of the button, you would see wires connecting the pin
+    on one side to the pin of another... as in:
+  </p>
+
+  <img src="/images/01_gpio_board/button_xray_top.jpg" alt="X-ray view of the top of the button" />
+  <img src="/images/01_gpio_board/button_xray.jpg" alt="X-ray view of the bottom of the button" />
+
+  <p>
+    When the button is pressed, the two parallel wires are connected together - so
+    all four pins are electrically connected when the button is pressed. When we press
+    the button we are not connecting the pin on the opposite side - we are connecting
+    the pin on the <i>adjacent</i> side.
+  </p>
+
+  <p>
+    To begin wiring up our button, let's push our button onto the mini breadboard. This button should act
     as a bridge over the middle, empty space within our breadboard. One half of this
     breadboard is not electrically connected to the other half... unless we use a
     button or a wire as a bridge. When the button is pressed into the breadboard,
     all the pins on one side should be on one half of the breadboard:
   </p>
 
-  <img src="/images/01_gpio_board/" alt="Button being inserted into mini breadboard"/>
+  <img src="/images/01_gpio_board/button_board_side.jpg" alt="Side view of button being inserted into mini breadboard"/>
+  <img src="/images/01_gpio_board/button_board_front.jpg" alt="Front view of button being inserted into mini breadboard"/>
 
   <p>
-    Next, let's connect GPIO pin #23 to our mini breadboard using a jumper wire.
-    This will connect a pin on the button to a pin on the Raspberry Pi.
-    Connect your jumper wire to the XXth pin on the right side of the Raspberry Pi's row of GPIO pins:
+    Next, let's connect the one pin on the button to a ground pin on the
+    Raspberry Pi. Using a jumper wire, connect a pin on the button
+    to a the Ground pin on the Raspberry Pi that is just above the pin for GPIO #23
+    (it's pin #14 on gadgetoid's <a href="http://pinout.xyz/">interactive pinout diagram</a>).
+    Let's pick the closest ground pin to the GPIO pin we just used:
   </p>
 
-  <img src="/images/01_gpio_board/" alt="GPIO pin #23 connected to mini breadboard"/>
+  <img src="/images/01_gpio_board/ground_wire_button.jpg" alt="Ground pin connected to mini breadboard"/>
 
   <p>
-    Finally, to complete this button's circuit we need to connect the other pin on
-    the button to a ground pin on the Raspberry Pi. Let's pick the closest ground
-    pin to the GPIO pin we just used:
+    Finally, to complete this button's circuit we need to connect GPIO pin #23
+    on the Raspberry Pi to the other side of our button. Connect your jumper wire
+    to pin #16 on the row of GPIO pins:
   </p>
 
-  <img src="/images/01_gpio_board/" alt="Ground pin connected to mini breadboard"/>
+  <img src="/images/01_gpio_board/gpio_wire_button.jpg" alt="GPIO pin #23 connected to mini breadboard"/>
 
   <p>
     Let's add a second button as well. Note that we can have all of our buttons and
     switches share the <i>same</i> ground pin, which cuts down on the number of wires
-    going back and forth. We will add some short wire to our mini breadboard
-    to connect our new button to ground, and then will wire the new button to
-    GPIO pin #24:
+    going back and forth. We will wire the new button to GPIO pin #24 (pin #18)...
   </p>
 
-  <img src="/images/01_gpio_board/" alt="Ground pin connected to mini breadboard"/>
+  <img src="/images/01_gpio_board/second_button_wire.jpg" alt="GPIO pin #24 pin connected to mini breadboard"/>
+
+  <p>
+    ...and then will add some short wire to our mini breadboard to connect our new button to ground:
+  </p>
+
+  <img src="/images/01_gpio_board/second_button_ground.jpg" alt="GPIO pin #24 pin connected to mini breadboard"/>
 
   <h2>Output (Switches)</h2>
 
   <p>
-    Now that we've wired up a few buttons, let's connect a switch that we can turn
-    on or off.
+    Now that we've wired up a few buttons, let's connect a switch that we can turn on or off.
+  </p>
+
+  <p>
+    For my low-voltage applications, I usually use an N-type MOSFET instead of a mechanical relay. You
+    could even use an NPN transistor for some applications. Of course, a mechanical relay
+    is fine as well. I would recommend learning more about the benefits of each; if you are looking
+    to pick up some research material, I'd recommend Make's
+    <a href="http://www.barnesandnoble.com/w/make-charles-platt/1102090742?ean=9781680450262">Electronics 2nd Edition</a>,
+    which may well be in your local neighborhood library (remember those?) or available from
+    your local artesinal bookstore.
+  </p>
+
+  <p>
+    The following guide will use a MOSFET for low-impact usages (like flipping on a few LEDs), and starts with
+    inserting its three pins into the breadboard:
+  </p>
+
+  <img src="/images/01_gpio_board/board_fet.jpg" alt="Inserting the MOSFET into the mini breadboard"/>
+
+  <p>
+    A MOSFET has three pins: the gate, the drain and the source. The big metal fin on the back
+    is sometimes used as the drain as well. When you energize the gate, you allow the source to be
+    connected to the drain. It's like folding a kink in a garden hose - you stop things from
+    draining into the yard by folding the hose, then you open it up to allow the source water fountain
+    to finally drain to the ground.
+  </p>
+
+  <p>
+    We are going to connect our gate to GPIO #25 on our Raspberry Pi:
+  </p>
+
+  <img src="/images/01_gpio_board/connect_fet_gpio.jpg" alt="Connecting the MOSFET to the Raspberry Pi"/>
+
+  <p>
+    Then we let the drain connect to our shared Ground pin:
+  </p>
+
+  <img src="/images/01_gpio_board/connect_fet_ground.jpg" alt="Connecting the MOSFET to the Raspberry Pi"/>
+
+  <p>
+    Next we will create a bridge from the source pin of the MOSFET, across one half
+    of the breadboard, to the other side. We don't have anything to switch on yet -
+    but now we have a nice &amp; tidy way to connect something like an LED to ground!
+  </p>
+
+  <img src="/images/01_gpio_board/connect_fet_source.jpg" alt="Getting the MOSFET ready to connect to a source"/>
+
+  <p>
+    Nicely done! Now if you load up the <a href="/lessons/">GPIO Test Lesson</a>,
+    you can press the buttons to dim or brighten your display!
+  </p>
+
+  <p>
+    Next up - <a href="02_audio.html">wire up your amplifier &amp; speakers</a>!
   </p>
 </div>

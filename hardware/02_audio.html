@@ -5,6 +5,81 @@ layout: default
 <div class="home">
 
   <h1>Wiring Up the Audio Amplifier &amp; Speakers</h1>
+
   <p>
+    An alarm clock isn't much of an alarm clock if it doesn't have a shrill little
+    scream to wake you up. On this step we will wire up a digital audio decoder,
+    amplifier and a 2-channel mono speaker.
+  </p>
+
+  <p>
+    You will notice on Model A's and Model B's of the Raspberry Pi there is a headphone
+    jack that you could possibly amplify and drive a speaker with. The first attempt
+    wired a TTRS jack to a small amplifier, and then drove a small mono speaker.
+    The headphone jacks were cumbersome, required some careful soldering skills,
+    and the sound interface wasn't that reliable. Some times the audio alarm just wouldn't power up!
+  </p>
+
+  <p>
+    With this build of the Hack Clock we are using digital audio output from the
+    Raspberry Pi, following the Inter-IC Sound Bus (I2S) standard. Adafruit sells
+    a very efficient
+    <a href="https://www.adafruit.com/products/3006">I2S decoder and amplifier</a>
+    in one tiny package based on the MAX98357A chip. This actually reduces the part
+    count, is cheaper and so far is more reliable!
+  </p>
+
+  <p>
+    Let's connect the speaker first. I use small speakers (either 4Ω or 8Ω)
+    like you would find in a toy or a greeting card. Those tiny speakers
+    can't drive too much sound before they clip out &amp; issue nothing but static,
+    so it helps to have a speaker housing for them.
+  </p>
+
+  <img src="/images/02_audio/speaker_in_housing.jpg" alt="A cheap speaker in a plastic housing" />
+
+  <p>
+    My favorite cheap speaker housing is a plastic cap from a milk or orange
+    juice bottle. After drilling a couple of small holes in the side and using some
+    double-sided tape, I inserted the speaker into the cap and thread the wires through
+    the holes. Now we can get louder!
+  </p>
+
+  <img src="/images/02_audio/speaker_holes.jpg" alt="OJ bottle holes" />
+
+  <p>
+    Next, we can screw the speaker wires into the screw-in terminals on the Adafruit
+    breakout board. The order of the wires doesn't really matter since we are using
+    a single speaker.
+  </p>
+
+  <img src="/images/02_audio/speaker_done.jpg" alt="The completed speaker assembly" />
+
+  <p>
+    After this we need to provide power and data to our MAX98357A breakout board.
+    Unfortunately the wiring from the board to the Raspberry Pi pins isn't nice
+    and organized - it spreads across the board.
+  </p>
+
+  <p>
+    Let's connect with:
+    <ol>
+      <li>Connect the Vin pin on the amp to the +5V pin (pin #2) on the Raspberry Pi</li>
+      <li>Connect the GND pin on the amp to the Ground pin (pin #39) on the Pi</li>
+      <li>Connect the  to the  on the Pi</li>
+      <li>Connect the  to the  on the Pi</li>
+      <li>Connect the  to the  on the Pi</li>
+    </ol>
+  </p>
+
+  <p>
+    Phew. Done! If we load up <a href="/lessons/">Lesson 4: Play Music</a>,
+    <i>or</i> if we SSH into the Raspberry Pi and execute <code>speakertest -c 2 -i 3</code>,
+    we should be able to hear some sound! The Hack Clock ships with a test audio
+    track so you can try things out.
+  </p>
+
+  <p>
+    Finally, the best part - <a href="03_enclosure.html">building your enclosure</a>!
   </p>
 </div>
