@@ -3,7 +3,7 @@ title: Hack Clock
 # Architect Theme : https://github.com/pages-themes/architect
 theme: jekyll-theme-architect
 email: john@deckerego.net
-description: > # this means to ignore newlines until "baseurl:"
+description: > 
   A hackable alarm clock, made for experimentation to learn GPIO and programming.
 baseurl: ""
 url: "http://hackclock.deckerego.net"
