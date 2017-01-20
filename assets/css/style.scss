@@ -1,0 +1,30 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+header a.button {
+  float: right;
+  position: relative;
+  clear: both;
+}
+
+header a.github {
+  background: transparent url(../images/github-button.png) 0 0 no-repeat;
+}
+
+header a.hackaday {
+  background: transparent url(/images/buttons/hackaday.png) 0 0 no-repeat;
+}
+
+aside a.download {
+  background: transparent url(../images/download-button.png) 0 0 no-repeat;
+}
+
+aside a.hardware {
+  background: transparent url(/images/buttons/sevenseg.png) 0 0 no-repeat;
+}
+
+aside a.lessons {
+  background: transparent url(/images/buttons/blocks.png) 0 0 no-repeat;
+}

@@ -3,16 +3,15 @@ title: Hack Clock
 # Architect Theme : https://github.com/pages-themes/architect
 theme: jekyll-theme-architect
 email: john@deckerego.net
-description: > 
-  A hackable alarm clock, made for experimentation to learn GPIO and programming.
+description: >
+  A hackable alarm clock, built for experimentation and learning
 baseurl: ""
 url: "http://hackclock.deckerego.net"
-show_downloads: true
 twitter_username: deckerego
 github_username:  deckerego
-hackaday_url: http://hackaday.io/hacker/5116-deckerego
+hackaday_url: https://hackaday.io/project/3413-hack-ready-alarm-clock
 hackaday_username: deckerego
-google_analytics: UA-32628230-2
+#google_analytics: UA-32628230-2
 
 # Build settings
 markdown: kramdown
