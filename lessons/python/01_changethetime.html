@@ -4,14 +4,14 @@ layout: default
 
 <div class="home">
 
-  <h1>Lesson Two: Change the Time</h1>
+  <h1>Lesson One: Change the Time</h1>
 
   <p>
     We've wired up the display and so far all we see is... "0:0." Exciting.
   </p>
 
   <p>
-    What we might want to see is the current time. Open up the Hack Clock IDE again,
+    What we want to see is the current time. Open up the Hack Clock IDE again,
     and take a look at the code we loaded for Lesson One. For right now we can
     ignore the first few lines that say "import" at the top, and skip down to where we
     "Connect to the internal machine clock."
@@ -19,7 +19,7 @@ layout: default
 
   <p>
     Notice that there are a few lines in this code that start with the "#" symbol. This
-    means that the line is ignored by the computer, and is reffered to as a "comment."
+    means that the line is ignored by the computer, and is referred to as a "comment."
     Comments are for humans like you and I to read so we can better communicate what
     the code is doing, but the machines that read our code will completely ignore them.
     The comment says we are "connecting to the internal machine clock," but the actual
@@ -29,10 +29,10 @@ layout: default
   <p>
     The line underneath says
     <pre>clock = Clock()</pre>
-    and is the first machine-readable
-    line of code we care about. This one line actually has two parts: a <i>variable</i>
-    and a <i>constructor</i>. If we read this line from right to left, the "Clock()" phrase
-    <i>constructs</i> a new <i>object</i>. Here we're telling our machine to "build" a
+    and is the first machine-readable line of code we care about. This one line
+    actually has two parts: a <i>variable</i> and a <i>constructor</i>. If we read
+    this line from right to left, the "Clock()" phrase <i>constructs</i> a
+    new <i>object</i>. Here we're telling our machine to "build" a
     new Clock object that will keep time for us and let us know when the seconds go by.
     The "=" sign <i>assigns</i> this newly constructed object to a variable. Our
     <i>variable</i> is named "clock," and it allows us to store and keep our newly
@@ -71,7 +71,7 @@ layout: default
     and set the minutes to "33":
     <pre>display.setMinutes(33)</pre>
     After that is changed in your code, click on the save button in the top-right
-    corner: <img id="save" src="/images/save.png" alt="Save Button"/>.
+    corner.
   </p>
 
   <p>
@@ -89,5 +89,4 @@ layout: default
   <p>
     Next up - <a href="/lessons/02_showthetime.html">Show the Time Like a Real Clock</a>
   </p>
-
 </div>

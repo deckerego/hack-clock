@@ -3,8 +3,8 @@ layout: default
 ---
 
 <div class="home">
-  
-  <h1>Lesson Three: Keep Updating the Current Time</h1>
+
+  <h1>Lesson Two: Keep Updating the Current Time</h1>
 
   <p>
     The clock now shows whatever we tell it - but how do we get it to always show
@@ -49,23 +49,27 @@ layout: default
     First let's clean up our code a bit. We're going to create a function to display
     the current time by moving our code into a function. Replace your old "display.setHours"
     and "display.setMinutes" code with a new method of your creation:
+  </p>
 
+  <p>
     <pre>
-def showCurrentTime():
-    now = datetime.datetime.now()
+  def showCurrentTime():
+      now = datetime.datetime.now()
 
-    # Set the hours
-    display.setHours(now.hour)
+      # Set the hours
+      display.setHours(now.hour)
 
-    # Set the indicator lights
-    display.setColon(True)
+      # Set the indicator lights
+      display.setColon(True)
 
-    # Set the minutes
-    display.setMinutes(now.minute)
+      # Set the minutes
+      display.setMinutes(now.minute)
 
-showCurrentTime()
+  showCurrentTime()
     </pre>
+  </p>
 
+  <p>
     This will still only change the display once, but this cleans up our code a bit
     and will make it easier to set the current time over and over again. Save
     your work, and make sure the clock is still showing the time on its display.
@@ -82,22 +86,25 @@ showCurrentTime()
   <p>
     Instead of calling the "showCurrentTime" function right away, instead tell
     the clock to call it using the following code that replaces the old:
+  </p>
+
+  <p>
     <pre>
-# Show the current time
-def showCurrentTime():
-    now = datetime.datetime.now()
+  # Show the current time
+  def showCurrentTime():
+      now = datetime.datetime.now()
 
-    # Set the hours
-    display.setHours(now.hour)
+      # Set the hours
+      display.setHours(now.hour)
 
-    # Set the indicator lights
-    display.setColon(True)
+      # Set the indicator lights
+      display.setColon(True)
 
-    # Set the minutes
-    display.setMinutes(now.minute)
+      # Set the minutes
+      display.setMinutes(now.minute)
 
-# What to do when the internal clock ticks
-clock.onTick(showCurrentTime)
+  # What to do when the internal clock ticks
+  clock.onTick(showCurrentTime)
     </pre>
   </p>
 
@@ -106,8 +113,6 @@ clock.onTick(showCurrentTime)
   </p>
 
   <p>
-    <p>
-      Next up - <a href="/lessons/03_ampm.html">Use the AM/PM indicator light</a>!
-    </p>
+    Next up - <a href="/lessons/03_ampm.html">Use the AM/PM indicator light</a>!
   </p>
 </div>
