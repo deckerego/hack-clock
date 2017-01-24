@@ -38,3 +38,15 @@ aside a.lessons {
   margin: 2px;
   box-shadow: none;
 }
+
+@media only screen and (max-width: 767px) {
+  header a.github {
+    background-color: #9ddcff;
+    background-image: none;
+  }
+
+  header a.hackaday {
+    background-color: #9ddcff;
+    background-image: none;
+  }
+}
