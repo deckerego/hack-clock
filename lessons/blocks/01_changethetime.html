@@ -18,25 +18,71 @@ layout: default
   <img id="edit_code" src="/images/00_lightup/edit_blocks_code.png" alt="Screenshot of editing code"/>
 
   <p>
-    We have a lot of oddly-shaped rectangles and puzzle pieces connected here.
+    We have a lot of oddly-shaped rectangles and puzzle pieces connected here. Let's make
+    sense of it all. First off, the toolbox:
+  </p>
+
+  <img src="/images/01_changethetime/blocks_toolbox.jpg" alt="The IDE's toolbox" />
+
+  <p>
+    The toolbox is on the left edge of our integrated development environment, or IDE.
+    From here we can open a drawer in our toolchest, pick a block to use, and then
+    drag it over to the workspace. Click on the "Display" label on the toolbox - you
+    will see a set of blocks appear just to the right of that list. Try to drag a block
+    from the toolbox onto the plain white workspace - you should be able to
+    drag-and-drop it anywhere there is free space. The block should click into place.
+    After that, drag the block into the trash icon in the bottom-right. The block
+    should dissapear.
   </p>
 
   <p>
-    Reading from top to bottom, we can see that we are telling the display to turn on
-    the colon lights, turn off the evening indicator ("set(False)" means turn it off),
-    set the hours digits to "0," set the minutes digits to "0" and set the brightness
-    level to "1."
+    Each block represents either an "action," a "value," or a "variable."
+    Let's look at "actions" first.
+  </p>
+
+  <img src="/images/01_changethetime/blocks_actions.jpg" alt="The actions within our blocks"/>
+
+  <p>
+    Actions usually connect to a value or a variable, but they don't necessarily need to.
+    Each action does something useful - such as make a number light on the display
+    or play some music. Actions can also be connected to other actions from the top
+    or bottom, so that actions can execute in a sequence. If an action is snapped on
+    top of another action, the top action will execute and then the bottom action will
+    execute next.
+  </p>
+
+  <p>
+    Let's look at values next:
+  </p>
+
+  <img src="/images/01_changethetime/blocks_values.jpg" alt="Values within our blocks IDE"/>
+
+  <p>
+    Values are like set-in-stone facts about our world. The number "0" is always zero,
+    the letter "B" is always a capital b. I can't force a "0" to be equal to one - it
+    is always the same. Here you can see values highlighted like numbers or brightness.
+  </p>
+
+  <p>
+    If you look at the Lesson 1 code, reading from top to bottom, we can see that
+    a stack of actions are telling the display to turn on the colon lights,
+    turn off the evening indicator, set the hours digits to "0," set the minutes
+    digits to "0" and set the brightness level to "normal."
+  </p>
+
+  <p>
+    What does the little block named "LED Display" do? Right now let's think of
+    it like a value, since we can't change the meaning of it. This will always
+    operate the light-up display.
   </p>
 
   <p>
     Now let's change the minutes and hours digits that are showing on the display.
-    Change the hours to "12":
-    <pre>display.setHours(12)</pre>
-    and set the minutes to "33":
-    <pre>display.setMinutes(33)</pre>
-    After that is changed in your code, click on the save button in the top-right
-    corner: <img id="save" src="/lessons/01_changethetime/save.png" alt="Save Button"/>.
+    Change the hours to "12" and set the minutes to "33", then click on the save button in
+    the top-right corner: <img id="save" src="/images/00_lightup/save.png" class="icon" alt="Save Button"/>.
   </p>
+
+  <img src="/images/01_changethetime/blocks_newnumbers.png" alt="Values within our blocks IDE"/>
 
   <p>
     Once you save your changes, the clock should re-start itself. The display will blink,
@@ -45,12 +91,12 @@ layout: default
   </p>
 
   <p>
-    Next up - try adjusting the brightness. Set it to the highest value of 15, and the
-    lowest value of 0. Set it for a few values in between. What level of brightness
+    Next up - try adjusting the brightness. Set it to the highest value of "brightest", and the
+    lowest value of "off." Set it for a few values in between. What level of brightness
     do you like most?
   </p>
 
   <p>
-    Next up - <a href="/lessons/02_showthetime.html">Show the Time Like a Real Clock</a>
+    Next up - <a href="02_showthetime.html">Show the Time Like a Real Clock</a>
   </p>
 </div>

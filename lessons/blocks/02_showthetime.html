@@ -6,6 +6,78 @@ layout: default
 
   <h1>Lesson Two: Keep Updating the Current Time<</h1>
 
-  <img src="/images/02_showthetime/ide.png" alt="The Blockly IDE"/>
+  <p>
+    Instead of any old number, our display should provide us with the current time.
+    Let's drag our numbers for the LED Display into the trash, so we can insert
+    something new in.
+  </p>
 
+  <p>
+    Let's click on the "Time" drawer of our toolbox. This gives us some new blocks
+    to work with - including "Current Hour" and "Current Minute." Drag those
+    blocks into our LED Display Hour and LED Display Minute blocks. Hit save -
+    you now should see the current time!
+  </p>
+
+  <img src="/images/02_showthetime/blocks_min_hour.png" alt="Dragging over the current minute and hour"/>
+
+  <p>
+    We still don't <i>really</i> have a clock yet, do we? We can set it to the
+    current time, but we want it to keep updating itself through the whole day.
+    To do that, we need to understand <u>functions</u>.
+  </p>
+
+  <p>
+    A number of action blocks can be wrapped together as a <i>function</i>.
+    Click on the "Functions" drawer of the toolbox and drag-over the top function
+    block (the one that doesn't have a puzzle-piece hole at the bottom)
+    to the workspace.
+  </p>
+
+  <img src="/images/02_showthetime/blocks_empty_function.png" alt="Dragging over a function block"/>
+
+  <p>
+    Click on top block of the current stack of actions and drag it into our function
+    block - like you were dragging some pancakes into an expanding taco shell.
+    We now have a function!
+  </p>
+
+  <img src="/images/02_showthetime/blocks_full_function.png" alt="Filling up a function block"/>
+
+  <p>
+    Let's give this function a name, that way we can regonize it more easily. How about...
+    "showCurrentTime."
+  </p>
+
+  <img src="/images/02_showthetime/blocks_name_function.png" alt="Naming a function block"/>
+
+  <p>
+    What would happen if we hit "save" right now? We would get a blank display!
+    We set up a function, but we still need to <i>call</i> the function. Click on
+    the function drawer again. This time you should see a new block - it's your
+    function! You've created a new block out of several <i>other</i> blocks. Let's
+    call your function by dragging and dropping it onto the workspace:
+  </p>
+
+  <img src="/images/02_showthetime/blocks_call_function.png" alt="Calling a function block"/>
+
+  <p>
+    We call the function once and it does update the display - but we want it to update
+    our display over and over again, all throughout the day. Let's go back to the
+    "Time" drawer, and this time drag the "Each Second from" block into our workspace.
+    Once it is over. drag our function call into the "Each Second from" block. Finally,
+    go back to the Time drawer once again and snap the "Clock Timer" constant onto the top
+    of the "Each Second from" block.
+  </p>
+
+  <img src="/images/02_showthetime/blocks_each_second.png" alt="Call our function every second"/>
+
+  <p>
+    Save your code and wait for a minute to pass by - the clock should automatically update
+    its display! You've officially built a digital clock.
+  </p>
+
+  <p>
+    Next up - <a href="03_ampm.html">Use the AM/PM indicator light</a>!
+  </p>
 </div>
