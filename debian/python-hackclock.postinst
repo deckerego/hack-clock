@@ -8,7 +8,7 @@ chown -R pi:pi /home/pi/hack-clock
 
 # Install those Python modules that only exist via pip
 echo "Installing missing Python modules..."
-pip install -r /usr/share/doc/hack-clock/requirements.txt
+pip  install --upgrade -r /usr/share/doc/hack-clock/requirements.txt
 
 # Set the hifiberry-dac i2s module
 echo "Installing I2S audio..."

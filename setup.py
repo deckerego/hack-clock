@@ -27,7 +27,7 @@ runapp_data_files = all_files('/home/pi/hack-clock', 'home/pi/hack-clock')
 
 setup(
     name='HackClock',
-    version='2.0-BETA',
+    version='2.0-PRE',
     description='A hackable alarm clock for the Raspberry Pi',
     author='DeckerEgo',
     author_email='john@deckerego.net',

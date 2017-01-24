@@ -1,5 +1,10 @@
-hackclock (2.0-beta-1) unstable; urgency=low
+hackclock (2.0-pre-1) unstable; urgency=low
 
-  * source package automatically created by stdeb 0.8.5
+  * I2C audio
+  * Raspberry Pi Zero support
+  * Programming by blocks (using Blockly)
+  * Multiple simultaneous buttons (input pins)
+  * Support for switches (output pins)
+  * Debian packaging for ease of installation
 
- -- DeckerEgo <john@deckerego.net>  Fri, 13 Jan 2017 13:16:04 -0500
+ -- DeckerEgo <john@deckerego.net>  Tue, 24 Jan 2017 22:00:00 -0500
