@@ -11,7 +11,7 @@ twitter_username: deckerego
 github_username:  deckerego
 hackaday_url: https://hackaday.io/project/3413-hack-ready-alarm-clock
 hackaday_username: deckerego
-#google_analytics: UA-32628230-2
+google_analytics: UA-32628230-2
 
 # Build settings
 markdown: kramdown
