@@ -1,0 +1,88 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>Lesson Four: Play Lists</h1>
+
+  <p>
+    Now we are going to have our alarm clock play music. Once we have our
+    amplifier and speakers wired up, it is time to create a list of audio files
+    for our alarm clock to play.
+  </p>
+
+  <p>
+    First, let's take a look at our "Upload Audio" page by clicking on the
+    top navigation bar. Once the page appears we should be able to see a list
+    of files that are already loaded on our Hack Clock, and also a button
+    to upload our own files. Right now we are going to use the two files that
+    came with the Hack Clock - AmicusMeus.ogg and TestTrack.ogg.
+  </p>
+
+  <img src="/images/04_playmusic/upload_audio.png" alt="Upload Audio page"/>
+
+  <p>
+    Let's return back to our "Edit Code" page by clicking it in the top navigation
+    bar. Let's create a new function, this time to play music:
+  </p>
+
+  <img src="/images/04_playmusic/blocks_func.png" alt="The playMusic function" />
+
+  <p>
+    We want to tell the speaker what audio files play. We don't want to have
+    just one file either - we want to provide an entire play list. We can drag
+    over a list box from the "Lists" drawer...
+  </p>
+
+  <img src="/images/04_playmusic/blocks_create_list.png" alt="Create a list" />
+
+  <p>
+    ...and then resize it to have two elements:
+  </p>
+
+  <img src="/images/04_playmusic/blocks_resize_list.png" alt="Resize a list" />
+
+  <p>
+    Once the list block is in place, we can open up the "Audio" drawer in our
+    toolbox and find blocks for each of our music files. Let's snap both
+    into our list.
+  </p>
+
+  <img src="/images/04_playmusic/blocks_snap_file.png" alt="Add audio tracks to the list" />
+
+  <p>
+    The change in the code above will create a list with the names of two tracks,
+    TestTrack and AmicusMeus. The next thing will be to add a new action from our
+    "Audio" drawer in the toolbox labled "On _ Play _." For the left variable we
+    will drag in the "Audio Speaker" variable from the "Audio" drawer:
+  </p>
+
+  <img src="/images/04_playmusic/blocks_play_speaker.png" alt="Using the On Play action" />
+
+  <p>
+    Then we move our play list into the "On Play" action:
+  </p>
+
+  <img src="/images/04_playmusic/blocks_play_list.png" alt="Adding our list to the action" />
+
+  <p>
+    Next, let's copy over the "At Time _ In Clock _" action from the "Time" drawer,
+    along with the Clock Timer constant. Let's place the Clock Timer into the right-most
+    argument of our action, then add two numbers from the "Math" drawer into the remaining
+    slots of our action. Finally, we will put our new playMusic function from the
+    "Functions" drawer inside of our action:
+  </p>
+
+  <img src="/images/04_playmusic/blocks_clock_attime.png" alt="Clock function to play music" />
+
+  <p>
+    Excellent! Now at 8:30 in the morning our clock will begin blasting some music.
+    Change the time to just a minute in the future - see if it will begin playing!
+  </p>
+
+  <!--p>
+    Now we need to learn how to add some new hardware to our clock: let's have our clock
+    <a href="05_temperature.html">tell us the temperature outside when we press a button</a>.
+  </p-->
+</div>

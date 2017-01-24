@@ -29,6 +29,15 @@ aside a.lessons {
   background: transparent url(/images/buttons/blocks.png) 0 0 no-repeat;
 }
 
+#main-content code {
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  display: block;
+  border: 1px solid #bebab0;
+}
+
 #main-content img {
   margin: 10px;
   box-shadow: 5px 5px 5px #888888;

@@ -39,16 +39,14 @@ layout: default
     morning hours. Right after we define the variable "now," let's define "is_evening:"
   </p>
 
-  <p>
-    <pre>
-  # Show the current time
-  def showCurrentTime():
-      now = datetime.now()
+  <code>
+    # Show the current time
+    def showCurrentTime():
+        now = datetime.now()
 
-      # Set the hours
-      is_evening = now.hour > 12
-    </pre>
-  </p>
+        # Set the hours
+        is_evening = now.hour > 12
+  </code>
 
   <p>
     Now let's use this new knowledge to tell the clock to display the current hour
@@ -56,17 +54,15 @@ layout: default
     from the current hour.
   </p>
 
-  <p>
-    <pre>
-  # Show the current time
-  def showCurrentTime():
-      now = datetime.now()
+  <code>
+    # Show the current time
+    def showCurrentTime():
+        now = datetime.now()
 
-      # Set the hours
-      is_evening = now.hour > 12
-      display.setHours(now.hour if not is_evening else now.hour - 12)
-    </pre>
-  </p>
+        # Set the hours
+        is_evening = now.hour > 12
+        display.setHours(now.hour if not is_evening else now.hour - 12)
+  </code>
 
   <p>
     Now we no longer show things in military time! We still need a way to indicate
@@ -74,21 +70,19 @@ layout: default
     even need to use conditional logic!
   </p>
 
-  <p>
-    <pre>
-  # Show the current time
-  def showCurrentTime():
-      now = datetime.now()
+  <code>
+    # Show the current time
+    def showCurrentTime():
+        now = datetime.now()
 
-      # Set the hours
-      is_evening = now.hour > 12
-      display.setHours(now.hour if not is_evening else now.hour - 12)
+        # Set the hours
+        is_evening = now.hour > 12
+        display.setHours(now.hour if not is_evening else now.hour - 12)
 
-      # Set the indicator lights
-      display.setColon(True)
-      display.setEvening(is_evening)
-    </pre>
-  </p>
+        # Set the indicator lights
+        display.setColon(True)
+        display.setEvening(is_evening)
+    </code>
 
   <p>
     Essentially what we are doing here is saying the evening indicator should be
@@ -98,6 +92,7 @@ layout: default
 
   <p>
     We have now covered functions, variables, constructors and conditional logic.
-    Those concepts will carry us through to our next lesson!
+    Those concepts will carry us through to our next lesson:
+    <a href="04_playmusic.html">playing our music in the morning</a>!
   </p>
 </div>

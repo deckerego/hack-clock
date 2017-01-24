@@ -15,10 +15,22 @@ layout: default
     The first step is to find a way to ask our computer for the current time. First
     we need to ask Python to give us the datetime library, so towards the top of our
     code we need to add:
-    <pre>import datetime</pre>
+  </p>
+
+  <code>
+    import datetime
+  </code>
+
+  <p>
     Now that we have the datetime library imported, we can fetch the current time
     using:
-    <pre>now = datetime.datetime.now()</pre>
+  </p>
+
+  <code>
+    now = datetime.datetime.now()
+  </code>
+
+  <p>
     Do you recognize what "now" means from our previous lesson? "now" is a
     <i>variable</i> that stores what the current time is. You can read the line
     "datetime.datetime.now()" as "run the method 'now()' on the datetime object
@@ -30,14 +42,21 @@ layout: default
     If we want to pull out the minutes of our new "now" variable, we can access
     its "minute" and "hour" properties. For example, to get the current hour,
     we would type in:
-    <pre>now.hour</pre>
+  </p>
+
+  <code>
+    now.hour
+  </code>
+
+  <p>
     If we wanted to make our clock show the current hour and minute
     on our display, we would use:
-    <pre>
-      display.setHours(now.hour)
-      display.setMinutes(now.minute)
-    </pre>
   </p>
+
+  <code>
+    display.setHours(now.hour)
+    display.setMinutes(now.minute)
+  </code>
 
   <p>
     Fantastic! We can how show the current minutes and hours on our display!
@@ -51,23 +70,21 @@ layout: default
     and "display.setMinutes" code with a new method of your creation:
   </p>
 
-  <p>
-    <pre>
-  def showCurrentTime():
-      now = datetime.datetime.now()
+  <code>
+    def showCurrentTime():
+        now = datetime.datetime.now()
 
-      # Set the hours
-      display.setHours(now.hour)
+        # Set the hours
+        display.setHours(now.hour)
 
-      # Set the indicator lights
-      display.setColon(True)
+        # Set the indicator lights
+        display.setColon(True)
 
-      # Set the minutes
-      display.setMinutes(now.minute)
+        # Set the minutes
+        display.setMinutes(now.minute)
 
-  showCurrentTime()
-    </pre>
-  </p>
+    showCurrentTime()
+  </code>
 
   <p>
     This will still only change the display once, but this cleans up our code a bit
@@ -88,25 +105,23 @@ layout: default
     the clock to call it using the following code that replaces the old:
   </p>
 
-  <p>
-    <pre>
-  # Show the current time
-  def showCurrentTime():
-      now = datetime.datetime.now()
+  <code>
+    # Show the current time
+    def showCurrentTime():
+        now = datetime.datetime.now()
 
-      # Set the hours
-      display.setHours(now.hour)
+        # Set the hours
+        display.setHours(now.hour)
 
-      # Set the indicator lights
-      display.setColon(True)
+        # Set the indicator lights
+        display.setColon(True)
 
-      # Set the minutes
-      display.setMinutes(now.minute)
+        # Set the minutes
+        display.setMinutes(now.minute)
 
-  # What to do when the internal clock ticks
-  clock.onTick(showCurrentTime)
-    </pre>
-  </p>
+    # What to do when the internal clock ticks
+    clock.onTick(showCurrentTime)
+  </code>
 
   <p>
     Save your changes and watch your clock carefully. The time should now update when the minutes change!

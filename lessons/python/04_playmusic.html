@@ -1,0 +1,80 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>Lesson Four: Play Lists</h1>
+
+  <p>
+    Now we are going to have our alarm clock play music. Once we have our
+    amplifier and speakers wired up, it is time to create a list of audio files
+    for our alarm clock to play.
+  </p>
+
+  <p>
+    First, let's take a look at our "Upload Audio" page by clicking on the
+    top navigation bar. Once the page appears we should be able to see a list
+    of files that are already loaded on our Hack Clock, and also a button
+    to upload our own files. Right now we are going to use the two files that
+    came with the Hack Clock - AmicusMeus.ogg and TestTrack.ogg.
+  </p>
+
+  <img src="/images/04_playmusic/upload_audio.png" alt="Upload Audio page"/>
+
+  <p>
+    Let's return back to our "Edit Code" page by clicking it in the top navigation
+    bar. Let's create a new function, this time to play music:
+  </p>
+
+  <code>
+    from Libs.GStreamer import Speaker
+
+    # Connect to the speaker
+    speaker = Speaker()
+
+    # Play some music
+      def playMusic():
+      speaker.playList()
+  </code>
+
+  <p>
+    We want to tell the speaker what audio files play. We don't want to have
+    just one file either - we want to provide an entire play list. Python can
+    create lists of elements by containing each item in [] brackets, then separating
+    each element with a comma. For example:
+  </p>
+
+  <code>
+    # Play some music
+      def playMusic():
+      speaker.playList(["TestTrack.ogg", "AmicusMeus.ogg"])
+  </code>
+
+  <p>
+    The change in the code above will create a list with the names of two tracks,
+    TestTrack and AmicusMeus. This list then is sent to the speaker's function
+    playList, which will play each track in order.
+  </p>
+
+  <p>
+    Next, let's tell our Hack Clock to start this playlist at 9:30 in the morning
+    so we can wake up to our lovely music. Here we can inform the clock that we want
+    our playMusic function to be called at a specific time:
+  </p>
+
+  <code>
+    # Wake us up at 8:30 in the morning
+    clock.atTime(8, 30, playMusic)
+  </code>
+
+  <p>
+    Excellent! Now at 8:30 in the morning our clock will begin blasting some music.
+    Change the time to just a minute in the future - see if it will begin playing!
+  </p>
+
+  <!--p>
+    Now we need to learn how to add some new hardware to our clock: let's have our clock
+    <a href="05_temperature.html">tell us the temperature outside when we press a button</a>.
+  </p-->
+</div>
