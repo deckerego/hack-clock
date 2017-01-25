@@ -117,8 +117,8 @@ def python_backup_list(clock):
         ("2", "Lesson Two: Hours and minutes", open("%s/2/run_clock.py" % lesson_dir, 'r').read()),
         ("3", "Lesson Three: AM/PM indicator", open("%s/3/run_clock.py" % lesson_dir, 'r').read()),
         ("4", "Lesson Four: Play music!", open("%s/4/run_clock.py" % lesson_dir, 'r').read()),
-        ("5", "Lesson Five: Show the current temperature", open("%s/5/run_clock.py" % lesson_dir, 'r').read()),
-        ("6", "Lesson Six: Loading configuration settings", open("%s/6/run_clock.py" % lesson_dir, 'r').read()),
+        ("5", "Lesson Five: Adding buttons to push", open("%s/5/run_clock.py" % lesson_dir, 'r').read()),
+        ("6", "Lesson Six: Show the temperature outside", open("%s/6/run_clock.py" % lesson_dir, 'r').read()),
         ("final", "Final Lesson: Putting it all together", open("%s/final/run_clock.py" % lesson_dir, 'r').read()),
         ("musiclover", "Example: A music lover's clock", open("%s/musiclover/run_clock.py" % lesson_dir, 'r').read()),
         ("gpio", "Example: Using switches and buttons", open("%s/gpio/run_clock.py" % lesson_dir, 'r').read())
@@ -234,8 +234,8 @@ def blocks_backup_list(clock):
         ("2", "Lesson Two: Hours and minutes", open("%s/2/blocks_clock.xml" % lesson_dir, 'r').read()),
         ("3", "Lesson Three: AM/PM indicator", open("%s/3/blocks_clock.xml" % lesson_dir, 'r').read()),
         ("4", "Lesson Four: Play music!", open("%s/4/blocks_clock.xml" % lesson_dir, 'r').read()),
-        ("5", "Lesson Five: Show the current temperature", open("%s/5/blocks_clock.xml" % lesson_dir, 'r').read()),
-        ("6", "Lesson Six: Loading configuration settings", open("%s/6/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("5", "Lesson Five: Adding buttons to push", open("%s/5/blocks_clock.xml" % lesson_dir, 'r').read()),
+        ("6", "Lesson Six: Show the temperature outside", open("%s/6/blocks_clock.xml" % lesson_dir, 'r').read()),
         ("final", "Final Lesson: Putting it all together", open("%s/final/blocks_clock.xml" % lesson_dir, 'r').read()),
         ("musiclover", "Example: A music lover's clock", open("%s/musiclover/blocks_clock.xml" % lesson_dir, 'r').read()),
         ("gpio", "Example: Using switches and buttons", open("%s/gpio/blocks_clock.xml" % lesson_dir, 'r').read())

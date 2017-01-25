@@ -47,12 +47,6 @@
             </div>
           </div>
         </div>
-
-        <div id="lc_{{id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="lh_{{id}}">
-          <div class="panel-body">
-            <pre>{{diff}}</pre>
-          </div>
-        </div>
       </div>
     % end
     </div>

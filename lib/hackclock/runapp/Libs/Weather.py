@@ -18,6 +18,7 @@ class Weather:
 
   def __init__(self, weatherStation):
     self.last_fetch = datetime.datetime.min
+    # List of weather stations is available at http://forecast.weather.gov/stations.php
     self.url = "http://w1.weather.gov/xml/current_obs/%s.xml" % weatherStation
 
   def __refreshData(self):
