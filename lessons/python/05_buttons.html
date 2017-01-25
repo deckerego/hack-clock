@@ -20,7 +20,74 @@ layout: default
   </p>
 
   <p>
-    
+    Eventually we will want this button to display the temperature outside, but
+    before we do that let's write a simple test that will cause your display to show
+    only zeros for a while. First up: we will write a function that zero's out your display.
+    Let's name it "switchWeatherStations" since it will <i>eventually</i> show the
+    weather. Have it turn off all the indicators and show zeros for the numbers:
+  </p>
+
+  <code>
+    # Blank the display
+    def switchWeatherStations():
+       # Clear the display
+       display.setColon(False)
+       display.setEvening(False)
+       display.setHours(0)
+       display.setMinutes(0)
+  </code>
+
+  <p>
+    This would work - but it would quickly go back to showing the clock that updates
+    every second. Let's make the clock pause for about three seconds by adding
+    the Clock's "waitAbout(seconds)" function:
+  </p>
+
+  <code>
+    # Blink the display
+    def switchWeatherStations():
+        # Clear the display
+        display.setColon(False)
+        display.setEvening(False)
+        display.setHours(0)
+        display.setMinutes(0)
+
+        # Wait for about three seconds
+        clock.waitAbout(3)
+  </code>
+
+  <p>
+    Now let's construct a new button by adding:
+  </p>
+
+  <code>
+    # What to do when you press a button
+    Button(24)
+  </code>
+
+  <p>
+    Then we can tell our newly constructed button to call our function when pressed:
+  </p>
+
+  <code>
+    # What to do when you press a button
+    Button(24).whenPressed(switchWeatherStations)
+  </code>
+
+  <p>
+    Let's save our work now. Once your new code is finished saving, when you press
+    the button it should zero-out the display. If your button does not work, there
+    is an even <i>simpler</i> test you can load to see if the problem is with the
+    code or with the wires connecting the button. Go to the "Restore" page
+    and load the "Using switches and buttons" example. That should dim and
+    then brighten your display when a button is pressed. If that code doesn't
+    work correctly, check with the person who put your Raspberry Pi together
+    and have them check the button connected to the clock.
+  </p>
+
+  <p>
+    Nicely done! Now that the button works, let's get it to
+    <a href="06_temperature.html">show the current temperature outside</a>!
   </p>
 
 </div>

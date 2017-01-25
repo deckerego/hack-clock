@@ -14,14 +14,14 @@ layout: default
 
   <p>
     You will notice on Model A's and Model B's of the Raspberry Pi there is a headphone
-    jack that you could possibly amplify and drive a speaker with. The first attempt
-    wired a TTRS jack to a small amplifier, and then drove a small mono speaker.
-    The headphone jacks were cumbersome, required some careful soldering skills,
+    jack that you could possibly amplify and drive a speaker with. The first version of the
+    Hack Clock did wire a TTRS jack to a small amplifier, and then drove a small mono speaker.
+    However, the headphone jacks were cumbersome, required some careful soldering skills,
     and the sound interface wasn't that reliable. Some times the audio alarm just wouldn't power up!
   </p>
 
   <p>
-    With this build of the Hack Clock we are using digital audio output from the
+    With this edition of the Hack Clock we are using digital audio output from the
     Raspberry Pi, following the Inter-IC Sound Bus (I2S) standard. Adafruit sells
     a very efficient
     <a href="https://www.adafruit.com/products/3006">I2S decoder and amplifier</a>
@@ -68,17 +68,25 @@ layout: default
     <ol>
       <li>Connect the Vin pin on the amp to the +5V pin (pin #2) on the Raspberry Pi</li>
       <li>Connect the GND pin on the amp to the Ground pin (pin #39) on the Pi</li>
-      <li>Connect the  to the  on the Pi</li>
-      <li>Connect the  to the  on the Pi</li>
-      <li>Connect the  to the  on the Pi</li>
+      <li>Connect the DIN pin on the amp to GPIO 21 (SCLK) (pin #40) on the Pi</li>
+      <li>Connect the BCLK pin on the amp to the GPIO 18 (PWM0) (pin #12) on the Pi</li>
+      <li>Connect the LRCLK pin on the amp to the GPIO 19 (MISO) (pin #35) on the Pi</li>
     </ol>
+    It may be helpful to use Gadgetoid's
+    <a href="https://pinout.xyz/">interactive pinout diagram</a> to find all
+    of these pins.
   </p>
 
   <img src="/images/02_audio/amp_to_pi.jpg" alt="The amp connecting to the Pi" />
 
   <p>
     Phew. Done! If we load up <a href="/lessons/">Lesson 4: Play Music</a>,
-    <i>or</i> if we SSH into the Raspberry Pi and execute <code>speakertest -c 2 -i 3</code>,
+    <i>or</i> if we SSH into the Raspberry Pi and execute:
+  </p>
+
+  <code>speakertest -c 2 -i 3</code>
+
+  <p>
     we should be able to hear some sound! The Hack Clock ships with a test audio
     track so you can try things out.
   </p>

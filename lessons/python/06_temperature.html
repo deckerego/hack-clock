@@ -7,7 +7,98 @@ layout: default
   <h1>Lesson Six: Show the Temperature Outside</h1>
 
   <p>
+    Now we will code something really cool (or hot) - reaching out to the Internet
+    and finding out what the temperature is outside!
+  </p>
 
+  <p>
+    Your Raspberry Pi should be able to connect to the Internet for this lesson
+    to work correctly. If it does, when we press a button the clock should reach
+    out to the <a href="http://www.weather.gov/">US National Oceanic and Atmospheric Administration</a>
+    and use the <a href="http://forecast.weather.gov/stations.php">weather station</a>
+    closest to you to find the current temperature outside. Once your clock finds out
+    what the temperature is, it will show it on your display for a few seconds.
+  </p>
+
+  <p>
+    First, let's construct a "Weather" object:
+  </p>
+
+  <code>
+    from Libs.Weather import Weather
+
+    # The weather station
+    weather_station = Weather()
+  </code>
+
+  <p>
+    We need to tell the Weather object what weather station to observe the temperature
+    from. Each Hack Clock may be in a different location, so this is a
+    <i>configurable</i> setting. When the Hack Clock software was installed on your
+    Raspberry Pi it should have been set up with your local weather station - so we
+    will need to fetch that "configuration" value that is special to your clock.
+  </p>
+
+  <p>
+    in order to do that, we will need to fetch the "weather_station" value from
+    our current configuration:
+  </p>
+
+  <code>
+    station_name = configuration.get('weather_station')
+  </code>
+
+  <p>
+    Next we can add this line to the top of our code that we already created:
+  </p>
+
+  <code>
+    # The weather station
+    station_name = configuration.get('weather_station')
+    weather_station = Weather(station_name)
+  </code>
+
+  <p>
+    This should be all we need to fetch the current weather outside. Now let's
+    print out the temperature on our display by adding a few lines to the
+    "switchWeatherStation" function that we created in our
+    <a href="05_buttons.html">previous lesson</a>:
+  </p>
+
+  <code>
+    # Show the current weather
+    def switchWeatherStations():
+        # Clear the display
+        display.setColon(False)
+        display.setEvening(False)
+        display.setHours(0)
+        display.setMinutes(0)
+
+        # Show the current temperature
+        current_temp = weather_station.getCurrentTemp()
+        display.setMinutes(current_temp)
+
+        # Wait for about three seconds
+        clock.waitAbout(3)
+  </code>
+
+  <p>
+    Save our work and now test this out. You should see the current weather on your
+    clock! If things do not work, test to make sure:
+    <ol>
+      <li>Your button is plugged into your Raspberry Pi correctly</li>
+      <li>Your Raspberry Pi can connect to the Internet</li>
+      <li>Your local weather station is correctly configured</li>
+    </ol>
+  </p>
+
+  <p>
+    Congratulations - you're the proud builder of a fully operational Hack Clock!
+    You aren't finished yet - you can now customize the Hack Clock in whatever way
+    you like. If you would like to see some other examples (like having a button
+    control the music), click on the "Restore" button and load one of the examples.
+    Don't worry too much about messing up; you can restore your previously saved
+    code if things go completely wrong!
   </p>
 
 </div>
