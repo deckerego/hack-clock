@@ -91,9 +91,9 @@ do_start()
   pip_check
   gpio_init
 
-  start-stop-daemon --start --quiet --chdir $WEB_DIR --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
+  start-stop-daemon --start --quiet --chdir $WEB_DIR --chuid $DAEMON_USER --make-pidfile --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
     || return 1
-  start-stop-daemon --background --start --quiet --chdir $WEB_DIR --chuid $DAEMON_USER --pidfile $PIDFILE --exec $DAEMON -- \
+  start-stop-daemon --background --start --quiet --chdir $WEB_DIR --chuid $DAEMON_USER --make-pidfile --pidfile $PIDFILE --exec $DAEMON -- \
     $DAEMON_ARGS \
     || return 2
 }
@@ -105,7 +105,7 @@ do_stop()
 {
   gpio_destroy
 
-  start-stop-daemon --stop --quiet --chdir $WEB_DIR --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
+  start-stop-daemon --stop --quiet --chdir $WEB_DIR --retry=TERM/30/KILL/5 --remove-pidfile --pidfile $PIDFILE --name $NAME
   RETVAL="$?"
   [ "$RETVAL" = 2 ] && return 2
   start-stop-daemon --stop --quiet --oknodo --chdir $WEB_DIR --retry=0/30/KILL/5 --exec $DAEMON

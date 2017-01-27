@@ -1,4 +1,4 @@
-hackclock (2.0-pre-1) unstable; urgency=low
+hackclock (2.0-pre-2) unstable; urgency=low
 
   * I2C audio
   * Raspberry Pi Zero support
@@ -6,5 +6,6 @@ hackclock (2.0-pre-1) unstable; urgency=low
   * Multiple simultaneous buttons (input pins)
   * Support for switches (output pins)
   * Debian packaging for ease of installation
+  * Fixed bugs when re-starting terminating code
 
  -- DeckerEgo <john@deckerego.net>  Tue, 24 Jan 2017 22:00:00 -0500

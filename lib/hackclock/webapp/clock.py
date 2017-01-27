@@ -28,12 +28,11 @@ class Clock():
 
     def status(self):
         if self.eventLoop:
-            return ProcessStatus.TERMINATED if self.eventLoop.poll() else ProcessStatus.RUNNING
+            return ProcessStatus.RUNNING if self.eventLoop.poll() is None else ProcessStatus.TERMINATED
         else:
             return ProcessStatus.NOT_STARTED
 
     def stop(self):
-        logger.info("Terminating clock event loop")
         self.eventLoop.terminate()
 
     def start(self):
@@ -42,7 +41,9 @@ class Clock():
 
     def restart(self):
         if self.status() == ProcessStatus.RUNNING:
+            print "Stopping"
             self.stop()
+        print "Starting"
         self.start()
 
     def failures(self):
