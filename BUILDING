@@ -18,6 +18,12 @@ To verify the files inside the package:
     dpkg -c deb_dist/python-hackclock_2.0-beta-1_all.deb
 
 
+Requirements
+============
+
+Requires python-all and debhelper
+
+
 Generating Debian Metadata
 ==========================
 
