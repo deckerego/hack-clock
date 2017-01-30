@@ -41,9 +41,7 @@ class Clock():
 
     def restart(self):
         if self.status() == ProcessStatus.RUNNING:
-            print "Stopping"
             self.stop()
-        print "Starting"
         self.start()
 
     def failures(self):

@@ -110,7 +110,7 @@ def python_backup_list(clock):
     version_dir = configuration.get('backup_files')
     lesson_dir = configuration.get('lesson_files')
     python_file_re = re.compile('run_clock.*')
-    files = filter(python_file_re.match, listdir(version_dir))
+    files = sorted(filter(python_file_re.match, listdir(version_dir)), reverse=True)
 
     lessons = [
         ("1", "Lesson One: Light up the clock", open("%s/1/run_clock.py" % lesson_dir, 'r').read()),
@@ -227,7 +227,7 @@ def blocks_backup_list(clock):
     version_dir = configuration.get('backup_files')
     lesson_dir = configuration.get('lesson_files')
     block_file_re = re.compile('blocks_clock.*')
-    files = filter(block_file_re.match, listdir(version_dir))
+    files = sorted(filter(block_file_re.match, listdir(version_dir)), reverse=True)
 
     lessons = [
         ("1", "Lesson One: Light up the clock", open("%s/1/blocks_clock.xml" % lesson_dir, 'r').read()),
