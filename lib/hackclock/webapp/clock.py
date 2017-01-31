@@ -1,6 +1,7 @@
 import subprocess
 import logging
 import inspect
+import argparse
 from hackclock.config import configuration
 
 logger = logging.getLogger('clock')
@@ -36,8 +37,13 @@ class Clock():
         self.eventLoop.terminate()
 
     def start(self):
+        parser = argparse.ArgumentParser(description='The Hack Clock\'s custom code')
+        parser.add_argument('--config', type=str, default='/etc/hack-clock.conf', help='path to configuration file')
+        args = parser.parse_args()
+
         logger.info("Starting clock event loop")
-        self.eventLoop = subprocess.Popen(["python", self.sourceFile], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        self.eventLoop = subprocess.Popen(["python", self.sourceFile, "--config", args.config], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def restart(self):
         if self.status() == ProcessStatus.RUNNING:
