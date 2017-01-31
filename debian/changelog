@@ -1,4 +1,4 @@
-hackclock (2.0.0) stable; urgency=low
+hackclock (2.0.0-1) stable; urgency=low
 
   * I2C audio
   * Raspberry Pi Zero support

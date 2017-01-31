@@ -8,7 +8,7 @@ chown -R pi:pi /home/pi/hack-clock
 
 # Install those Python modules that only exist via pip
 echo "Installing missing Python modules..."
-pip  install --upgrade -r /usr/share/doc/hack-clock/requirements.txt
+pip install --upgrade -r /usr/share/doc/hack-clock/requirements.txt
 
 # Set the hifiberry-dac i2s module
 echo "Installing I2S audio..."
@@ -33,5 +33,8 @@ elif [ -e $MOD_CONFIG ] && grep -q "^snd-bcm2835" $MOD_CONFIG; then
     echo "Commenting out snd-bcm2835 in $MOD_CONFIG"
     sudo sed -i "s|^snd-bcm2835|#snd-bcm2835|" $MOD_CONFIG &> /dev/null
 fi
+
+# Boot upon start
+update-rc.d hack-clock defaults
 
 echo "Please reboot your Raspberry Pi!"
