@@ -1,11 +1,5 @@
-hackclock (2.0.0-1) stable; urgency=low
+hackclock (2.0.1-1) stable; urgency=low
 
-  * I2C audio
-  * Raspberry Pi Zero support
-  * Programming by blocks (using Blockly)
-  * Multiple simultaneous buttons (input pins)
-  * Support for switches (output pins)
-  * Debian packaging for ease of installation
-  * Fixed bugs when re-starting terminating code
+  * Added IFTTT support
 
- -- DeckerEgo <john@deckerego.net>  Sun, 29 Jan 2017 20:13:00 -0500
+ -- DeckerEgo <john@deckerego.net>  Mon, 30 Jan 2017 23:26:00 -0500
