@@ -2,11 +2,12 @@ import httplib
 import logging
 import json
 import datetime
+import platform
 
 logger = logging.getLogger('ifttt')
 
 console = logging.StreamHandler()
-console.setLevel(logging.WARNING)
+console.setLevel(logging.INFO)
 logger.addHandler(console)
 
 class IFTTT:
@@ -16,8 +17,8 @@ class IFTTT:
   __HEADERS = { "Content-type": "application/json" }
   __NAME = "hackclock"
 
-  def __init__(self, clockName, key):
-      self.__NAME = clockName
+  def __init__(self, key):
+      self.__NAME = platform.node()
       self.__KEY = key
 
   def sendMakerEvent(self, eventName):
