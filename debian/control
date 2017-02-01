@@ -2,7 +2,7 @@ Source: hackclock
 Maintainer: DeckerEgo <john@deckerego.net>
 Section: python
 Priority: optional
-Build-Depends: python-all (>= 2.6.6-3), debhelper (>= 7.4.3)
+Build-Depends: python-setuptools (>= 2.6.6-3), debhelper (>= 7.4.3)
 Standards-Version: 3.9.1
 X-Python-Version: >= 2.7
 
