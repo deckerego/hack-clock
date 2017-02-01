@@ -16,6 +16,7 @@ class IFTTT:
   __KEY = None
   __HEADERS = { "Content-type": "application/json" }
   __NAME = "hackclock"
+  __VERSION = "HackClock 2.0.0"
 
   def __init__(self, key):
       self.__NAME = platform.node()
@@ -27,7 +28,7 @@ class IFTTT:
           return
 
       datejson = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-      body = json.dumps({"value1": self.__NAME, "value2": datejson})
+      body = json.dumps({"value1": self.__NAME, "value2": datejson, "value3": self.__VERSION})
       logger.info("IFTTT Body: %s" % body)
 
       conn = httplib.HTTPSConnection(self.__SERVER, self.__PORT)
