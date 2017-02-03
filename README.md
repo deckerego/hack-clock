@@ -20,7 +20,7 @@ I'm assuming that you are starting with the Raspian Minimal Linux distribution. 
 
 1. Make sure your Raspberry Pi is up to date with the latest packages & firmware with `sudo apt-get update; sudo apt-get dist-upgrade`
 2. Enable I2C by executing `sudo raspi-config` as described in Adafruit's tutorial: https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
-3. Add the necessary Python and GStreamer dependencies using the command: `sudo apt-get install wiringpi python-bottle python-protobuf python-requests python-oauth2client python-httplib2 python-setuptools python-pip python-dev python-dateutil python-smbus gstreamer0.10-x gstreamer-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-bad python-gst0.10`
+3. Add the necessary Python and GStreamer dependencies using the command: `sudo apt-get install wiringpi python-bottle python-requests python-oauth2client python-httplib2 python-setuptools python-pip python-dev python-dateutil python-smbus gstreamer0.10-x gstreamer-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly python-gst0.10`
 4. Install hack-clock via `wget https://github.com/deckerego/hack-clock/releases/download/2.0.0/python-hackclock_2.0.1-1_all.deb; sudo dpkg -i python-hackclock_2.0.1-1_all.deb`
 5. Tweak `/etc/hack-clock.conf` and `/etc/default/hack-clock` to fit your needs (GPIO pins, correct weather station, etc.). A list of observed weather stations is available at http://forecast.weather.gov/stations.php
 6. Reboot your Pi to re-load modules and start the IDE web server
