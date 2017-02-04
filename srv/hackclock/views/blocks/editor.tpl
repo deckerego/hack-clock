@@ -120,7 +120,9 @@
           <category name="Audio" colour="240">
             <block type="speaker"></block>
             <block type="play_list"></block>
+            % if google_music:
             <block type="google_music_radio"></block>
+            % end
             <block type="is_playing"></block>
             <block type="audio_stop"></block>
           </category>
@@ -132,9 +134,11 @@
             <block type="weather_station"></block>
             <block type="current_temp"></block>
           </category>
+          % if ifttt_maker:
           <category name="IFTTT" colour="330">
             <block type="maker_send"></block>
           </category>
+          % end
           <category name="Loops" colour="360">
             <block type="controls_repeat_ext">
               <value name="TIMES">

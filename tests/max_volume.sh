@@ -1,4 +1,5 @@
 #!/bin/sh
 
-amixer set PCM -- 100%
-speaker-test -c 2
+rm ~/.asoundrc
+amixer set Master -- 100%
+speaker-test -c2 -twav

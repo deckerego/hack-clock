@@ -5,4 +5,4 @@ BUTTON_BCM_PIN=(23 24)
 SWITCH_BCM_PIN=(25)
 
 # Volume level to feed to ALSA SoftVol
-MASTER_VOLUME='75%'
+MASTER_VOLUME='65%'

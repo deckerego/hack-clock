@@ -56,3 +56,4 @@ home/pi/hack-clock/backups/run_clock.*
 home/pi/hack-clock/backups/blocks_clock.*
 home/pi/hack-clock/blocks_clock.xml
 home/pi/hack-clock/run_clock.py
+tests/localsettings.conf

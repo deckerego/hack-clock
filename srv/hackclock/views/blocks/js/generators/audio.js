@@ -31,11 +31,11 @@ Blockly.Python['speaker'] = function(block) {
 
 Blockly.Python['google_music_radio'] = function(block) {
   Blockly.Python.definitions_['import_speaker'] = 'from hackclock.runapp.Libs.GStreamer import Speaker';
-  Blockly.Python.definitions_['import_googlemusic'] = 'from hackclock.runapp.Libs.GoogleMusic import GoogleMusic';
+  Blockly.Python.definitions_['import_googlemusic'] = 'from hackclock.runapp.Libs.GoogleMusic import AudioStream';
   Blockly.Python.definitions_['init_speaker'] = 'speaker = Speaker()';
-  Blockly.Python.definitions_['init_googlemusic'] = 'google_music = GoogleMusic()';
+  Blockly.Python.definitions_['init_googlemusic'] = 'audio_stream = AudioStream()';
 
-  return ['google_music.radioPlaylist()', Blockly.Python.ORDER_NONE];
+  return ['audio_stream', Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Python['play_list'] = function(block) {
