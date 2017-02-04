@@ -120,6 +120,9 @@
           <category name="Audio" colour="240">
             <block type="speaker"></block>
             <block type="play_list"></block>
+            % if google_music:
+            <block type="google_music_radio"></block>
+            % end
             <block type="is_playing"></block>
             <block type="audio_stop"></block>
           </category>
@@ -131,9 +134,11 @@
             <block type="weather_station"></block>
             <block type="current_temp"></block>
           </category>
+          % if ifttt_maker:
           <category name="IFTTT" colour="330">
             <block type="maker_send"></block>
           </category>
+          % end
           <category name="Loops" colour="360">
             <block type="controls_repeat_ext">
               <value name="TIMES">
@@ -182,7 +187,6 @@
     <script src="/blockly/msg/js/en.js"></script>
     <script src="/blocks/js/blocks/display.js"></script>
     <script src="/blocks/js/blocks/clock.js"></script>
-    <script src="/blocks/js/blocks/speaker.js"></script>
     <script src="/blocks/js/blocks/audio.js"></script>
     <script src="/blocks/js/blocks/gpio.js"></script>
     <script src="/blocks/js/blocks/weather.js"></script>
@@ -190,7 +194,6 @@
     <script src="/blocks/js/blocks/list.js"></script>
     <script src="/blocks/js/generators/display.js"></script>
     <script src="/blocks/js/generators/clock.js"></script>
-    <script src="/blocks/js/generators/speaker.js"></script>
     <script src="/blocks/js/generators/audio.js"></script>
     <script src="/blocks/js/generators/gpio.js"></script>
     <script src="/blocks/js/generators/weather.js"></script>
