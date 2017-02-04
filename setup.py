@@ -27,7 +27,7 @@ runapp_data_files = all_files('/home/pi/hack-clock', 'home/pi/hack-clock')
 
 setup(
     name='HackClock',
-    version='2.0.1',
+    version='2.1.0',
     description='A hackable alarm clock for the Raspberry Pi',
     author='DeckerEgo',
     author_email='john@deckerego.net',
@@ -62,7 +62,8 @@ setup(
     keywords='alarm clock raspberry pi rpi hardware python learning blocks blockly diy hackclock hack hardware',
     requires=[
         'bitstring (>=3.1.3)',
-        'wiringpi2 (>=1.0.10)',
-        'bottle (>=0.12.7)'
+        'wiringpi2 (>=2.23.1)',
+        'bottle (>=0.12.7)',
+        'gmusicapi (>=10.1.0)'
     ],
 )
