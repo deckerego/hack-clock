@@ -35,7 +35,7 @@ Blockly.Python['google_music_radio'] = function(block) {
   Blockly.Python.definitions_['init_speaker'] = 'speaker = Speaker()';
   Blockly.Python.definitions_['init_googlemusic'] = 'audio_stream = AudioStream()';
 
-  return ['audio_stream', Blockly.Python.ORDER_NONE];
+  return ['audio_stream', Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['play_list'] = function(block) {
