@@ -1,7 +1,5 @@
-hackclock (2.1.1-1) stable; urgency=low
+hackclock (2.1.2-1) stable; urgency=low
 
-  * Fixed improper termination with init script
-  * Fixed poor parsing when transforming stream_audio blocks into Python
-  * Fixed packaging issue that might overwrite run_clock.py
+  * Fixed GStreamer issue introduced with v2.1.1
 
- -- DeckerEgo <john@deckerego.net>  Mon, 06 Feb 2017 21:15:00 -0500
+ -- DeckerEgo <john@deckerego.net>  Mon, 06 Feb 2017 21:50:00 -0500
