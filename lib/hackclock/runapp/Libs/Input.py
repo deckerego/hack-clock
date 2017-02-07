@@ -20,6 +20,9 @@ class Button(threading.Thread):
     self.__initialState = wiringpi.digitalRead(self.pinNumber)
     self.__previousState = self.__initialState
 
+  def __del__(self):
+    self.__running = False
+
   def run(self):
     self.__running = True
 

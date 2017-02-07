@@ -19,6 +19,7 @@ class Clock():
     name = 'clock'
     keyword = 'clock'
     sourceFile = configuration.get('python_file')
+    eventLoop = None
 
     def __init__(self):
         self.eventLoop = None
@@ -34,7 +35,9 @@ class Clock():
             return ProcessStatus.NOT_STARTED
 
     def stop(self):
+        logger.info("Terminating clock loop")
         self.eventLoop.terminate()
+        self.eventLoop.wait()
 
     def start(self):
         parser = argparse.ArgumentParser(description='The Hack Clock\'s custom code')

@@ -21,7 +21,10 @@ class Speaker:
     def __init__(self):
         self.pl = None
         self.eventLoop = None
-        gobject.threads_init()
+        #gobject.threads_init()
+
+    def __del__(self):
+        self.stop()
 
     def play(self, fileName):
         self.playList([fileName])
@@ -49,7 +52,9 @@ class Speaker:
 
     def stop(self):
         self.pl.set_state(gst.STATE_NULL)
-        if self.eventLoop: self.eventLoop.quit()
+        if self.eventLoop:
+            self.eventLoop.quit()
+            #gobject.threads_leave()
 
     def isPlaying(self):
         return gst.STATE_PLAYING in self.pl.get_state() if self.pl else False
