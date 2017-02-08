@@ -41,12 +41,13 @@ class AudioStream:
 
     def pop(self):
         while self.__playlist:
+            track_id = self.__playlist.pop()
+
             try:
-                track_id = self.__playlist.pop()
                 stream_url = self.__client.get_stream_url(track_id, quality='low')
                 return stream_url
             except(exceptions.CallFailure):
-                logger.warning("Failed to fetch Stream URL for ID %s" % trackid)
+                logger.warning("Failed to fetch Stream URL for ID %s" % track_id)
 
             raise IndexError("pop from empty list")
 

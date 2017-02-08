@@ -54,7 +54,6 @@ class Speaker:
         self.pl.set_state(gst.STATE_NULL)
         if self.eventLoop:
             self.eventLoop.quit()
-            gobject.threads_leave()
 
     def isPlaying(self):
         return gst.STATE_PLAYING in self.pl.get_state() if self.pl else False

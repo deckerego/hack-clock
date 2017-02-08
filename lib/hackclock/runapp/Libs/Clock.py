@@ -34,13 +34,14 @@ class Clock(threading.Thread):
 
     def run(self):
         while self.__running:
-            if self.tickFunc: self.tickFunc()
-            self.__executeEvents()
-
             self.__waitLock.acquire()
             totalWait = self.__RESOLUTION + self.additionalWait
             self.additionalWait = 0
             self.__waitLock.release()
+
+            if self.tickFunc: self.tickFunc()
+            self.__executeEvents()
+
             time.sleep(totalWait / 1000.0)
 
     def atTime(self, hour, minute, action):
