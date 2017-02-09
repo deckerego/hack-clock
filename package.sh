@@ -7,7 +7,7 @@ rm home/pi/hack-clock/backups/blocks_clock.*
 
 cd ..
 echo "Compressing file..."
-tar Jcf hackclock_2.1.3.orig.tar.xz hack-clock/
+tar Jcf hackclock_2.1.4.orig.tar.xz hack-clock/
 
 cd hack-clock
 dpkg-buildpackage -rfakeroot -uc -us

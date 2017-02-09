@@ -1,5 +1,5 @@
-hackclock (2.1.3-1) stable; urgency=low
+hackclock (2.1.4-1) stable; urgency=low
 
-  * Fixed YET ANOTHER GStreamer issue introduced with v2.1.1
+  * Added in Alsa + Gst 0.10 as a dependency to hopefully address some fd errors that killed the audio stream
 
  -- DeckerEgo <john@deckerego.net>  Tue, 07 Feb 2017 22:15:00 -0500
