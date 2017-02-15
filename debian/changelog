@@ -1,5 +1,5 @@
 hackclock (2.1.5-1) stable; urgency=low
 
-  * Added in Alsa + Gst 0.10 as a dependency to hopefully address some fd errors that killed the audio stream
+  * Added ability to adjust volume
 
  -- DeckerEgo <john@deckerego.net>  Tue, 07 Feb 2017 22:15:00 -0500
