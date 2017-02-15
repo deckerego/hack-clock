@@ -44,6 +44,16 @@ Blockly.Python['play_list'] = function(block) {
   return ''+value_speaker+'.playList('+value_songs+')\n';
 };
 
+Blockly.Python['volume_up'] = function(block) {
+  var value_speaker = Blockly.Python.valueToCode(block, 'speaker', Blockly.Python.ORDER_ATOMIC);
+  return ''+value_speaker+'.volumeUp()\n';
+};
+
+Blockly.Python['volume_down'] = function(block) {
+  var value_speaker = Blockly.Python.valueToCode(block, 'speaker', Blockly.Python.ORDER_ATOMIC);
+  return ''+value_speaker+'.volumeDown()\n';
+};
+
 Blockly.Python['is_playing'] = function(block) {
   var value_speaker = Blockly.Python.valueToCode(block, 'speaker', Blockly.Python.ORDER_ATOMIC);
   return [value_speaker + '.isPlaying()', Blockly.Python.ORDER_NONE];

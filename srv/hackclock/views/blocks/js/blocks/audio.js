@@ -109,6 +109,66 @@ Blockly.Blocks['play_list'] = {
   }
 };
 
+Blockly.Blocks['volume_up'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "volume_up",
+      "message0": "Turn Volume Up %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "speaker",
+          "check": "Speaker"
+        }
+      ],
+      "inputsInline": false,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 255,
+      "tooltip": "Turn up the volume on a speaker",
+      "helpUrl": "http://hackclock.deckerego.net/"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'Turn up the volume on a speaker';
+    });
+  }
+};
+
+Blockly.Blocks['volume_down'] = {
+  init: function() {
+    this.jsonInit({
+      "type": "volume_down",
+      "message0": "Turn Volume Down %1",
+      "args0": [
+        {
+          "type": "input_value",
+          "name": "speaker",
+          "check": "Speaker"
+        }
+      ],
+      "inputsInline": false,
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": 255,
+      "tooltip": "Turn down the volume on a speaker",
+      "helpUrl": "http://hackclock.deckerego.net/"
+    });
+
+    var thisBlock = this;
+
+    this.setTooltip(function() {
+      var parent = thisBlock.getParent();
+      return (parent && parent.getInputsInline() && parent.tooltip) ||
+          'Turn down the volume on a speaker';
+    });
+  }
+};
+
 Blockly.Blocks['google_music_radio'] = {
   init: function() {
     this.jsonInit({
