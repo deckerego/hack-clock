@@ -17,10 +17,12 @@ logger.addHandler(console)
 
 class Speaker:
     __HTTP_PATTERN = re.compile("http[s]*://.*")
+    __volume = None
 
     def __init__(self):
         self.pl = None
         self.eventLoop = None
+        self.__volume = 1.0
         gobject.threads_init()
 
     def __del__(self):
@@ -39,6 +41,7 @@ class Speaker:
         # Create the pipeline
         self.pl = gst.element_factory_make("playbin2", "player")
         self.pl.set_state(gst.STATE_READY)
+        self.pl.volume = self.__volume
 
         # Create the event bus
         self.bus = self.pl.get_bus()
@@ -70,6 +73,7 @@ class Speaker:
             logger.info("Playing: %s" % track)
             self.pl.set_state(gst.STATE_READY)
             self.pl.set_property('uri', track)
+            self.pl.volume = self.__volume
             self.pl.set_state(gst.STATE_PLAYING)
         else:
             self.stop()
@@ -77,6 +81,20 @@ class Speaker:
     def onMessage(self, bus, message):
         if message.type == gst.MESSAGE_EOS:
             self.next()
+
+    def setVolume(self, level):
+        if level <= 1.0 and level >= 0.0:
+            self.__volume = level
+
+        if self.isPlaying() and self.pl:
+            self.pl.volume = level
+
+    def volumeUp(self):
+        self.setVolume(self.__volume + 0.1)
+
+    def volumeDown(self):
+        self.setVolume(self.__volume - 0.1)
+
 
 class GtkEventLoop(threading.Thread):
 

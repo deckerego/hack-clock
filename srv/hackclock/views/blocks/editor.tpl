@@ -125,6 +125,8 @@
             % end
             <block type="is_playing"></block>
             <block type="audio_stop"></block>
+            <block type="volume_up"></block>
+            <block type="volume_down"></block>
           </category>
           <category name="Buttons &amp; Switches" colour="270">
             <block type="when_pressed"></block>
