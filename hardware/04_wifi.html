@@ -1,0 +1,69 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>Setting Up WiFi</h1>
+
+  <p>
+    Setting up wireless networking on the Raspberry Pi is actually much easier now
+    than it used to be. Around March of 2016, the NOOBS team updated the
+    raspberrypi-net-mods package to read a file off of the SD card and automagically
+    update network settings. This makes setup way easier than plugging in a keyboard,
+    fetching a monitor, and making the change after the OS is installed.
+  </p>
+
+  <p>
+    I'll be using MacOS for these examples, but these steps will be similar
+    for Windows Explorer or whatever your file manager of choice is. For the
+    Raspberry Pi OS, in order to get this simple setup working you must have
+    <a href="https://www.raspberrypi.org/downloads/noobs/">installed NOOBS</a>.
+    Directly flashing an SD card with Raspian or another OS won't work - we
+    need to use the scripts &amp; facilities that ships with
+    <a href="https://www.raspberrypi.org/downloads/noobs/">NOOBS</a>.
+
+  </p>
+
+  <p>
+    Once NOOBS is installed, insert the SD card into your main Windows/Linux/MacOS
+    computer. You should see two partitions or disk mounts appear - one of them
+    will be labelled "BOOT":
+    <img src="/images/04_wifi/boot_part.png" alt="The SD card's boot partition in Finder"/>
+  </p>
+
+  <p>
+    We need to create a file named "wpa_supplicant.conf" in this BOOT mount point.
+    Use a text editor (like Notepad or TextEdit or vim) to create a new wpa_supplicant.conf
+    on this partition of the SD card. You can generate the contents of this file by
+    using <a href="https://steveedson.co.uk/tools/wpa/">Steve Edson's fantastic Config Generator</a>,
+    or by modifying this
+    <a href="https://gist.github.com/deckerego/13a6159d68cff4ca999a#file-wpa_supplicant-conf">sample wpa_supplicant.conf</a>.
+    Once you have generated your configuration and saved the file to your SD card,
+    eject both partitions from your computer and insert the SD card back into the
+    Raspberry Pi.
+  </p>
+
+  <p>
+    After you boot your Raspberry Pi with this configuration file saved in the
+    BOOT partition, it should connect to your wireless network! If you haven't
+    changed the hostname of your Raspberry Pi, the default should be "raspberrypi".
+    Assuming you haven't change your Pi's name, and if your wireless access point
+    is also your router and DHCP server, within a few minutes you should soon be able to
+    SSH into your Raspberry Pi using:
+  </p>
+
+  <code>ssh pi@raspberrypi</code>
+
+  <p>
+    Now you can install the Hack Clock software - just follow the instructions listed
+    at <a href="https://github.com/deckerego/hack-clock/blob/master/README.md">https://github.com/deckerego/hack-clock/blob/master/README.md</a>.
+  </p>
+
+  <p>
+    Now that your <a href="index.html">hardware is set up</a>, and once you have
+    <a href="https://github.com/deckerego/hack-clock/blob/master/README.md">installed the Hack Clock software</a>,
+    you can <a href="/lessons/">continue to the programming lessons</a> and make your Hack Clock
+    respond to buttons, light up an LED, or play an entire wake-up playlist!
+  </p>
+</div>
