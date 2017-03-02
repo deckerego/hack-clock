@@ -32,7 +32,7 @@ class IFTTT:
       logger.info("IFTTT Body: %s" % body)
 
       conn = httplib.HTTPSConnection(self.__SERVER, self.__PORT)
-      conn.request("POST", "/trigger/wake_up/with/key/%s" % self.__KEY, body, self.__HEADERS)
+      conn.request("POST", "/trigger/%s/with/key/%s" % (eventName, self.__KEY), body, self.__HEADERS)
 
       response = conn.getresponse()
       logger.info("IFTTT Response: %s %s" % (response.reason, str(response.status)))
