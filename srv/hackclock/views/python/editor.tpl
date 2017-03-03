@@ -32,15 +32,15 @@
       <div class="btn-group btn-group-lg" role="group" >
         <button type="button" class="btn btn-default" aria-label="Save" onClick="savePython(editor.getValue(), saveCallback);">
           % if status == "Saved":
-          <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
           % elif status == "Failed":
-          <span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
           % else:
-          <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
           % end
         </button>
         <button type="button" class="btn btn-default" aria-label="Restore" onClick="window.location='/python/backups';">
-          <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn btn-default" aria-label="Refresh" onClick="restartClock(this, 'runstatus');">
           <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>

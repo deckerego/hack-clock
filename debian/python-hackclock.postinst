@@ -10,28 +10,33 @@ chown -R pi:pi /home/pi/hack-clock
 echo "Installing missing Python modules..."
 pip install -r /usr/share/doc/hack-clock/requirements.txt
 
-# Set the hifiberry-dac i2s module
-echo "Installing I2S audio..."
-if [ -e $BOOT_CONFIG ] && grep -q "^dtoverlay=hifiberry-dac$" $BOOT_CONFIG; then
-    echo "hifiberry already installed"
+# If I2S audio is already ignored, don't insert the I2S overlays
+if [ -e /boot/config.txt ] && grep -q -E "^#.*dtoverlay=i2s-mmap" /boot/config.txt; then
+    echo "I2S already ignored, skipping I2S overlay"
 else
-    echo "dtoverlay=hifiberry-dac" | sudo tee -a $BOOT_CONFIG
-fi
+    # Set the hifiberry-dac i2s module
+    echo "Installing I2S audio..."
+    if [ -e $BOOT_CONFIG ] && grep -q "^dtoverlay=hifiberry-dac$" $BOOT_CONFIG; then
+        echo "hifiberry already installed"
+    else
+        echo "dtoverlay=hifiberry-dac" | sudo tee -a $BOOT_CONFIG
+    fi
 
-# Enable (optional) i2s-mmap to get rid of popping and set volumes
-if [ -e $BOOT_CONFIG ] && grep -q "^dtoverlay=i2s-mmap$" $BOOT_CONFIG; then
-    echo "i2s-mmap already installed"
-else
-    echo "dtoverlay=i2s-mmap" | sudo tee -a $BOOT_CONFIG
-fi
+    # Enable (optional) i2s-mmap to get rid of popping and set volumes
+    if [ -e $BOOT_CONFIG ] && grep -q "^dtoverlay=i2s-mmap$" $BOOT_CONFIG; then
+        echo "i2s-mmap already installed"
+    else
+        echo "dtoverlay=i2s-mmap" | sudo tee -a $BOOT_CONFIG
+    fi
 
-# Make sure old audio is disabled
-if [ -e $BOOT_CONFIG ] && grep -q -E "^dtparam=audio=on$" $BOOT_CONFIG; then
-    echo "Commenting out dtparam=audio=on in $BOOT_CONFIG"
-    sudo sed -i "s|^dtparam=audio=on$|#dtparam=audio=on|" $BOOT_CONFIG &> /dev/null
-elif [ -e $MOD_CONFIG ] && grep -q "^snd-bcm2835" $MOD_CONFIG; then
-    echo "Commenting out snd-bcm2835 in $MOD_CONFIG"
-    sudo sed -i "s|^snd-bcm2835|#snd-bcm2835|" $MOD_CONFIG &> /dev/null
+    # Make sure old audio is disabled
+    if [ -e $BOOT_CONFIG ] && grep -q -E "^dtparam=audio=on$" $BOOT_CONFIG; then
+        echo "Commenting out dtparam=audio=on in $BOOT_CONFIG"
+        sudo sed -i "s|^dtparam=audio=on$|#dtparam=audio=on|" $BOOT_CONFIG &> /dev/null
+    elif [ -e $MOD_CONFIG ] && grep -q "^snd-bcm2835" $MOD_CONFIG; then
+        echo "Commenting out snd-bcm2835 in $MOD_CONFIG"
+        sudo sed -i "s|^snd-bcm2835|#snd-bcm2835|" $MOD_CONFIG &> /dev/null
+    fi
 fi
 
 # Boot upon start
