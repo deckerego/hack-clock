@@ -7,7 +7,7 @@ import json
 logger = logging.getLogger('google_music')
 
 console = logging.StreamHandler()
-console.setLevel(logging.WARNING)
+console.setLevel(logging.DEBUG)
 logger.addHandler(console)
 
 class AudioStream:
@@ -34,6 +34,11 @@ class AudioStream:
         tracklist = self.__client.get_station_tracks(station_id, num_tracks=self.__track_prefetch)
         logger.info("Received tracks: %r" % json.dumps(tracklist))
 
+        # Filter out explicit tracks, where non-explicit is explicitType=2
+        tracklist = [track for track in tracklist if not 'explicitType' in track or track['explicitType'] == "2"]
+        logger.info("Non-explicit tracks: %r" % json.dumps(tracklist))
+
+        # Fetch both song IDs and Nautilus (old) IDs
         songids = [track['id'] for track in tracklist if 'id' in track]
         nautids = [track['nid'] for track in tracklist if 'nid' in track]
 

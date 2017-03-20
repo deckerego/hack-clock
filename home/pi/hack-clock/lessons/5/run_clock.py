@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
 from datetime import datetime
-from Libs.Clock import Clock
-from Libs.SevenSegment import Display
-from Libs.Input import Button
-from Libs.GStreamer import Speaker
+from hackclock.runapp.Libs.Clock import Clock
+from hackclock.runapp.Libs.SevenSegment import Display
+from hackclock.runapp.Libs.Input import Button
+from hackclock.runapp.Libs.GStreamer import Speaker
 
 # Connect to the internal machine clock
 clock = Clock()

@@ -1,6 +1,5 @@
-hackclock (2.1.7-1) stable; urgency=low
+hackclock (2.1.8-1) stable; urgency=low
 
-  * Detect if I2S is already _ignored_, then allow standard Pi audio to continue
-  * Changed icons for "save" and "restore" in IDE
+  * Filter out explicit songs from Google Music radio streams
 
  -- DeckerEgo <john@deckerego.net>  Tue, 01 Mar 2017 21:32:00 -0500

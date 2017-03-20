@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
 from datetime import datetime
-from Libs.Clock import Clock
-from Libs.SevenSegment import Display
-from Libs.Weather import Weather
-from Libs.Input import Button
-from Libs.GStreamer import Speaker
-from config import configuration
+from hackclock.runapp.Libs.Clock import Clock
+from hackclock.runapp.Libs.SevenSegment import Display
+from hackclock.runapp.Libs.Weather import Weather
+from hackclock.runapp.Libs.Input import Button
+from hackclock.runapp.Libs.GStreamer import Speaker
+from hackclock.config import configuration
 
 # The weather station
 station_name = configuration.get('weather_station')

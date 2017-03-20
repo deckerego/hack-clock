@@ -1,8 +1,8 @@
 from datetime import datetime
-from Libs.SevenSegment import Display
-from Libs.Output import Switch
-from Libs.Clock import Clock
-from Libs.Input import Button
+from hackclock.runapp.Libs.SevenSegment import Display
+from hackclock.runapp.Libs.Output import Switch
+from hackclock.runapp.Libs.Clock import Clock
+from hackclock.runapp.Libs.Input import Button
 
 Is_Evening = None
 LED_On = None

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-from Libs.Clock import Clock
-from Libs.SevenSegment import Display
+from hackclock.runapp.Libs.Clock import Clock
+from hackclock.runapp.Libs.SevenSegment import Display
 
 # Connect to the internal machine clock
 clock = Clock()
