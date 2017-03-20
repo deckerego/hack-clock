@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>"Internet of Things" Automation with IFTTT</h1>
+
+  <p>
+    The Hack Clock can integrate with the automation service
+    <a href="https://ifttt.com">IFTTT.com</a> to turn your lights on
+    when your alarm goes off, send out a tweet at the press of a button,
+    or fire up your coffee maker at a given time.
+  </p>
+
+  <p>
+    To turn on IFTTT within your toolbox, you will need to use the
+    <a href="https://ifttt.com/services/maker_webhooks/settings">Maker service</a>
+    within IFTTT and have it generate a new webhook key for you. Once you do,
+    add it to <code>/etc/hack-clock.conf</code> as in:
+  </p>
+
+  <code>
+        "ifttt_maker_key": "sdfafd_aDAKDF_wadfs",
+  </code>
+
+  <p>
+    Once you have changed your config file, re-start the hack-clock service
+    to read in the new file. After the restart, you should be able to add
+    the following code to your Python file:
+  </p>
+
+  <code>
+    ifttt = IFTTT(configuration.get('ifttt_maker_key'))
+
+    def wakeUp():
+      if not (datetime.now().weekday() in (5, 6)):
+        ifttt.sendMakerEvent("sara_light")
+        playMusic()
+  </code>
+
+  <p>
+    The above code will send an event to a Maker-powered IFTTT Applet, which then
+    turns on an LIFX light:
+  </p>
+
+  <img src="/images/07_ifttt/ifttt_configure.jpg" alt="An event to switch on an LIFX light" />
+</div>

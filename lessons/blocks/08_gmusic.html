@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>Waking up with Google Music</h1>
+
+  <p>
+    If you use Google Music, you can play the "I'm Feeling Lucky" radio station
+    when you wake up!
+  </p>
+
+  <p>
+    To enable the Google Music block within your toolbox, you will need to
+    provide your Google username and password (or application password if you use
+    two-factor authentication) to the Hack Clock configuration file
+    <code>/etc/hack-clock.conf</code> as in:
+  </p>
+
+  <code>
+        "google_username": "chuckles_mcharty",
+        "google_password": "yohohothisisntmypassword",
+  </code>
+
+  <p>
+    Restart the hack-clock service and the block should appear in your IDE under
+    the "Audio" toolbox:
+  </p>
+
+  <img src="/images/08_gmusic/gmusic_block.png" alt="The Google Music block" />
+
+  <p>
+    Place the block anywhere you might want music to start, and a track list
+    will begin playing!
+  </p>
+
+</div>

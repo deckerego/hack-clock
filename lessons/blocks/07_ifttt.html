@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>"Internet of Things" Automation with IFTTT</h1>
+
+  <p>
+    The Hack Clock can integrate with the automation service
+    <a href="https://ifttt.com">IFTTT.com</a> to turn your lights on
+    when your alarm goes off, send out a tweet at the press of a button,
+    or fire up your coffee maker at a given time.
+  </p>
+
+  <p>
+    To turn on IFTTT within your toolbox, you will need to use the
+    <a href="https://ifttt.com/services/maker_webhooks/settings">Maker service</a>
+    within IFTTT and have it generate a new webhook key for you. Once you do,
+    add it to <code>/etc/hack-clock.conf</code> as in:
+  </p>
+
+  <code>
+        "ifttt_maker_key": "sdfafd_aDAKDF_wadfs",
+  </code>
+
+  <p>
+    Once you have changed your config file, re-start the hack-clock service
+    to read in the new file. After the restart, you should see the following
+    new block in your toolbox:
+  </p>
+
+  <img src="/images/07_ifttt/ifttt_block.png" alt="IFTTT blocks" />
+
+  <p>
+    This new block allows you to send an "event" message to an IFTTT applet,
+    which in turn can work with an IFTTT integration to cause something to happen.
+    As an example, here is how you can configure an IFTTT applet that switches on
+    an LIFX light on once your alarm sounds:
+  </p>
+
+  <img src="/images/07_ifttt/ifttt_configure.jpg" alt="An event to switch on an LIFX light" />
+</div>

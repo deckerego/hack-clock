@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1>Waking up with Google Music</h1>
+
+  <p>
+    If you use Google Music, you can play the "I'm Feeling Lucky" radio station
+    when you wake up!
+  </p>
+
+  <p>
+    To enable the Google Music block within your toolbox, you will need to
+    provide your Google username and password (or application password if you use
+    two-factor authentication) to the Hack Clock configuration file
+    <code>/etc/hack-clock.conf</code> as in:
+  </p>
+
+  <code>
+        "google_username": "chuckles_mcharty",
+        "google_password": "yohohothisisntmypassword",
+  </code>
+
+  <p>
+    Restart the hack-clock service and then you can use the following code
+    to launch the radio station:
+  </p>
+
+  <code>
+    from hackclock.runapp.Libs.GStreamer import Speaker
+    from hackclock.runapp.Libs.GoogleMusic import AudioStream
+
+    speaker = Speaker()
+    audio_stream = AudioStream()
+    speaker.playList(audio_stream)
+  </code>
+
+</div>
