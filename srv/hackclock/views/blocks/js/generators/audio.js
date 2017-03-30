@@ -33,9 +33,8 @@ Blockly.Python['google_music_radio'] = function(block) {
   Blockly.Python.definitions_['import_speaker'] = 'from hackclock.runapp.Libs.GStreamer import Speaker';
   Blockly.Python.definitions_['import_googlemusic'] = 'from hackclock.runapp.Libs.GoogleMusic import AudioStream';
   Blockly.Python.definitions_['init_speaker'] = 'speaker = Speaker()';
-  Blockly.Python.definitions_['init_googlemusic'] = 'audio_stream = AudioStream()';
 
-  return ['audio_stream', Blockly.Python.ORDER_ATOMIC];
+  return ['AudioStream()', Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['play_list'] = function(block) {
