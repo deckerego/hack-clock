@@ -1,5 +1,5 @@
-hackclock (2.1.8-1) stable; urgency=low
+hackclock (2.1.9-1) stable; urgency=low
 
-  * Filter out explicit songs from Google Music radio streams
+  * Don't re-use the same Google Music playlist
 
- -- DeckerEgo <john@deckerego.net>  Tue, 01 Mar 2017 21:32:00 -0500
+ -- DeckerEgo <john@deckerego.net>  Wed, 29 Mar 2017 21:47:00 -0500
