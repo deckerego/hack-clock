@@ -54,7 +54,7 @@
         <ul class="list-group">
         % for file in files:
           <li class="list-group-item">
-            <button type="button" class="btn btn-default badge" onClick="deleteAudio('{{file}}');">
+            <button type="button" class="btn btn-default badge" onClick="deleteAudio('{{file.replace("'", "\\\'")}}');">
               <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
             </button>
             {{file}}
