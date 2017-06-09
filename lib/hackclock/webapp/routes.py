@@ -13,11 +13,12 @@ console = logging.StreamHandler()
 console.setLevel(logging.WARNING)
 logger.addHandler(console)
 
+import urllib
 from dateutil import parser
 from datetime import datetime
 from hackclock.config import configuration
 from clock import Clock, ProcessStatus
-from bottle import Bottle, HTTPResponse, static_file, get, put, request, response, redirect, template
+from bottle import Bottle, HTTPResponse, static_file, get, put, request, response, redirect, template, error
 from os import listdir
 import re
 
@@ -25,7 +26,7 @@ application = Bottle()
 application.install(Clock())
 
 @application.get('/')
-def editor():
+def home():
     default_editor = configuration.get('default_editor')
     is_deps_missing = False
 
@@ -35,7 +36,10 @@ def editor():
     except(ImportError):
         is_deps_missing = True
 
-    return template('index', edit_path=default_editor, missing_deps=is_deps_missing)
+    fs_stats = os.statvfs(configuration.get('audio_files'))
+    free_percent = (fs_stats.f_bavail * 100) / fs_stats.f_blocks
+
+    return template('index', edit_path=default_editor, missing_deps=is_deps_missing, disk_free=free_percent)
 
 @application.route('/favicon.ico')
 def send_favicon():
@@ -320,11 +324,34 @@ def audio_files():
 
 @application.get('/audio')
 def audio_view():
-    return template('audio', files=audio_files())
+    fs_stats = os.statvfs(configuration.get('audio_files'))
+    free_mb = (fs_stats.f_bavail * fs_stats.f_frsize) / (1024**2)
+    full_percent = 100 - ((fs_stats.f_bavail * 100) / fs_stats.f_blocks)
+    is_full = free_mb < 20
+    return template('audio', files=audio_files(), free_space=free_mb, percent_full=full_percent, is_full=is_full)
 
 @application.get('/audio/list')
 def audio_list():
     return json.dumps(audio_files())
+
+@application.delete('/audio/<file_id>')
+def delete_audio_file(file_id):
+    audio_dir = configuration.get('audio_files')
+    file_name = urllib.unquote(file_id)
+    file_path = "%s/%s" % (audio_dir, file_name)
+
+    response = {}
+    response['path'] = file_path
+    response['status'] = 'none'
+
+    try:
+        os.remove(file_path)
+        response['status'] = 'deleted'
+    except EnvironmentError as ex:
+        response['status'] = 'failed'
+        response['error'] = str(ex)
+
+    return json.dumps(response)
 
 # GPIO pin list
 @application.get('/gpio/button/list')
@@ -342,3 +369,60 @@ def switch_list():
 def weather_list():
     switch_pins = configuration.get('switches_gpio')
     return json.dumps(switch_pins)
+
+@application.error(404)
+def notfound_page(error):
+    return home()
+
+@application.error(500)
+def error_page(error):
+    default_editor = configuration.get('default_editor')
+    error_message = error.exception
+    page = '''
+        <!doctype html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <title>Welcome to Hack Clock</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+          <link rel="stylesheet" href="/css/styles.css?v=2" type="text/css" />
+        </head>
+        <body>
+          <div class="container">
+
+            <nav class="navbar navbar-default navbar-static-top" role="navigation">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="http://hackclock.deckerego.net/">Hack Clock</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="%s">Edit Code</a></li>
+                    <li><a href="/audio">Upload Audio</a></li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+
+            <div class="jumbotron">
+              <div class="page-header">
+                <h1>D'oh! My Bad...</h1>
+                <p class="lead">There was an error in the Hack Clock webapp!</p>
+                <p>
+                  Let us know by
+                  <a href="https://github.com/deckerego/hack-clock/issues/new">submitting an issue</a>
+                  with the error below:
+                </p>
+              </div>
+              <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                %s
+              </div>
+            </div>
+
+          </div>
+        </body>
+        </html>
+    '''
+    return page % (default_editor, error_message)

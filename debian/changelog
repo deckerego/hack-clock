@@ -1,5 +1,8 @@
-hackclock (2.1.9-1) stable; urgency=low
+hackclock (2.2.1-1) stable; urgency=low
 
-  * Don't re-use the same Google Music playlist
+  * Provided pretty HTTP 500 and 404 pages
+  * Better audio upload interface
+  * Permit deleting of audio files
+  * Disk space warnings
 
- -- DeckerEgo <john@deckerego.net>  Wed, 29 Mar 2017 21:47:00 -0500
+ -- DeckerEgo <john@deckerego.net>  Thu, 8 Jun 2017 21:15:00 -0500
