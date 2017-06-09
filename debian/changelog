@@ -1,8 +1,5 @@
-hackclock (2.2.1-1) stable; urgency=low
+hackclock (2.2.2-1) stable; urgency=low
 
-  * Provided pretty HTTP 500 and 404 pages
-  * Better audio upload interface
-  * Permit deleting of audio files
-  * Disk space warnings
+  * Fixed improper escaping of a single-quote
 
- -- DeckerEgo <john@deckerego.net>  Thu, 8 Jun 2017 21:15:00 -0500
+ -- DeckerEgo <john@deckerego.net>  Thu, 8 Jun 2017 21:30:00 -0500
