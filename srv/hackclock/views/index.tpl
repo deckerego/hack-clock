@@ -40,11 +40,22 @@
           Upload an audio file
         </a>
       </div>
+
       % if missing_deps:
-      <p class="bg-danger">
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         It appears you are missing a few Python dependencies. Make sure you have installed everything by logging into this device and calling:
+        <br/>
         <code>sudo pip install -r /usr/share/doc/hack-clock/requirements.txt</code>
-      </p>
+      </div>
+      % end
+
+      % if disk_free <= 0:
+      <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        The file storage on your clock seems to be full! Clear out some space to make sure
+        you can upload audio files and save backups! Weird stuff may happen otherwise.
+      </div>
       % end
     </div>
 

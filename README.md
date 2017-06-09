@@ -21,7 +21,7 @@ I'm assuming that you are starting with the Raspian Minimal Linux distribution. 
 1. Make sure your Raspberry Pi is up to date with the latest packages & firmware with `sudo apt-get update; sudo apt-get dist-upgrade`
 2. Enable I2C by executing `sudo raspi-config` as described in Adafruit's tutorial: https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 3. Add the necessary Python and GStreamer dependencies using the command: `sudo apt-get install wiringpi python-bottle python-requests python-oauth2client python-httplib2 python-setuptools python-pip python-dev python-dateutil python-smbus gstreamer0.10-x gstreamer-tools gstreamer0.10-plugins-base gstreamer0.10-plugins-good gstreamer0.10-plugins-bad gstreamer0.10-plugins-ugly python-gst0.10`
-4. Install hack-clock via `wget https://github.com/deckerego/hack-clock/releases/download/2.1.9/python-hackclock_2.1.9-1_all.deb; sudo dpkg -i python-hackclock_2.1.9-1_all.deb`
+4. Install hack-clock via `wget https://github.com/deckerego/hack-clock/releases/download/2.2.1/python-hackclock_2.2.1-1_all.deb; sudo dpkg -i python-hackclock_2.2.1-1_all.deb`
 5. Tweak `/etc/hack-clock.conf` and `/etc/default/hack-clock` to fit your needs (GPIO pins, correct weather station, etc.). A list of observed weather stations is available at http://forecast.weather.gov/stations.php
 6. Reboot your Pi to re-load modules and start the IDE web server
 
@@ -69,12 +69,12 @@ You will also need to remove the custom `/etc/asound.conf` configuration file on
 it does not need to be present if you are using the headphone jack.
 
 
-IN BETA - Coding With Blocks!
+Coding With Blocks!
 -----------------------------
 
-Python is currently the language of choice for teaching and customizing the clock, however a code-by-blocks editor (from Blockly, similar to Scratch) is currently going through a final round of testing and polish! If you would like to try it out early, change the following entry in `webapp/config.py`:
+Coding by Blocks is now the default way of programming the Hack Clock! If you would like to revert back to Python, change the following entry in `webapp/config.py`:
 
-    'default_editor': '/blocks/edit'
+    'default_editor': '/python/edit'
 
 If you would like to add a button that allows you to switch between Python and blocks editing, change the following in `webapp/config.py`:
 
