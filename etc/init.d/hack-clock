@@ -94,6 +94,7 @@ do_start()
 {
   pip_check
   gpio_init
+  set_volume
 
   start-stop-daemon --start --quiet --chdir $WEB_DIR --chuid $DAEMON_USER --make-pidfile --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
     || return 1
