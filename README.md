@@ -88,14 +88,16 @@ Note that if you save a set of blocks, it will overwrite any Python coding you h
 Licenses
 ========
 
-Unless otherwise noted, this software is released under the Apache Public License 2.0 (APL 2). A copy of this license is available within this distribution's base directory as the file `LICENSE`.
+Unless otherwise noted, this software is released under the Apache Public License 2.0 (APL 2). Copyright 2017 John T. Ellis. A copy of this license is available within this distribution's base directory as the file `LICENSE`.
 
-The Adafruit libraries located in the `/Adafruit` directory are licensed separately, see `runapp/Adafruit/README.md` for details.
+The Adafruit libraries located in the `/Adafruit` directory are licensed separately, see `lib/hackclock/runapp/Adafruit/README.md` for details.
 The original code is available at https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code
 
-CodeMirror is licensed separately as detailed in `views/codemirror/LICENSE`. The CodeMirror codebase in this distribution is derived from the public repository available at https://github.com/codemirror/codemirror
+CodeMirror is licensed separately as detailed in `srv/hackclock/views/codemirror/LICENSE`. The CodeMirror codebase in this distribution is derived from the public repository available at https://github.com/codemirror/codemirror
 
-Blockly is licensed separately as detailed in `views/blockly/LICENSE`. The Blockly codebase in this distribution is derived from the public repository available at https://github.com/google/blockly
+Blockly is licensed separately as detailed in `srv/hackclock/views/blockly/LICENSE`. The Blockly codebase in this distribution is derived from the public repository available at https://github.com/google/blockly
 
 Drawing of a 0.36" single digit seven-segment display has been released into the Public Domain by Inductiveload,
 available at http://commons.wikimedia.org/wiki/File:7-Segment_Display,_0.36in,_Single_(shaded).svg
+
+Audio files are licensed separately as detailed in `home/pi/hack-clock/audio/README.md`. Where applicable, the original source for each file is listed within the README.md file.
