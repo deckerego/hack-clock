@@ -4,5 +4,9 @@ BUTTON_BCM_PIN=(23 24)
 # The pins (using the Broadcom numbering scheme) to be used for switches (output)
 SWITCH_BCM_PIN=(25)
 
+# Master volume channel. With the Adafruit I2S amp this is 'Master', 
+# with the headphone jack on larger Raspberry Pi's this is 'PCM'
+AUDIO_CHANNEL='Master'
+
 # Volume level to feed to ALSA SoftVol
-MASTER_VOLUME='65%'
+VOLUME_LEVEL='65%'

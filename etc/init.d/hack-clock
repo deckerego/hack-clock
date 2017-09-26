@@ -34,7 +34,7 @@ SCRIPTNAME=/etc/init.d/$NAME
 
 set_volume()
 {
-  amixer set Master -- "$MASTER_VOLUME"
+  amixer set "$AUDIO_CHANNEL" -- "$VOLUME_LEVEL"
 }
 
 #
