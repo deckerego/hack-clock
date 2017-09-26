@@ -10,5 +10,5 @@ X-Python-Version: >= 2.7
 
 Package: python-hackclock
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, ntp, python-bottle, python-requests, python-httplib2, python-oauth2client, wiringpi, python-setuptools, python-pip, python-dev, python-dateutil, python-smbus, gstreamer0.10-x, gstreamer0.10-alsa, gstreamer-tools, gstreamer0.10-plugins-base, gstreamer0.10-plugins-good, gstreamer0.10-plugins-bad, python-gst0.10
+Depends: ${misc:Depends}, ${python:Depends}, ntp, python-bottle, python-requests, python-httplib2, python-oauth2client, wiringpi, python-setuptools, python-pip, python-dev, python-dateutil, python-smbus, gstreamer0.10-x, gstreamer0.10-alsa, gstreamer-tools, gstreamer0.10-plugins-base, gstreamer0.10-plugins-good, python-gst0.10
 Description: A hackable alarm clock for the Raspberry Pi

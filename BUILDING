@@ -7,7 +7,7 @@ Distributions are generated using stdeb, execute it on the Raspberry Pi to build
 
 To debug installation:
 
-    sudo dpkg -D113 -i ../python-hackclock_2.0-beta-1_all.deb
+    sudo dpkg -D113 -i ../python-hackclock_2.3.0-1_all.deb
 
 To completely uninstall:
 
@@ -15,7 +15,7 @@ To completely uninstall:
 
 To verify the files inside the package:
 
-    dpkg -c deb_dist/python-hackclock_2.0-beta-1_all.deb
+    dpkg -c deb_dist/python-hackclock_2.3.0-1_all.deb
 
 
 Requirements
