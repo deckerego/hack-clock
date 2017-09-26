@@ -1,6 +1,7 @@
 #!/bin/bash
 
 BOOT_CONFIG=/boot/config.txt
+SYS_CONFIG=/etc/sysctl.conf
 MOD_CONFIG=/etc/modules
 
 # Fix ownership in home directory after installing
@@ -10,8 +11,17 @@ chown -R pi:pi /home/pi/hack-clock
 echo "Installing missing Python modules..."
 pip install -r /usr/share/doc/hack-clock/requirements.txt
 
+# Set sysctl parameters
+if [ -e /boot/config.txt ] && grep -q -E "^#.*kernel.panic=" $SYS_CONFIG; then
+    echo "Not setting kernel panic reboot, already set"
+else
+    # If we have a kernel panic, reboot in 5 seconds
+    echo "Setting reboot on kernel panic"
+    echo "kernel.panic=5" | sudo tee -a $SYS_CONFIG
+fi
+
 # If I2S audio is already ignored, don't insert the I2S overlays
-if [ -e /boot/config.txt ] && grep -q -E "^#.*dtoverlay=i2s-mmap" /boot/config.txt; then
+if [ -e /boot/config.txt ] && grep -q -E "^#.*dtoverlay=i2s-mmap" $BOOT_CONFIG; then
     echo "I2S already ignored, skipping I2S overlay"
 else
     # Set the hifiberry-dac i2s module

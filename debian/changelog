@@ -1,7 +1,7 @@
-hackclock (2.3.0-1) stable; urgency=low
+hackclock (2.3.1-1) stable; urgency=low
 
-  * Migration to Raspian Stretch
-  * Reboot on kernel panic
-  * Fixed LICENSE to include copyright
+  * Added klaxon audio sample
+  * Configurable ALSA master channel
+  * Really added reboot on kernel panic this time
 
- -- DeckerEgo <john@deckerego.net>  Mon, 25 Sep 2017 23:00:00 -0500
+ -- DeckerEgo <john@deckerego.net>  Mon, 25 Sep 2017 23:15:00 -0500
