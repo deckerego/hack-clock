@@ -12,7 +12,7 @@ echo "Installing missing Python modules..."
 pip install -r /usr/share/doc/hack-clock/requirements.txt
 
 # Set sysctl parameters
-if [ -e $SYS_CONFIG ] && grep -q -E "^#.*kernel.panic=" $SYS_CONFIG; then
+if [ -e $SYS_CONFIG ] && grep -q -E "^kernel\.panic=" $SYS_CONFIG; then
     echo "Not setting kernel panic reboot, already set"
 else
     # If we have a kernel panic, reboot in 5 seconds
