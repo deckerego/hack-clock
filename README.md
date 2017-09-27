@@ -13,6 +13,19 @@ Step-by-step instructions for creating your clock are available at https://hacka
 
 A suggested list of hardware you might need to buy is saved as a wishlist at Adafruit: https://www.adafruit.com/wishlists/413935
 
+
+Usage
+-----
+
+Once the app starts, you should be able to get to the clock's web interface on port 9003. For example - http://raspberrypi:9003/
+
+Audio files and user-created source code is saved within the `/home/pi/hack-clock` directory - so it should be easily accessible for the pi user. This can be changed in `/etc/hack-clock.conf`.
+
+Source is backed up each time the user saves - so if you accidentally screw something up it is quick to recover.
+
+Clicking the "restore" button also opens up the source code for each lesson provided at http://hackclock.deckerego.net/. If you restore a lesson, you can find some good starting points and suggestions for your clock.
+
+
 Installation
 ------------
 
@@ -28,16 +41,10 @@ To install the hack-clock distribution on top of Raspian:
 6. Reboot your Pi to re-load modules and start the IDE web server
 
 
-Usage
------
+Upgrading from 2.x
+------------------
 
-Once the app starts, you should be able to get to the clock's web interface on port 9003. For example - http://192.168.1.2:9003/
-
-Audio files and user-created source code is saved within the `/home/pi/hack-clock` directory - so it should be easily accessible for the pi user. This can be changed in `/etc/hack-clock.conf`.
-
-Source is backed up each time the user saves - so if you accidentally screw something up it is quick to recover.
-
-Clicking the "restore" button also opens up the source code for each lesson provided at http://hackclock.deckerego.net/. If you restore a lesson, you can find some good starting points and suggestions for your clock.
+Upgrading from another 2.x release is pretty easy. Just execute `wget https://github.com/deckerego/hack-clock/releases/download/2.3.1/python-hackclock_2.3.1-1_all.deb; sudo dpkg -i python-hackclock_2.3.1-1_all.deb` and reboot your clock!
 
 
 Upgrading from 1.0

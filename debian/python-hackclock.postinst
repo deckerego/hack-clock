@@ -12,7 +12,7 @@ echo "Installing missing Python modules..."
 pip install -r /usr/share/doc/hack-clock/requirements.txt
 
 # Set sysctl parameters
-if [ -e /boot/config.txt ] && grep -q -E "^#.*kernel.panic=" $SYS_CONFIG; then
+if [ -e $SYS_CONFIG ] && grep -q -E "^#.*kernel.panic=" $SYS_CONFIG; then
     echo "Not setting kernel panic reboot, already set"
 else
     # If we have a kernel panic, reboot in 5 seconds
@@ -21,7 +21,7 @@ else
 fi
 
 # If I2S audio is already ignored, don't insert the I2S overlays
-if [ -e /boot/config.txt ] && grep -q -E "^#.*dtoverlay=i2s-mmap" $BOOT_CONFIG; then
+if [ -e $BOOT_CONFIG ] && grep -q -E "^#.*dtoverlay=i2s-mmap" $BOOT_CONFIG; then
     echo "I2S already ignored, skipping I2S overlay"
 else
     # Set the hifiberry-dac i2s module
