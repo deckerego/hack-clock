@@ -39,6 +39,15 @@ layout: default
     using <a href="https://steveedson.co.uk/tools/wpa/">Steve Edson's fantastic Config Generator</a>,
     or by modifying this
     <a href="https://gist.github.com/deckerego/13a6159d68cff4ca999a#file-wpa_supplicant-conf">sample wpa_supplicant.conf</a>.
+  </p>
+
+  <p>
+    Finally, create an empty file in the same mount point simply named "ssh" - nothing
+    needs to be inside the file. When the Raspberry Pi starts up, it should see this
+    file and automatically enable SSH connections.
+  </p>
+
+  <p>
     Once you have generated your configuration and saved the file to your SD card,
     eject both partitions from your computer and insert the SD card back into the
     Raspberry Pi.
