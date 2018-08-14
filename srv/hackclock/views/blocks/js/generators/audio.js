@@ -29,14 +29,6 @@ Blockly.Python['speaker'] = function(block) {
   return ['speaker', Blockly.Python.ORDER_ATOMIC];
 };
 
-Blockly.Python['google_music_radio'] = function(block) {
-  Blockly.Python.definitions_['import_speaker'] = 'from hackclock.runapp.Libs.GStreamer import Speaker';
-  Blockly.Python.definitions_['import_googlemusic'] = 'from hackclock.runapp.Libs.GoogleMusic import AudioStream';
-  Blockly.Python.definitions_['init_speaker'] = 'speaker = Speaker()';
-
-  return ['AudioStream()', Blockly.Python.ORDER_ATOMIC];
-};
-
 Blockly.Python['play_list'] = function(block) {
   var value_speaker = Blockly.Python.valueToCode(block, 'speaker', Blockly.Python.ORDER_ATOMIC);
   var value_songs = Blockly.Python.valueToCode(block, 'songs', Blockly.Python.ORDER_ATOMIC);
