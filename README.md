@@ -27,7 +27,7 @@ Clicking the "restore" button also opens up the source code for each lesson prov
 
 
 Installation
-------------
+============
 
 I'm assuming that you are starting with the Raspian Minimal Linux distribution available at https://www.raspberrypi.org/downloads/raspbian/ or pre-installed by several distributors. NOOBS or the like also works, but Raspian Minimal is small enough to fit on a 2GB microSD card.
 
@@ -79,7 +79,7 @@ it does not need to be present if you are using the headphone jack.
 
 
 Coding With Blocks!
------------------------------
+===================
 
 Coding by Blocks is now the default way of programming the Hack Clock! If you would like to revert back to Python, change the following entry in `webapp/config.py`:
 
@@ -90,6 +90,24 @@ If you would like to add a button that allows you to switch between Python and b
     'disable_editor_button': False
 
 Note that if you save a set of blocks, it will overwrite any Python coding you have performed. Likewise, if you make any Python edits it will overwrite whatever code was generated out of Blockly. You can still restore from previous Python or Blockly save points however.
+
+
+Known Issues
+============
+
+The Google Music API (gmusicapi) requires lxml, which often requires native compilation for ARM. Compiling
+lxml can take over 500M of RAM, which some smaller Raspberry Pi's don't have. To work around this, you
+can increase the swap file size of your Pi by editing `/etc/dphys-swapfile` and setting the swapfile
+value to:
+
+    CONF_SWAPSIZE=512
+
+After setting this value, you can have them take effect by restarting swap:
+
+    sudo service dphys-swapfile stop
+    sudo service dphys-swapfile start
+
+Bear in mind that swap is *slow*, so the build will likely take a while.
 
 
 Licenses
