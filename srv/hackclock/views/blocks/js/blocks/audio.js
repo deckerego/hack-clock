@@ -169,27 +169,6 @@ Blockly.Blocks['volume_down'] = {
   }
 };
 
-Blockly.Blocks['google_music_radio'] = {
-  init: function() {
-    this.jsonInit({
-      "type": "block_type",
-      "message0": "Google Music Radio",
-      "output": "Array",
-      "colour": 60,
-      "tooltip": "Play the \"I'm Feeling Lucky\" radio station on Google Music",
-      "helpUrl": "https://play.google.com/music/listen"
-    });
-
-    var thisBlock = this;
-
-    this.setTooltip(function() {
-      var parent = thisBlock.getParent();
-      return (parent && parent.getInputsInline() && parent.tooltip) ||
-          'Play the "I\'m Feeling Lucky" radio station on Google Music';
-    });
-  }
-};
-
 Blockly.Blocks['is_playing'] = {
   init: function() {
     this.jsonInit({

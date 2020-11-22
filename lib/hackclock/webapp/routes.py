@@ -185,10 +185,9 @@ def send_blocks_js(filename):
 @application.get('/blocks/edit')
 def blocks_edit_event_loop(clock):
     switch_visible = not configuration.get('disable_editor_button')
-    google_music = configuration.get('google_username') and configuration.get('google_password')
     ifttt_maker = configuration.get('ifttt_maker_key')
 
-    return template('blocks/editor', switch_visible=switch_visible, google_music=google_music, ifttt_maker=ifttt_maker, status="Opened")
+    return template('blocks/editor', switch_visible=switch_visible, ifttt_maker=ifttt_maker, status="Opened")
 
 @application.get('/blocks/read')
 def blocks_read_event_loop(clock):
@@ -267,15 +266,14 @@ def blocks_lesson_event_loop(clock, file_id):
     lesson_file = "%s/%s/blocks_clock.xml" % (lesson_dir, file_id)
 
     switch_visible = not configuration.get('disable_editor_button')
-    google_music = configuration.get('google_username') and configuration.get('google_password')
     ifttt_maker = configuration.get('ifttt_maker_key')
 
     try:
         code_file = open(lesson_file, 'r')
         blocks_save_event_loop(clock, code_file)
-        return template('blocks/editor', switch_visible=switch_visible, google_music=google_music, ifttt_maker=ifttt_maker, status="Opened")
+        return template('blocks/editor', switch_visible=switch_visible, ifttt_maker=ifttt_maker, status="Opened")
     except:
-        return template('blocks/editor', switch_visible=switch_visible, google_music=google_music, ifttt_maker=ifttt_maker, status="Failed")
+        return template('blocks/editor', switch_visible=switch_visible, ifttt_maker=ifttt_maker, status="Failed")
 
 @application.get('/blocks/restore/<file_id:int>')
 def blocks_restore_event_loop(clock, file_id):
@@ -285,15 +283,14 @@ def blocks_restore_event_loop(clock, file_id):
     restored_file = "%s/%s" % (version_dir, restored_files[0])
 
     switch_visible = not configuration.get('disable_editor_button')
-    google_music = configuration.get('google_username') and configuration.get('google_password')
     ifttt_maker = configuration.get('ifttt_maker_key')
 
     try:
         code_file = open(restored_file, 'r')
         blocks_save_event_loop(clock, code_file)
-        return template('blocks/editor', switch_visible=switch_visible, google_music=google_music, ifttt_maker=ifttt_maker, status="Opened")
+        return template('blocks/editor', switch_visible=switch_visible, ifttt_maker=ifttt_maker, status="Opened")
     except:
-        return template('blocks/editor', switch_visible=switch_visible, google_music=google_music, ifttt_maker=ifttt_maker, status="Failed")
+        return template('blocks/editor', switch_visible=switch_visible, ifttt_maker=ifttt_maker, status="Failed")
 
 # Clock REST API
 @application.post('/clock/restart')
