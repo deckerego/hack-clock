@@ -51,6 +51,9 @@ docs/_build/
 # PyBuilder
 target/
 
+# MacOS Cruft
+**/.DS_Store
+
 # Hack Clock files generated during local testing
 home/pi/hack-clock/backups/run_clock.*
 home/pi/hack-clock/backups/blocks_clock.*
