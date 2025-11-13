@@ -3,7 +3,32 @@ The Hackable Clock
 
 A hackable alarm clock, made for experimentation in order to build programming skills as well as the basics of circuit building.
 
-Lessons and tutorials are currently a work-in-progress, however drafts are available at http://hackclock.deckerego.net/
+Lessons and tutorials are available at http://deckerego.github.io/hack-clock/
+
+
+Project Status (Epilogue)
+-------------------------
+
+**This project was built on old versions of Raspian and Adafruit hardware, and will no longer work as-is.**
+
+This project was intended to provide an easy-to-hack platform to teach coding and hardware basics. It received some great
+early press, but the learning curve (and setup curve) was a bit steep for most kids. There was a lot of work that went into
+the Hack Clock - and several are still running today!
+
+As time has marched on so has the Raspberry Pi platform and the Adafruit hardware. The Adafruit audio bonnet made wiring up
+audio so much easier, and the Pi Zero W was a fantastic low-profile platform. The 7-segment LED backpacks evolved, and
+Raspbian drastically changed how Python and GPIO runs within the platform. Adafruit has also changed a lot of their
+libraries, moving them to `pip` packages and leaning into managed Python environments.
+
+All of this is great! However... it means that a major refactor of the Hack Clock would need to happen to get it to the
+same level of functionality. Given the adoption level, if I _did_ bring back the Hack Clock it would need to be with a
+complete rewrite.
+
+I don't want to lose this code however - it was a remarkably stable platform that worked well. So this project will be archived,
+and any future Hack Clock versions will be launched in a new repository.
+
+Feel free to use this repository as inspiration, but note it will no longer run as-is. Still - I hope it can be a resource
+to those looking for building teaching platforms!
 
 
 Building the Hardware
