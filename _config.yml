@@ -6,7 +6,7 @@ email: john@deckerego.net
 description: >
   A hackable alarm clock, built for experimentation and learning
 baseurl: ""
-url: "http://hackclock.deckerego.net"
+url: "http://deckerego.github.io/hack-clock/"
 twitter_username: deckerego
 github_username:  deckerego
 hackaday_url: https://hackaday.io/project/3413-hack-ready-alarm-clock
